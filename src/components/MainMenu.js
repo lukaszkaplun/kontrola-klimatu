@@ -1,16 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class MainMenu extends Component {
-    render() {
-        return (
+  render() {
+    return (
+      <ul className="main-menu">
+        {this.props.mainMenu.map((item, index) => {
+          if (item.submenu !== null) {
+            return (
+              <li key={index} className={index === 0 ? "active" : ""}>
+                <span>{item.name}</span>
 
-            <ul className="main-menu">
-                {this.props.mainMenu.map((item, index) => {
-                    return <li key={index} className={index === 0? "active": "" }>{item.name}</li>
-                })}
-            </ul>
-        );
-    }
+                <ul>
+                  {item.submenu.map((subitem, subindex) => {
+                    return (
+                      <li
+                        key={subindex}
+                        className={subindex === 0 ? "active" : ""}
+                      >
+                        <span>{subitem.name}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          }
+          return (
+            <li key={index} className={index === 0 ? "active" : ""}>
+              <span>{item.name}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
 }
-
-
