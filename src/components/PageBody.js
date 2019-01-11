@@ -3,6 +3,8 @@ import Swiper from "react-id-swiper";
 import HomePage from "./HomePage";
 import About from "./About";
 import Offer from "./Offer";
+import Certificates from "./Certificates";
+import Gallery from "./Gallery";
 export default class PageBody extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +39,12 @@ export default class PageBody extends Component {
       //   ref={node => (node ? (this.swiper = node.swiper) : null)}
       // >
 
-      <div style={{ width: "100%", height: "100%" }}>
+      <div style={{ width: "100%", height: "100%", marginTop:"110px"}}>
         <HomePage />
         <About />
         <Offer mainMenu={this.props.mainMenu}/>
+        <Certificates mainMenu={this.props.mainMenu}/>
+        <Gallery mainMenu={this.props.mainMenu}/>
       </div>
 
       // </Swiper>

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import backgroundImage from "../img/about-bg.png";
-import kasai from "../img/kasai.png";
-import zehnder from "../img/zehnder.png";
-import fujitsu from "../img/fujitsu.png";
-import klimor from "../img/klimor.png";
+import kasai from "../img/clients/kasai.png";
+import zehnder from "../img/clients/zehnder.png";
+import fujitsu from "../img/clients/fujitsu.png";
+import klimor from "../img/clients/klimor.png";
 
 export default class About extends Component {
   render() {

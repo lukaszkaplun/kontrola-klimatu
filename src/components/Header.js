@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import logo from "../img/logo.png";
 import MainMenu from "./MainMenu";
+
 import Hamb from "./Hamb";
 export default class Header extends Component {
-  
   render() {
     return (
       <header>

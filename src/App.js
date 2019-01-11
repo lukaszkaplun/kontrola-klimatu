@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import ReactDOM from "react-dom";
 import "normalize.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,6 +11,26 @@ import pinterest from "./img/pinterest.svg";
 import instagram from "./img/instagram.svg";
 import facebook from "./img/facebook.svg";
 import PageBody from "./components/PageBody";
+
+
+import dyplom from "./img/certificates/dyplom.png";
+import herz from "./img/certificates/herz.png";
+import venture from "./img/certificates/venture.png";
+import zehnder from "./img/certificates/zehnder.png";
+
+import gallery1 from "./img/gallery/architecture-building-driveway-186077.png";
+import gallery2 from "./img/gallery/apartment-art-bright-1027516.png";
+import gallery3 from "./img/gallery/apartment-architecture-bookcase-271795.png";
+import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309.png";
+
+
+
+
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks
+} from "body-scroll-lock";
 
 class App extends Component {
   constructor(props) {
@@ -38,7 +58,7 @@ class App extends Component {
               name: "klimatyzacja",
               content: {
                 heading: "Solidna wentylacja",
-                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                body: `Zapewniamy profesjonalny montaż oraz szybki serwis. W naszej ofercie znajdziesz urządzenia renomowanych marek które sprawdzą się w różnych pomieszczeniach. Oferujemy klimatyzatory typu Split i Multi Split. Wszystkie urządzenia są wydajne, energooszczędne oraz proste w obsłudze.`,
                 buttonCopy: "Dowiedz się więcej"
               }
             },
@@ -46,14 +66,32 @@ class App extends Component {
               name: "pompy powietrza typu powietrze - woda",
               content: {
                 heading: "Energooszczędne ogrzewanie za pomocą pompy ciepła",
-                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                body: `Instalacje centralnego ogrzewania z wykorzystaniem powietrznych pompy ciepła.  Każdy wykonany przez nas układ jest idealnie dopasowana do obsługującego budynku. Pomożemy Ci wybrać urządzenie, które zapewni ekonomiczne i wydajne ogrzewanie. Oferowane przez nas systemy mogą być instalowane w nowych oraz modernizowanych budynkach.`,
                 buttonCopy: "Dowiedz się więcej"
               }
             }
           ]
         },
-        { name: "certyfikaty", submenu: null },
-        { name: "galeria", submenu: null },
+        {
+          name: "certyfikaty",
+          submenu: null,
+          gallery: [
+            { src: dyplom, alt: "dyplom" },
+            { src: herz, alt: "hertz" },
+            { src: venture, alt: "venture" },
+            { src: zehnder, alt: "zehnder" }
+          ]
+        },
+        {
+          name: "galeria",
+          submenu: null,
+          gallery: [
+            { src: gallery1, alt: "gallery1" },
+            { src: gallery2, alt: "gallery2" },
+            { src:  gallery3, alt: "gallery3" },
+            { src: gallery4, alt: "gallery4" }
+          ]
+        },
         { name: "kontakt", submenu: null }
       ],
       socialMenu: [
@@ -66,7 +104,11 @@ class App extends Component {
   }
 
   handleOpenMenu = () => {
-    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+    this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
+      this.state.isMenuOpen
+        ? disableBodyScroll(ReactDOM.findDOMNode(this))
+        : enableBodyScroll(ReactDOM.findDOMNode(this));
+    });
   };
 
   handleIsMobile = () => {
@@ -114,6 +156,7 @@ class App extends Component {
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);
+    clearAllBodyScrollLocks();
   }
 
   render() {
