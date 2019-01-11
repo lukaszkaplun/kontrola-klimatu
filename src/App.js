@@ -23,12 +23,33 @@ class App extends Component {
         { name: "kim jesteśmy?", submenu: null },
         {
           name: "nasza oferta",
-          submenu: null
-          // submenu: [
-          //   { name: "rekuperacja" },
-          //   { name: "klimatyzacja" },
-          //   { name: "pompy powietrza typu powietrze - woda" }
-          // ]
+          // submenu: null
+          submenu: [
+            {
+              name: "rekuperacja",
+              content: {
+                heading: "Niezawodna klimatyzacja",
+                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                buttonCopy: "Dowiedz się więcej"
+              }
+            },
+            {
+              name: "klimatyzacja",
+              content: {
+                heading: "Solidna wentylacja",
+                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                buttonCopy: "Dowiedz się więcej"
+              }
+            },
+            {
+              name: "pompy powietrza typu powietrze - woda",
+              content: {
+                heading: "Energooszczędne ogrzewanie za pomocą pompy ciepła",
+                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                buttonCopy: "Dowiedz się więcej"
+              }
+            }
+          ]
         },
         { name: "certyfikaty", submenu: null },
         { name: "galeria", submenu: null },
@@ -104,8 +125,9 @@ class App extends Component {
           isMobile={this.state.isMobile}
           isSmallScreen={this.state.isSmallScreen}
         />
+
         <PageBody mainMenu={this.state.mainMenu} />
-        <Footer socialMenu={this.state.socialMenu} />
+        {/* <Footer socialMenu={this.state.socialMenu} /> */}
       </div>
     );
   }
