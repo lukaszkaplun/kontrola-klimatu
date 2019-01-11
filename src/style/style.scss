@@ -64,9 +64,26 @@ $max_font: 20px;
     opacity: 0;
   }
 }
+
+@keyframes chevron {
+  0% {
+    opacity: 0;
+    transform: translate(0%, 0%) rotate(135deg);
+  }
+  10% {
+    transform: translate(0%, 0%) rotate(135deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(10px, 0%) rotate(135deg);
+    opacity: 0;
+  }
+}
+
 html {
   box-sizing: border-box;
   background: white;
+
   height: 100%;
   // font-size: calc(0.6em + 1vw);
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -81,6 +98,7 @@ html,
 body,
 #root,
 .app-wrapper {
+  color: $mainBlue;
   min-width: 320px;
   font-family: "Open Sans", sans-serif;
   height: 100%;
@@ -109,6 +127,15 @@ body,
     background: $lightBlue;
   }
 }
+.subheading {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.875em;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+}
+
 .paragraph {
   font-size: 1em;
   padding: 0;
@@ -358,6 +385,20 @@ a {
     color: inherit;
   }
 }
+button {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  border: none;
+  &:hover,
+  &:visited,
+  &:focus {
+    color: inherit;
+  }
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -529,6 +570,57 @@ section {
         img {
           width: 100%;
           max-width: 120px;
+        }
+      }
+    }
+    .offer-wrapper {
+      padding: $pagePadding;
+      li {
+        margin-bottom: 1.25em;
+        .paragraph {
+          padding: 1.25em 0;
+        }
+        .subheading {
+          cursor: pointer;
+        }
+        button {
+          text-transform: uppercase;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 800;
+          font-size: 1rem;
+          border: 2px solid $mainRed;
+          // line-height: 0.75;
+          padding: 1.25rem;
+          border-radius: 3.125rem;
+          white-space: nowrap;
+
+          display: flex;
+          align-items: center;
+
+          // height: 4.250em;
+          &:hover {
+            .button-chevron {
+              animation-play-state: paused;
+              animation-name: none;
+            }
+          }
+        }
+        .button-chevron {
+          border: 2px solid $mainBlue;
+          width: 0.45rem;
+          border-right-width: 0;
+          border-bottom-width: 0;
+          margin-left: 0.25rem;
+          transform: rotate(135deg);
+          animation-name: chevron;
+          animation-duration: 1.5s;
+          animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+          animation-iteration-count: infinite;
+          &:after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+          }
         }
       }
     }

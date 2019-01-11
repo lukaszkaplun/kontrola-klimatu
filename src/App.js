@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
 import "normalize.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.scss";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import youtube from "./img/youtube.svg";

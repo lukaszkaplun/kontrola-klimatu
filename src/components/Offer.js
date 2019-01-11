@@ -18,11 +18,11 @@ export default class Offer extends Component {
         <div className="content-wrapper">
           <h2 className="heading">Nasza oferta</h2>
 
-          <div>
+          <ul className="offer-wrapper">
             {this.props.mainMenu[2].submenu.map((item, index) => {
               return <CollapsibleItem key={index} data={item.content} />;
             })}
-          </div>
+          </ul>
 
           <div
             className="image-wrapper"
