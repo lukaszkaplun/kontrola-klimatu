@@ -615,6 +615,16 @@ section {
       }
     }
   }
+  &.ac {
+    .content-wrapper {
+     
+       .subheading{
+         padding: 0 $pagePadding;
+         margin-bottom: 1.75rem;
+       }
+         
+    }
+  }
   .content-wrapper {
     // display: flex;
     // flex-direction: row;
@@ -719,7 +729,7 @@ section {
 .gallery-wrapper {
   // padding: 0 $pagePadding;
 
-  .swiper-container {
+ .swiper-container {
     padding: $pagePadding 0;
   }
 
@@ -735,6 +745,13 @@ section {
       transition: all 1s ease;
       box-shadow: 0px 0px 12px 0px $mainBlue;
     }
+  }
+}
+.gallery-thumbs-wrapper{
+  width:50%;
+  margin: auto;
+  img{
+    width:100%;
   }
 }
 

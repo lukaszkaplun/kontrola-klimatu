@@ -20,7 +20,7 @@ export default class CollapsibleItem extends Component {
         </h3>
         <Collapse isOpen={this.state.collapse}>
           <p className="paragraph">{this.props.data.body}</p>
-          <button>
+          <button >
             {this.props.data.buttonCopy}
              <div className="button-chevron" />
           </button>

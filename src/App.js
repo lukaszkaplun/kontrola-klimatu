@@ -171,7 +171,7 @@ class App extends Component {
           isSmallScreen={this.state.isSmallScreen}
         />
 
-        <PageBody mainMenu={this.state.mainMenu} />
+        <PageBody mainMenu={this.state.mainMenu} isSmallScreen={this.state.isSmallScreen} />
         <Footer  isSmallScreen={this.state.isSmallScreen} socialMenu={this.state.socialMenu} />
       </div>
     );

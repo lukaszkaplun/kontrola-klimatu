@@ -8,7 +8,7 @@ export default class Certificates extends Component {
         <div className="content-wrapper">
           <h2 className="heading">Certyfikaty</h2>
           
-            <GalleryComponent slidesLength={this.props.mainMenu[3].gallery.length}>
+            <GalleryComponent isSmallScreen={this.props.isSmallScreen} slidesLength={this.props.mainMenu[3].gallery.length}>
               {this.props.mainMenu[3].gallery.map((photo, index) => {
                 return (
                   <div className="swiper-slide" key={index}>
