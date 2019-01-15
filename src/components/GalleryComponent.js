@@ -3,40 +3,34 @@ import Swiper from "react-id-swiper";
 export default class GalleryComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      gallerySwiper: null,
-      thumbnailSwiper: null
+  }
 
+  componentDidMount() {
+    this.galleryRef = null;
+    this.thumbsRef = null;
+
+    this.setGalleryRef = node => {
+      this.galleryRef = node.swiper;
+    };
+
+    this.setThumbsRef = node => {
+    
+        this.thumbsRef = node.swiper;
+     
     };
   }
-
-
-  galleryRef = (ref) => {
-    this.gallerySwiper = React.createRef();
-    if (ref) this.setState({ gallerySwiper: ref.swiper })
-  }
-  thumbRef = (ref) => {
-    this.thumbnailSwiper = React.createRef();
-    if (ref) this.setState({ thumbnailSwiper: ref.swiper })
-  }
-  componentDidMount() {
-
-   
-   
-
-  
-   
-
-
+  shouldComponentUpdate() {
+    return false;
   }
   render() {
-     console.log(this.gallerySwiper)
-    if (this.state.gallerySwiper !== null && this.state.thumbnailSwiper !== null) {
-
-        // this.gallerySwiper.controller.control = this.thumbnailSwiper;
-        // this.thumbnailSwiper.controller.control = this.gallerySwiper;
-    }
-
+    // console.log(this.galleryRef, this.thumbsRef);
+    // if (
+    //   this.state.gallerySwiper !== null &&
+    //   this.state.thumbnailSwiper !== null
+    // ) {
+    //   // this.gallerySwiper.controller.control = this.thumbnailSwiper;
+    //   // this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    // }
 
     const paramsThumb = {
       spaceBetween: 20,
@@ -47,9 +41,8 @@ export default class GalleryComponent extends Component {
       slideToClickedSlide: true,
       loopedSlides: this.props.slidesLength,
       loop: true,
-      mousewheel: true,
-     
-    }
+      mousewheel: true
+    };
     const params = {
       direction: "horizontal",
       slidesPerView: "auto",
@@ -59,36 +52,23 @@ export default class GalleryComponent extends Component {
       loopedSlides: this.props.slidesLength,
       loop: true,
       autoplay: true,
-      mousewheel: true,
-      
-
-
-
-
+      mousewheel: true
     };
     return (
       <React.Fragment>
-        <div className="gallery-wrapper" >
-          <Swiper
-            {...params}
-            ref={this.galleryRef}
-          >
+        <div className="gallery-wrapper">
+          <Swiper {...params} ref={this.setGalleryRef}>
             {this.props.children}
           </Swiper>
         </div>
-        {/* {!this.props.isSmallScreen && */}
+        {!this.props.isSmallScreen && (
           <div className="gallery-thumbs-wrapper">
-            <Swiper
-              {...paramsThumb}
-              ref={this.thumbRef}
-            >
+            <Swiper {...paramsThumb} ref={this.setThumbsRef}>
               {this.props.children}
             </Swiper>
           </div>
-        {/* } */}
-
+        )}
       </React.Fragment>
-
     );
   }
 }

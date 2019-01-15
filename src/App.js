@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
-
+import Swiper from "react-id-swiper";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.scss";
 import Header from "./components/Header";
@@ -12,7 +12,6 @@ import instagram from "./img/instagram.svg";
 import facebook from "./img/facebook.svg";
 import PageBody from "./components/PageBody";
 
-
 import dyplom from "./img/certificates/dyplom.png";
 import herz from "./img/certificates/herz.png";
 import venture from "./img/certificates/venture.png";
@@ -22,9 +21,6 @@ import gallery1 from "./img/gallery/architecture-building-driveway-186077.png";
 import gallery2 from "./img/gallery/apartment-art-bright-1027516.png";
 import gallery3 from "./img/gallery/apartment-architecture-bookcase-271795.png";
 import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309.png";
-
-
-
 
 import {
   disableBodyScroll,
@@ -88,7 +84,7 @@ class App extends Component {
           gallery: [
             { src: gallery1, alt: "gallery1" },
             { src: gallery2, alt: "gallery2" },
-            { src:  gallery3, alt: "gallery3" },
+            { src: gallery3, alt: "gallery3" },
             { src: gallery4, alt: "gallery4" }
           ]
         },
@@ -101,6 +97,17 @@ class App extends Component {
         { name: "facebook", icon: facebook, address: "" }
       ]
     };
+
+    // if (!this.state.isSmallScreen) {
+    this.swiperRef = null;
+    this.setSwiperRef = node => {
+      if (!this.state.isSmallScreen) {
+        this.swiperRef = node.swiper;
+      } else {
+        this.swiperRef = null;
+      }
+    };
+    // }
   }
 
   handleOpenMenu = () => {
@@ -154,7 +161,11 @@ class App extends Component {
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
+
+    // destroy()
   }
+
+  componentDidUpdate(prevProps) {}
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);
     clearAllBodyScrollLocks();
@@ -171,8 +182,27 @@ class App extends Component {
           isSmallScreen={this.state.isSmallScreen}
         />
 
-        <PageBody mainMenu={this.state.mainMenu} isSmallScreen={this.state.isSmallScreen} />
-        <Footer  isSmallScreen={this.state.isSmallScreen} socialMenu={this.state.socialMenu} />
+        {this.state.isSmallScreen && (
+          <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
+            <PageBody
+              mainMenu={this.state.mainMenu}
+              isSmallScreen={this.state.isSmallScreen}
+            />
+          </div>
+        )}
+        {!this.state.isSmallScreen && (
+          <Swiper ref={this.setSwiperRef}>
+            <PageBody
+              mainMenu={this.state.mainMenu}
+              isSmallScreen={this.state.isSmallScreen}
+            />
+          </Swiper>
+        )}
+
+        <Footer
+          isSmallScreen={this.state.isSmallScreen}
+          socialMenu={this.state.socialMenu}
+        />
       </div>
     );
   }
