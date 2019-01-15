@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+// import { Container, Row, Col } from "reactstrap";
 import backgroundImage from "../img/offer-bg.png";
 import CollapsibleItem from "./CollapsibleItem";
 // import kasai from "../img/kasai.png";
@@ -10,8 +10,8 @@ import CollapsibleItem from "./CollapsibleItem";
 export default class Offer extends Component {
   render() {
     return (
-      <section
-        className={"single-slide offer"}
+      <section  data-history={this.props.dataHistory}
+        className={" swiper-slide single-slide offer"}
 
         //swiper-slide
       >

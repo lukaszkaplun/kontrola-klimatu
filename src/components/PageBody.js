@@ -5,6 +5,7 @@ import About from "./About";
 import Offer from "./Offer";
 import Certificates from "./Certificates";
 import Gallery from "./Gallery";
+import Contact from "./Contact";
 export default class PageBody extends Component {
   constructor(props) {
     super(props);
@@ -18,19 +19,26 @@ export default class PageBody extends Component {
   }
   render() {
     const params = {
-      direction: "vertical",
-      slidesPerView: 1,
-      spaceBetween: 0,
+     
+      direction: 'vertical',
+      slidesPerView: 'auto',
+      freeMode: true,
       mousewheel: true,
-      effect: "fade",
-      allowSlideNext: false,
-      on: {
-        observerUpdate: () => {
-          console.log(
-            this.state.swiper !== null ? this.state.swiper.activeIndex : ""
-          );
-        }
-      }
+      history: {
+        key: 'slide',
+      },
+      // slidesPerView: 1,
+      // spaceBetween: 0,
+      // mousewheel: true,
+      // effect: "fade",
+      // allowSlideNext: false,
+      // on: {
+      //   observerUpdate: () => {
+      //     console.log(
+      //       this.state.swiper !== null ? this.state.swiper.activeIndex : ""
+      //     );
+      //   }
+      // }
       // effect: 'fade',
     };
     return (
@@ -38,15 +46,14 @@ export default class PageBody extends Component {
       //   {...params}
       //   ref={node => (node ? (this.swiper = node.swiper) : null)}
       // >
-
-      <div style={{ width: "100%", height: "100%", marginTop:"110px"}}>
-        <HomePage />
-        <About />
-        <Offer mainMenu={this.props.mainMenu}/>
-        <Certificates mainMenu={this.props.mainMenu}/>
-        <Gallery mainMenu={this.props.mainMenu}/>
-      </div>
-
+        <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
+          <HomePage  dataHistory={this.props.mainMenu[0].name}/>
+          <About   dataHistory={this.props.mainMenu[1].name}/>
+          <Offer mainMenu={this.props.mainMenu}  dataHistory={this.props.mainMenu[2].name}/>
+          <Certificates mainMenu={this.props.mainMenu}  dataHistory={this.props.mainMenu[3].name}/>
+          <Gallery mainMenu={this.props.mainMenu}  dataHistory={this.props.mainMenu[4].name}/>
+          <Contact mainMenu={this.props.mainMenu}  dataHistory={this.props.mainMenu[5].name}/>
+        </div>
       // </Swiper>
     );
   }

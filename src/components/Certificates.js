@@ -4,7 +4,7 @@ import GalleryComponent from "./GalleryComponent";
 export default class Certificates extends Component {
   render() {
     return (
-      <section className={"single-slide certificates"}>
+      <section  data-history={this.props.dataHistory} className={" swiper-slide single-slide certificates"}>
         <div className="content-wrapper">
           <h2 className="heading">Certyfikaty</h2>
           

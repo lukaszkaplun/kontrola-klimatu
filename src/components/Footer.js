@@ -5,17 +5,20 @@ export default class Footer extends Component {
     return (
       <footer>
         <div className="footer-tel-wrapper">
-          <span>Skontaktuj się z nami: </span>
+          <span>Skontaktuj się z nami:</span>{" "}
           <a className="footer-tel" href="tel:+48535952092">
-            <span>+48 </span>535-952-092
+            <span>{" "}+48 </span>535-952-092
           </a>
         </div>
-        <div className="scroll-animation-wrapper">
-          <div className="mouse">
-            <div className="mouse-ball" />
+        {!this.props.isSmallScreen && (
+          <div className="scroll-animation-wrapper">
+            <div className="mouse">
+              <div className="mouse-ball" />
+            </div>
+            <div className="mouse-arrow" />
           </div>
-          <div className="mouse-arrow" />
-        </div>
+        )}
+
         <div className="social-media-wrapper">
           <span>Znajdziesz nas również: </span>
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+// import { Container, Row, Col } from "reactstrap";
 import backgroundImage from "../img/about-bg.png";
 import kasai from "../img/clients/kasai.png";
 import zehnder from "../img/clients/zehnder.png";
@@ -9,8 +9,8 @@ import klimor from "../img/clients/klimor.png";
 export default class About extends Component {
   render() {
     return (
-      <section
-        className={"single-slide about"}
+      <section  data-history={this.props.dataHistory}
+        className={"swiper-slide single-slide about"}
 
         //swiper-slide
       >

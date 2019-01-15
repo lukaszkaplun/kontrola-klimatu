@@ -13,8 +13,8 @@ export default class GalleryComponent extends Component {
   render() {
     const params = {
       direction: "horizontal",
-      slidesPerView: 2,
-      spaceBetween: 10,
+      slidesPerView: "auto",
+      spaceBetween: 20,
       initialSlide:1,
       centeredSlides: true,
       loopedSlides: this.props.slidesLength,
@@ -23,7 +23,7 @@ export default class GalleryComponent extends Component {
     //   freeMode: true,
       autoplay:true,
       mousewheel: true,
-        slideClass: "gallery-slide"
+        // slideClass: "gallery-slide"
     };
     return (
       <div className="gallery-wrapper">
