@@ -159,6 +159,11 @@ class App extends Component {
     }
   };
   componentDidMount() {
+    console.log(window.location.href)
+    // window.history.pushState("object or string", "Title", "http://examplesite.com/test.html?aa_campaign=f45632");
+    window.history.pushState("page-2", "page 2", "about");
+    console.log(ReactDOM.findDOMNode(this).getElementsByClassName("about")[0])
+ document.getElementsByClassName("about")[0].scrollIntoView()
     // disableBodyScroll(ReactDOM.findDOMNode(this))
     this.handleIsMobile();
     this.handleSmallScreen();
@@ -167,6 +172,8 @@ class App extends Component {
     if (!this.state.isSmallScreen) {
       this.mySwiper = new Swiper(".page-slider", {
         direction: "vertical",
+        effect:"fade",
+        
         allowTouchMove: false,
         slidesPerView: 1,
         mousewheel: true,
