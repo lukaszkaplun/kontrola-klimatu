@@ -29,7 +29,7 @@ export default class Header extends Component {
           )}
           {this.props.isSmallScreen && this.props.isMenuOpen && (
             <div className="hamb-menu-wrapper">
-              <MainMenu mainMenu={this.props.mainMenu} />
+              <MainMenu mainMenu={this.props.mainMenu} handleCloseMenu={this.props.handleCloseMenu} />
             </div>
           )}
         </div>

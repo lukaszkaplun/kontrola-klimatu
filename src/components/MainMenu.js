@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import scrollToComponent from 'react-scroll-to-component';
+import scrollToElement from "scroll-to-element";
 
 export default class MainMenu extends Component {
   render() {
@@ -8,13 +8,18 @@ export default class MainMenu extends Component {
         {this.props.mainMenu.map((item, index) => {
           if (item.submenu !== null) {
             return (
-              <li key={index} className={index === 0 ? "active" : ""}>
+              <li
+                onClick={this.props.handleOpenMenu}
+                key={index}
+                className={index === 0 ? "active" : ""}
+              >
                 <span>{item.name}</span>
 
-                {/* <ul>
+                <ul>
                   {item.submenu.map((subitem, subindex) => {
                     return (
                       <li
+                        onClick={this.props.handleOpenMenu}
                         key={subindex}
                         className={subindex === 0 ? "active" : ""}
                       >
@@ -22,12 +27,16 @@ export default class MainMenu extends Component {
                       </li>
                     );
                   })}
-                </ul> */}
+                </ul>
               </li>
             );
           }
           return (
-            <li key={index} className={index === 0 ? "active" : ""}>
+            <li
+              onClick={this.props.handleCloseMenu}
+              key={index}
+              className={index === 0 ? "active" : ""}
+            >
               <span>{item.name}</span>
             </li>
           );

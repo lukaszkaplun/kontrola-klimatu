@@ -5,7 +5,7 @@ export default class Certificates extends Component {
   render() {
     const paramsThumb = {
       spaceBetween: 0,
-      initialSlide: 1,
+      // initialSlide: 1,
       centeredSlides: true,
       slidesPerView: 4,
       touchRatio: 0.2,
@@ -18,7 +18,7 @@ export default class Certificates extends Component {
       direction: "horizontal",
       slidesPerView: "auto",
       spaceBetween: 20,
-      initialSlide: 1,
+      // initialSlide: 1,
       centeredSlides: true,
       loopedSlides: this.props.slidesLength,
       loop: true,

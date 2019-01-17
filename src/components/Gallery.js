@@ -3,12 +3,7 @@ import React, { Component } from "react";
 import GalleryComponent from "./GalleryComponent";
 
 export default class Gallery extends Component {
-
-
-
-
   render() {
-
     // console.log(this.props)
     const paramsThumb = {
       spaceBetween: 20,
@@ -21,7 +16,7 @@ export default class Gallery extends Component {
       loop: true,
       mousewheel: true,
       watchSlidesVisibility: true,
-      watchSlidesProgress: true,
+      watchSlidesProgress: true
     };
     const params = {
       direction: "horizontal",

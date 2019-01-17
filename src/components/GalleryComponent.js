@@ -26,7 +26,7 @@ export default class GalleryComponent extends Component {
       !this.props.isSmallScreen ? { ...newParams } : { ...this.props.params }
     );
 
-    console.log(this.galleryTop);
+    // console.log(this.galleryTop);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -48,9 +48,8 @@ export default class GalleryComponent extends Component {
           <div className="swiper-container gallery-top">
             <div className="swiper-wrapper">{this.props.children}</div>
             <div className="swiper-pagination" />
-            <div className="swiper-button-prev" />
-            <div className="swiper-button-next" />
-            <div className="swiper-scrollbar" />
+           
+          
           </div>
         </div>
         {!this.props.isSmallScreen && (
