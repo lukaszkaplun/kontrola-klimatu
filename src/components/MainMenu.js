@@ -11,7 +11,7 @@ export default class MainMenu extends Component {
               <li key={index} className={index === 0 ? "active" : ""}>
                 <span>{item.name}</span>
 
-                <ul>
+                {/* <ul>
                   {item.submenu.map((subitem, subindex) => {
                     return (
                       <li
@@ -22,7 +22,7 @@ export default class MainMenu extends Component {
                       </li>
                     );
                   })}
-                </ul>
+                </ul> */}
               </li>
             );
           }

@@ -4,7 +4,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer>
-        <div className="footer-tel-wrapper">
+        {/* <div className="footer-tel-wrapper">
           <span>Skontaktuj się z nami:</span>{" "}
           <a className="footer-tel" href="tel:+48535952092">
             <span>{" "}+48 </span>535-952-092
@@ -31,7 +31,7 @@ export default class Footer extends Component {
               );
             })}
           </ul>
-        </div>
+        </div> */}
       </footer>
     );
   }

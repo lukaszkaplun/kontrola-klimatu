@@ -1,71 +1,64 @@
 import React, { Component } from "react";
-import Swiper from "react-id-swiper";
+import ReactDOM from "react-dom";
+// import Swiper from "react-id-swiper";
+import Swiper from "swiper/dist/js/swiper.esm.bundle";
 export default class GalleryComponent extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.galleryRef = null;
-    this.thumbsRef = null;
+    let newParams;
+    if (!this.props.isSmallScreen) {
+      this.galleryThumbs = new Swiper(".gallery-thumbs", {
+        ...this.props.paramsThumb
+      });
+      let thumbs = {
+        thumbs: {
+          swiper: this.galleryThumbs
+        }
+      };
+      newParams = { ...this.props.params, ...thumbs };
+    }
 
-    this.setGalleryRef = node => {
-      this.galleryRef = node.swiper;
-    };
+    this.galleryTop = new Swiper(
+      ".gallery-top",
+      !this.props.isSmallScreen ? { ...newParams } : { ...this.props.params }
+    );
 
-    this.setThumbsRef = node => {
-    
-        this.thumbsRef = node.swiper;
-     
-    };
+    console.log(this.galleryTop);
   }
-  shouldComponentUpdate() {
-    return false;
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.isSmallScreen &&
+      ReactDOM.findDOMNode(this).getElementsByClassName("gallery-thumbs")[0] !==
+        undefined
+    ) {
+      this.mySwiper = new Swiper("..gallery-thumbs", { ...this.props.paramsThumb
+       
+      });
+    }
   }
+
   render() {
-    // console.log(this.galleryRef, this.thumbsRef);
-    // if (
-    //   this.state.gallerySwiper !== null &&
-    //   this.state.thumbnailSwiper !== null
-    // ) {
-    //   // this.gallerySwiper.controller.control = this.thumbnailSwiper;
-    //   // this.thumbnailSwiper.controller.control = this.gallerySwiper;
-    // }
-
-    const paramsThumb = {
-      spaceBetween: 20,
-      initialSlide: 1,
-      centeredSlides: true,
-      slidesPerView: 4,
-      touchRatio: 0.2,
-      slideToClickedSlide: true,
-      loopedSlides: this.props.slidesLength,
-      loop: true,
-      mousewheel: true
-    };
-    const params = {
-      direction: "horizontal",
-      slidesPerView: "auto",
-      spaceBetween: 20,
-      initialSlide: 1,
-      centeredSlides: true,
-      loopedSlides: this.props.slidesLength,
-      loop: true,
-      autoplay: true,
-      mousewheel: true
-    };
     return (
       <React.Fragment>
         <div className="gallery-wrapper">
-          <Swiper {...params} ref={this.setGalleryRef}>
-            {this.props.children}
-          </Swiper>
+          <div className="swiper-container gallery-top">
+            <div className="swiper-wrapper">{this.props.children}</div>
+            <div className="swiper-pagination" />
+            <div className="swiper-button-prev" />
+            <div className="swiper-button-next" />
+            <div className="swiper-scrollbar" />
+          </div>
         </div>
         {!this.props.isSmallScreen && (
           <div className="gallery-thumbs-wrapper">
-            <Swiper {...paramsThumb} ref={this.setThumbsRef}>
-              {this.props.children}
-            </Swiper>
+            <div className="swiper-container swiper-container-thumbs gallery-thumbs">
+              <div className="swiper-wrapper">{this.props.children}</div>
+             
+            </div>
           </div>
         )}
       </React.Fragment>

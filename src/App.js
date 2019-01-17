@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
-import Swiper from "react-id-swiper";
+// import Swiper from "react-id-swiper";
+import Swiper from "swiper/dist/js/swiper.esm.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.scss";
 import Header from "./components/Header";
@@ -99,14 +100,14 @@ class App extends Component {
     };
 
     // if (!this.state.isSmallScreen) {
-    this.swiperRef = null;
-    this.setSwiperRef = node => {
-      if (!this.state.isSmallScreen) {
-        this.swiperRef = node.swiper;
-      } else {
-        this.swiperRef = null;
-      }
-    };
+    // this.swiperRef = null;
+    // this.setSwiperRef = node => {
+    //   if (!this.state.isSmallScreen) {
+    //     this.swiperRef = node.swiper;
+    //   } else {
+    //     this.swiperRef = null;
+    //   }
+    // };
     // }
   }
 
@@ -146,14 +147,15 @@ class App extends Component {
     // }
   };
   handleSmallScreen = () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1199) {
       this.setState({
         isSmallScreen: true
       });
-    } else if (window.innerWidth > 769) {
+    } else if (window.innerWidth >= 1200) {
       this.setState({
         isSmallScreen: false
       });
+      // this.swiperRef.destroy(false, true)
     }
   };
   componentDidMount() {
@@ -162,10 +164,41 @@ class App extends Component {
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
-    // destroy()
+    if (!this.state.isSmallScreen) {
+      this.mySwiper = new Swiper(".page-slider", {
+        direction: "vertical",
+        allowTouchMove: false,
+        slidesPerView: 1,
+        mousewheel: true,
+        breakpointsInverse: true,
+        on: {
+          slideChangeTransitionStart: () => {
+            console.log();
+          }
+        }
+      });
+    }
   }
-
-  componentDidUpdate(prevProps) {}
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.isSmallScreen &&
+      ReactDOM.findDOMNode(this).getElementsByClassName("page-slider")[0] !==
+        undefined
+    ) {
+      this.mySwiper = new Swiper(".page-slider", {
+        direction: "vertical",
+        allowTouchMove: false,
+        slidesPerView: 1,
+        mousewheel: true,
+        breakpointsInverse: true,
+        on: {
+          slideChangeTransitionStart: () => {
+            console.log();
+          }
+        }
+      });
+    }
+  }
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);
     clearAllBodyScrollLocks();
@@ -190,15 +223,19 @@ class App extends Component {
             />
           </div>
         )}
-        {!this.state.isSmallScreen && (
-          <Swiper ref={this.setSwiperRef}>
-            <PageBody
-              mainMenu={this.state.mainMenu}
-              isSmallScreen={this.state.isSmallScreen}
-            />
-          </Swiper>
-        )}
 
+        {!this.state.isSmallScreen && (
+          <div className="swiper-container page-slider">
+            <div className="swiper-wrapper">
+              <PageBody
+                mainMenu={this.state.mainMenu}
+                isSmallScreen={this.state.isSmallScreen}
+              />
+            </div>
+            <div className="swiper-pagination" />
+           
+          </div>
+        )}
         <Footer
           isSmallScreen={this.state.isSmallScreen}
           socialMenu={this.state.socialMenu}

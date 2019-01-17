@@ -20,7 +20,7 @@ export default class HomePage extends Component {
             <h2 className="heading">Witaj!</h2>
           </div>
 
-          <p className="paragraph">
+          {/* <p className="paragraph">
             Jeżeli nadszedł w Twoim życiu czas w którym zapragnąłeś wybudować
             swój własny dom lub zmodernizować dotychczasowy i nie do końca wiesz
             w jaki sposób stworzyć w nim odpowiedni komfort termiczny dla Ciebie
@@ -35,7 +35,7 @@ export default class HomePage extends Component {
             Gwarantujemy fachowe doradztwo, rzetelne wsparcie techniczne i
             sprawdzone rozwiązania w dziedzinie utrzymania komfortu w Twoim
             domu. Wykonamy projekt i wstępną kalkulację kosztów za darmo!
-          </p>
+          </p> */}
         </div>
       </section>
     );

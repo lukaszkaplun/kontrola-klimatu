@@ -24,11 +24,11 @@ export default class PageBody extends Component {
         <AC isSmallScreen={this.props.isSmallScreen} />
         <Pump isSmallScreen={this.props.isSmallScreen}/>
         <ERV isSmallScreen={this.props.isSmallScreen}/>
-        <Certificates
+        {/* <Certificates
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[3].name}
-        />
+        /> */}
         <Gallery
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}
