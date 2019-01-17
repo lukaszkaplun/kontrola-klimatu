@@ -11,7 +11,7 @@ export default class Offer extends Component {
   render() {
     return (
       <section data-history={this.props.dataHistory}
-        className={" swiper-slide single-slide offer"}
+        className={!this.props.visible?"swiper-slide single-slide offer hidden": "swiper-slide single-slide offer"}
 
 
       >

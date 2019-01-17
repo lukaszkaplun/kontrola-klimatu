@@ -10,7 +10,7 @@ export default class About extends Component {
   render() {
     return (
       <section data-history={this.props.dataHistory}
-        className={"swiper-slide single-slide about"}>
+      className={!this.props.visible?"swiper-slide single-slide about hidden": "swiper-slide single-slide about"}>
         <div className="content-wrapper">
          
             <Row noGutters>

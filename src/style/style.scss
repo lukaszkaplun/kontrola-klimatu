@@ -589,6 +589,12 @@ section {
     }
   }
   &.about {
+    &.hidden{
+   *{
+    opacity: 0;
+   } 
+    }
+
     .content-wrapper {
       .image-wrapper {
         margin-bottom: 0;

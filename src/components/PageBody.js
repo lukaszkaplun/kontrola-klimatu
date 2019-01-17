@@ -16,8 +16,9 @@ export default class PageBody extends Component {
     
       <React.Fragment>
         <HomePage dataHistory={this.props.mainMenu[0].name} />
-        <About dataHistory={this.props.mainMenu[1].name} />
+        <About  visible={this.props.visible} dataHistory={this.props.mainMenu[1].name} />
         <Offer
+          visible={this.props.visible}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[2].name}
         />

@@ -29,10 +29,12 @@ import {
   clearAllBodyScrollLocks
 } from "body-scroll-lock";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      visible:false,
       isMobile: false,
       isSmallScreen: false,
       isMenuOpen: false,
@@ -109,6 +111,42 @@ class App extends Component {
     //   }
     // };
     // }
+    this.swiperParams = {
+      direction: "vertical",
+      speed: 1000,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+      },
+      allowTouchMove: false,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
+      slidesPerView: 1,
+      mousewheel: true,
+      breakpointsInverse: true,
+      on: {
+        slideChangeTransitionStart: () => {
+          console.log();
+        },
+        progress:(progress)=>{
+    console.log(progress)
+        },
+        slideNextTransitionStart: ()=>{
+          console.log('tesda')
+        },
+        slideChangeTransitionStart: ()=>{
+          console.log('start')
+        },
+        slideChangeTransitionEnd: ()=>{
+          console.log('end')
+          this.setState({
+            visible:true
+          })
+        }
+      }
+    };
   }
 
   handleOpenMenu = () => {
@@ -165,18 +203,7 @@ class App extends Component {
     window.addEventListener("resize", this.handleSmallScreen);
 
     if (!this.state.isSmallScreen) {
-      this.mySwiper = new Swiper(".page-slider", {
-        direction: "vertical",
-        allowTouchMove: false,
-        slidesPerView: 1,
-        mousewheel: true,
-        breakpointsInverse: true,
-        on: {
-          slideChangeTransitionStart: () => {
-            console.log();
-          }
-        }
-      });
+      this.mySwiper = new Swiper(".page-slider", {...this.swiperParams});
     }
   }
   componentDidUpdate(prevProps, prevState) {
@@ -185,18 +212,7 @@ class App extends Component {
       ReactDOM.findDOMNode(this).getElementsByClassName("page-slider")[0] !==
         undefined
     ) {
-      this.mySwiper = new Swiper(".page-slider", {
-        direction: "vertical",
-        allowTouchMove: false,
-        slidesPerView: 1,
-        mousewheel: true,
-        breakpointsInverse: true,
-        on: {
-          slideChangeTransitionStart: () => {
-            console.log();
-          }
-        }
-      });
+      this.mySwiper = new Swiper(".page-slider", {...this.swiperParams});
     }
   }
   componentWillUnmount() {
@@ -205,6 +221,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className="app-wrapper">
         <Header
@@ -228,12 +245,12 @@ class App extends Component {
           <div className="swiper-container page-slider">
             <div className="swiper-wrapper">
               <PageBody
+               visible={this.state.visible}
                 mainMenu={this.state.mainMenu}
                 isSmallScreen={this.state.isSmallScreen}
               />
             </div>
             <div className="swiper-pagination" />
-           
           </div>
         )}
         <Footer
