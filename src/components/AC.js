@@ -5,38 +5,13 @@ import slide2 from "../img/ac/slide2.png";
 import slide3 from "../img/ac/slide3.png";
 import Swiper from "react-id-swiper";
 export default class AC extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    this.acRef = null;
-    this.setAcRef = node => {
-      this.acRef = node.swiper;
-    };
-  }
-
-  shouldComponentUpdate() {
-    return false;
-  }
   render() {
-    // this.setAcRef = node => {
-    //   if (!this.props.isSmallScreen) {
-    //     this.acRef = node.swiper;
-    //   } else {
-    //     this.acRef = null;
-    //   }
-    // };
-
     const params = {
       autoHeight: true,
       loop: true,
       pagination: {
         el: ".swiper-pagination",
         clickable: true
-        // renderBullet: (index, className) => {
-        //   return '<span class="' + className + '">' + (index + 1) + '</span>';
-        // },
       }
     };
 

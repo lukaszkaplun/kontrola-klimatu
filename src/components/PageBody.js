@@ -22,11 +22,11 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[2].name}
         />
       
-        {/* <Certificates
+        <Certificates
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[3].name}
-        /> */}
+        />
         <Gallery
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}

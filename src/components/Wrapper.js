@@ -1,5 +1,5 @@
 import Swiper from "react-id-swiper";
-import React, { Component } from "react";
+import React from "react";
 import PageBody from "./PageBody";
 export default class Wrapper extends React.PureComponent {
   render() {
@@ -47,6 +47,7 @@ export default class Wrapper extends React.PureComponent {
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}
+              isSmallScreen={this.props.isSmallScreen}
             />
           </Swiper>
         )}
@@ -56,6 +57,7 @@ export default class Wrapper extends React.PureComponent {
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}
+              isSmallScreen={this.props.isSmallScreen}
             />
           </div>
         )}

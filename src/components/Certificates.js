@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import GalleryComponent from "./GalleryComponent";
-
+import Swiper from "react-id-swiper";
 export default class Certificates extends Component {
+  constructor(props) {
+    super(props);
+
+    this.gallerySwiper = null;
+    this.thumbnailSwiper = null;
+  }
+  galleryRef = ref => {
+    if (ref) this.gallerySwiper = ref.swiper;
+  };
+
+  thumbRef = ref => {
+    if (ref) this.thumbnailSwiper = ref.swiper;
+  };
   render() {
+    if (this.gallerySwiper !== null) {
+      this.gallerySwiper.controller.control = this.thumbnailSwiper;
+      this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    }
     const paramsThumb = {
       spaceBetween: 0,
       // initialSlide: 1,
@@ -41,20 +58,44 @@ export default class Certificates extends Component {
         <div className="content-wrapper">
           <h2 className="heading">Certyfikaty</h2>
 
-          <GalleryComponent
-            params={params}
-            paramsThumb={paramsThumb}
-            isSmallScreen={this.props.isSmallScreen}
-            slidesLength={this.props.mainMenu[3].gallery.length}
-          >
+          <Swiper ref={this.galleryRef} {...params}>
             {this.props.mainMenu[3].gallery.map((photo, index) => {
               return (
-                <div className="swiper-slide" key={index}>
-                  <img src={photo.src} alt={photo.alt} />
-                </div>
+                <div
+                className={
+                  this.props.isSmallScreen
+                    ? "swiper-slide mobile"
+                    : "swiper-slide"
+                }
+                key={index}
+                style={{
+                  backgroundImage: `url(${photo.src})`,
+                  backgroundPosition: "center center",
+                  backgroundSize: "cover"
+                }}
+              />
               );
             })}
-          </GalleryComponent>
+          </Swiper>
+          <Swiper ref={this.thumbRef} {...paramsThumb}>
+            {this.props.mainMenu[3].gallery.map((photo, index) => {
+              return (
+                <div
+                className={
+                  this.props.isSmallScreen
+                    ? "swiper-slide mobile"
+                    : "swiper-slide"
+                }
+                key={index}
+                style={{
+                  backgroundImage: `url(${photo.src})`,
+                  backgroundPosition: "center center",
+                  backgroundSize: "cover"
+                }}
+              />
+              );
+            })}
+          </Swiper>
         </div>
       </section>
     );

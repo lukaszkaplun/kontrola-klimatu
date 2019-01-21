@@ -8,9 +8,7 @@ import slide5 from "../img/pump/slide5.png";
 import slide6 from "../img/pump/slide6.png";
 import Swiper from "react-id-swiper";
 export default class Pump extends Component {
-  constructor(props) {
-    super(props);
-  }
+ 
   componentDidMount() {
     this.pumpRef = null;
 
