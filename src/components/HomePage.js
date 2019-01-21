@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 // import { Container, Row, Col } from "reactstrap";
 import backgroundImage from "../img/home-bg.png";
+import ReactDOM from "react-dom";
 
 export default class HomePage extends Component {
+ 
+  componentDidMount() {
+  //   let elTop = ReactDOM.findDOMNode(this).getBoundingClientRect().top;
+  //  this.props.updateScrollPosition(elTop)
+  }
   render() {
     return (
-      <section data-history={this.props.dataHistory}
-        className={"swiper-slide single-slide homepage"}       
+      <section
+        data-history={this.props.dataHistory}
+        className={"swiper-slide single-slide homepage"}
       >
         <div className="content-wrapper">
           <div

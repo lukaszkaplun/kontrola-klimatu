@@ -2,27 +2,20 @@ import React, { Component } from "react";
 import { Collapse } from "reactstrap";
 
 export default class CollapsibleItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { collapse: false };
-  }
-
-  toggle = () => {
-    this.setState({ collapse: !this.state.collapse });
-  };
-
   render() {
     return (
       <li>
-        <h3 className="subheading" onClick={this.toggle}>
+        <h3
+          className="subheading"
+          onClick={() => this.props.toggle(this.props.index)}
+        >
           {this.props.data.heading}
         </h3>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse isOpen={this.props.collapse === this.props.index}>
           <p className="paragraph">{this.props.data.body}</p>
-          <button >
+          <button onClick={()=>this.props.showSubpage(this.props.index)}>
             {this.props.data.buttonCopy}
-             <div className="button-chevron" />
+            <div className="button-chevron" />
           </button>
         </Collapse>
       </li>

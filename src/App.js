@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import scrollToElement from "scroll-to-element";
 import ReactDOM from "react-dom";
 import "normalize.css";
-// import Swiper from "react-id-swiper";
+import Wrapper from "./components/Wrapper";
 import Swiper from "swiper/dist/js/swiper.esm.bundle";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.scss";
@@ -30,12 +30,11 @@ import {
   clearAllBodyScrollLocks
 } from "body-scroll-lock";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible:false,
+      visible: false,
       isMobile: false,
       isSmallScreen: false,
       isMenuOpen: false,
@@ -112,44 +111,15 @@ class App extends Component {
     //   }
     // };
     // }
-    this.swiperParams = {
-      direction: "vertical",
-      speed: 1000,
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-      },
-      allowTouchMove: false,
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true
-      },
-      slidesPerView: 1,
-      mousewheel: true,
-      breakpointsInverse: true,
-      on: {
-        slideChangeTransitionStart: () => {
-          console.log();
-        },
-        progress:(progress)=>{
-    console.log(progress)
-        },
-        slideNextTransitionStart: ()=>{
-          console.log('tesda')
-        },
-        slideChangeTransitionStart: ()=>{
-          console.log('start')
-        },
-        slideChangeTransitionEnd: ()=>{
-          console.log('end')
-          this.setState({
-            visible:true
-          })
-        }
-      }
-    };
-  }
 
+  }
+  updateScrollPosition = el => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // console.log(el - scrollTop);
+
+
+
+console.log(el)  };
   handleOpenMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
       this.state.isMenuOpen
@@ -158,15 +128,11 @@ class App extends Component {
     });
   };
 
-
   handleCloseMenu = () => {
-
-    this.setState({ isMenuOpen: false },()=>{
-      enableBodyScroll(ReactDOM.findDOMNode(this))
-     
-    })
-
-  }
+    this.setState({ isMenuOpen: false }, () => {
+      enableBodyScroll(ReactDOM.findDOMNode(this));
+    });
+  };
 
   handleIsMobile = () => {
     // if (
@@ -208,35 +174,20 @@ class App extends Component {
     }
   };
   componentDidMount() {
-
-   
-
-    
-    // disableBodyScroll(ReactDOM.findDOMNode(this))
+    // window.addEventListener("scroll", this.updateScrollPosition, true);
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
-    if (!this.state.isSmallScreen) {
-      this.mySwiper = new Swiper(".page-slider", {...this.swiperParams});
-    }
+  
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.isSmallScreen &&
-      ReactDOM.findDOMNode(this).getElementsByClassName("page-slider")[0] !==
-        undefined
-    ) {
-      this.mySwiper = new Swiper(".page-slider", {...this.swiperParams});
-    }
-  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);
     clearAllBodyScrollLocks();
   }
 
   render() {
-    
     return (
       <div className="app-wrapper">
         <Header
@@ -248,28 +199,13 @@ class App extends Component {
           handleCloseMenu={this.handleCloseMenu}
         />
 
-        {this.state.isSmallScreen && (
-          <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
-            <PageBody
-              mainMenu={this.state.mainMenu}
-              isSmallScreen={this.state.isSmallScreen}
-            />
-          </div>
-        )}
-
-        {!this.state.isSmallScreen && (
-          <div className="swiper-container page-slider">
-            <div className="swiper-wrapper">
-              <PageBody
-             refProp={this.myRef}
-               visible={this.state.visible}
-                mainMenu={this.state.mainMenu}
-                isSmallScreen={this.state.isSmallScreen}
-              />
-            </div>
-            <div className="swiper-pagination" />
-          </div>
-        )}
+        <Wrapper
+        updateScrollPosition={this.updateScrollPosition}
+          refProp={this.myRef}
+          visible={this.state.visible}
+          mainMenu={this.state.mainMenu}
+          isSmallScreen={this.state.isSmallScreen}
+        />
         <Footer
           isSmallScreen={this.state.isSmallScreen}
           socialMenu={this.state.socialMenu}
