@@ -5,10 +5,12 @@ export default class Wrapper extends React.PureComponent {
   render() {
     this.swiperParams = {
       direction: "vertical",
+      
       speed: 1000,
       pagination: {
         el: ".swiper-pagination",
-        type: "bullets"
+        type: "bullets",
+        clickable:true
       },
       allowTouchMove: false,
       effect: "fade",
