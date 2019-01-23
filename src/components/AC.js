@@ -19,7 +19,7 @@ export default class AC extends Component {
       <div className="content-wrapper">
         <h2 className="heading">Klimatyzacja</h2>
 
-        <Swiper {...params} ref={this.setAcRef}>
+        <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
               <h3 className="subheading">Po co montować klimatyzację?</h3>

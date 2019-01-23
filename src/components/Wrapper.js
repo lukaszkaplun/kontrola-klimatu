@@ -5,7 +5,10 @@ export default class Wrapper extends React.PureComponent {
   render() {
     this.swiperParams = {
       direction: "vertical",
-     
+      history: {
+        replaceState: true,
+        key:""
+      },
       speed: 1000,
       pagination: {
         el: ".swiper-pagination",
@@ -22,19 +25,17 @@ export default class Wrapper extends React.PureComponent {
       breakpointsInverse: true,
       on: {
         slideChangeTransitionStart: () => {
-          console.log();
+          // console.log();
         },
         progress: progress => {
-          console.log(progress);
+          // console.log(progress);
         },
         slideNextTransitionStart: () => {
-          console.log("tesda");
+          // console.log("tesda");
         },
-        slideChangeTransitionStart: () => {
-          console.log("start");
-        },
+        
         slideChangeTransitionEnd: () => {
-          console.log("end");
+          // console.log("end");
           this.setState({
             visible: true
           });

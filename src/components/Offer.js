@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import AC from "./AC";
-
 import Pump from "./Pump";
 import ERV from "./ERV";
 import { Row, Col } from "reactstrap";

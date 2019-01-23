@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
-import GalleryComponent from "./GalleryComponent";
-
 import Swiper from "react-id-swiper";
 export default class Gallery extends Component {
   constructor(props) {
@@ -11,51 +8,39 @@ export default class Gallery extends Component {
     this.gallerySwiper = null;
     this.thumbnailSwiper = null;
   }
-  // galleryRef = ref => {
-  //   if (ref) this.gallerySwiper = ref.swiper;
-  // };
 
-  // thumbRef = ref => {
-  //   if (ref) this.thumbnailSwiper = ref.swiper;
-  // };
   componentDidMount() {
     if (this.gallerySwiper !== null) {
       this.gallerySwiper.controller.control = this.thumbnailSwiper;
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
     }
 
-    this.thumbnailSwiper = ReactDOM.findDOMNode(this).getElementsByClassName("gallery-thumbs-wrapper")[0].getElementsByClassName("swiper-container")[0].swiper;
-    this.gallerySwiper = ReactDOM.findDOMNode(this).getElementsByClassName("gallery-wrapper")[0].getElementsByClassName("swiper-container")[0].swiper;
+    this.thumbnailSwiper = ReactDOM.findDOMNode(this)
+      .getElementsByClassName("gallery-thumbs-wrapper")[0]
+      .getElementsByClassName("swiper-container")[0].swiper;
+    this.gallerySwiper = ReactDOM.findDOMNode(this)
+      .getElementsByClassName("gallery-wrapper")[0]
+      .getElementsByClassName("swiper-container")[0].swiper;
 
-
-      if(this.gallerySwiper!== null && this.thumbnailSwiper !== null ){
-        this.gallerySwiper.controller.control = this.thumbnailSwiper;
-        this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    if (this.gallerySwiper !== null && this.thumbnailSwiper !== null) {
+      this.gallerySwiper.controller.control = this.thumbnailSwiper;
+      this.thumbnailSwiper.controller.control = this.gallerySwiper;
     }
-   
   }
 
- 
-
   render() {
-
-
-  
-    
-
     const paramsThumb = {
       spaceBetween: 20,
       slidesPerView: 4,
       loop: true,
       // freeMode: true,
-       touchRatio: 0.2,
-      loopedSlides:4,
+      touchRatio: 0.2,
+      loopedSlides: 4,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
-      slideToClickedSlide:true,
-      centeredSlides: true,
+      slideToClickedSlide: true,
+      centeredSlides: true
       // autoHeight:true
-     
     };
     const params = {
       direction: "horizontal",
@@ -66,7 +51,7 @@ export default class Gallery extends Component {
       loop: true,
       // initialSlide: 0,
       autoplay: true,
-      
+
       breakpointsInverse: true,
       breakpoints: {
         1200: {
@@ -75,8 +60,7 @@ export default class Gallery extends Component {
           slidesPerView: 1,
           autoplay: false
         }
-      },
-      
+      }
     };
 
     return (
@@ -87,7 +71,7 @@ export default class Gallery extends Component {
         <div className="content-wrapper">
           <h2 className="heading">Galeria</h2>
           <div className="gallery-wrapper">
-            <Swiper  {...params}>
+            <Swiper {...params}>
               {this.props.mainMenu[4].gallery.map((photo, index) => {
                 return (
                   <div
@@ -98,13 +82,17 @@ export default class Gallery extends Component {
                     }
                     key={index}
                     style={{
-                      backgroundImage: !this.props.isSmallScreen? `url(${photo.src})`: null,
-                      backgroundPosition:!this.props.isSmallScreen? "center center": null,
-                      backgroundSize:!this.props.isSmallScreen? "cover": null
+                      backgroundImage: !this.props.isSmallScreen
+                        ? `url(${photo.src})`
+                        : null,
+                      backgroundPosition: !this.props.isSmallScreen
+                        ? "center center"
+                        : null,
+                      backgroundSize: !this.props.isSmallScreen ? "cover" : null
                     }}
                   >
                     {this.props.isSmallScreen && (
-                      <img src={photo.src} alt="gallery-photo" />
+                      <img src={photo.src} alt="gallery" />
                     )}
                   </div>
                 );
@@ -112,7 +100,7 @@ export default class Gallery extends Component {
             </Swiper>
           </div>
           <div className="gallery-thumbs-wrapper">
-            <Swiper  {...paramsThumb}>
+            <Swiper {...paramsThumb}>
               {this.props.mainMenu[4].gallery.map((photo, index) => {
                 return (
                   <div
@@ -132,7 +120,6 @@ export default class Gallery extends Component {
               })}
             </Swiper>
           </div>
-         
         </div>
       </section>
     );

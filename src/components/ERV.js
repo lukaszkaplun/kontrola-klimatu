@@ -5,20 +5,7 @@ import slide2 from "../img/erv/slide2.png";
 import slide3 from "../img/erv/slide3.png";
 import Swiper from "react-id-swiper";
 export default class ERV extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  componentDidMount() {
-    this.ervRef = null;
-    this.setRef = node => {
-      this.ervRef = node.swiper;
-    };
-  }
-
-  shouldComponentUpdate() {
-    return false;
-  }
 
   render() {
     const params = {
@@ -37,7 +24,7 @@ export default class ERV extends Component {
       <div className="content-wrapper">
         <h2 className="heading">Rekuperacja</h2>
 
-        <Swiper {...params} ref={this.setRef}>
+        <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
               <h3 className="subheading">Jakie ma zalety?</h3>

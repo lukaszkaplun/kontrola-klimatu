@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
 import Wrapper from "./components/Wrapper";
-import Swiper from "swiper/dist/js/swiper.esm.bundle";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/style.scss";
 import Header from "./components/Header";
@@ -12,8 +12,6 @@ import youtube from "./img/youtube.svg";
 import pinterest from "./img/pinterest.svg";
 import instagram from "./img/instagram.svg";
 import facebook from "./img/facebook.svg";
-import PageBody from "./components/PageBody";
-
 import dyplom from "./img/certificates/dyplom.png";
 import herz from "./img/certificates/herz.png";
 import venture from "./img/certificates/venture.png";
@@ -33,6 +31,12 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+
+
+
+
+
+    
     this.state = {
       visible: false,
       isMobile: false,
@@ -113,13 +117,18 @@ class App extends Component {
     // }
 
   }
-  updateScrollPosition = el => {
+  updateScrollPosition = () => {
+    console.log(window.history)
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     // console.log(el - scrollTop);
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+  },500);
 
 
+// console.log(el)
 
-console.log(el)  };
+};
   handleOpenMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
       this.state.isMenuOpen
@@ -179,8 +188,17 @@ console.log(el)  };
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
+
+    this.updateScrollPosition()
+
+
+
   
   }
+
+ 
+
+
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);

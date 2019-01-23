@@ -8,20 +8,8 @@ import slide5 from "../img/pump/slide5.png";
 import slide6 from "../img/pump/slide6.png";
 import Swiper from "react-id-swiper";
 export default class Pump extends Component {
-  componentDidMount() {
-    this.pumpRef = null;
-
-    this.setRef = node => {
-      if (!this.props.isSmallScreen) {
-        this.pumpRef = node.swiper;
-      } else {
-        this.pumpRef = null;
-      }
-    };
-  }
-  shouldComponentUpdate() {
-    return false;
-  }
+ 
+  
 
   render() {
     const params = {
@@ -37,7 +25,7 @@ export default class Pump extends Component {
       <div className="content-wrapper">
         <h2 className="heading">Pompy ciepła</h2>
 
-        <Swiper {...params} ref={this.setRef}>
+        <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
               <h3 className="subheading">Co zyskujemy?</h3>
