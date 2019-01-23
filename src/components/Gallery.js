@@ -24,50 +24,76 @@ export default class Gallery extends Component {
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
     }
 
-    this.thumbnailSwiper = ReactDOM.findDOMNode(this).getElementsByClassName("gallery-thumbs-wrapper")[0].getElementsByClassName("swiper-container")[0];
+    this.thumbnailSwiper = ReactDOM.findDOMNode(this).getElementsByClassName("gallery-thumbs-wrapper")[0].getElementsByClassName("swiper-container")[0].swiper;
     this.gallerySwiper = ReactDOM.findDOMNode(this).getElementsByClassName("gallery-wrapper")[0].getElementsByClassName("swiper-container")[0].swiper;
 
 
-    // console.log(this.thumbnailSwiper)
-    // this.gallerySwiper.controller.swiper = this.gallerySwiper
+      if(this.gallerySwiper!== null && this.thumbnailSwiper !== null ){
+        this.gallerySwiper.controller.control = this.thumbnailSwiper;
+        this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    }
    
+  }
+
+  componentDidUpdate(){
+  
   }
 
   render() {
 
+
+  
     
 
     const paramsThumb = {
       spaceBetween: 20,
       slidesPerView: 4,
       loop: true,
-      freeMode: true,
-      loopedSlides: 5, //looped slides should be the same
+      // freeMode: true,
+       touchRatio: 0.2,
+      loopedSlides:4,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
-      slideToClickedSlide:true
+      slideToClickedSlide:true,
+      centeredSlides: true,
+      on: {
+        click: function () {
+
+          console.log(this.realIndex)
+          // let activeIndex = this.activeIndex + 1;
+    
+          // let activeSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex})`);
+          // let nextSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex + 1})`);
+          // let prevSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex - 1})`);
+    
+          // if (nextSlide && !nextSlide.classList.contains('swiper-slide-visible')) {
+          //    this.thumbnailSwiper.slideNext()    
+          // } else if (prevSlide && !prevSlide.classList.contains('swiper-slide-visible')) {
+          //    this.thumbnailSwiper.slidePrev()    
+          // }    
+        }
+      }
     };
     const params = {
       direction: "horizontal",
       slidesPerView: "auto",
       spaceBetween: 20,
       centeredSlides: true,
-      loopedSlides: this.props.slidesLength,
+      loopedSlides: 4,
       loop: true,
-      initialSlide: 0,
+      // initialSlide: 0,
       autoplay: true,
-      swiper: {
-        el: this.thumbnailSwiper,
-       
-      },
+      
       breakpointsInverse: true,
       breakpoints: {
         1200: {
+          centeredSlides: true,
           spaceBetween: 0,
           slidesPerView: 1,
           autoplay: false
         }
-      }
+      },
+      
     };
 
     return (
