@@ -35,9 +35,7 @@ export default class Gallery extends Component {
    
   }
 
-  componentDidUpdate(){
-  
-  }
+ 
 
   render() {
 
@@ -56,23 +54,8 @@ export default class Gallery extends Component {
       watchSlidesProgress: true,
       slideToClickedSlide:true,
       centeredSlides: true,
-      on: {
-        click: function () {
-
-          console.log(this.realIndex)
-          // let activeIndex = this.activeIndex + 1;
-    
-          // let activeSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex})`);
-          // let nextSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex + 1})`);
-          // let prevSlide = document.querySelector(`.gallery-thumbs .swiper-slide:nth-child(${activeIndex - 1})`);
-    
-          // if (nextSlide && !nextSlide.classList.contains('swiper-slide-visible')) {
-          //    this.thumbnailSwiper.slideNext()    
-          // } else if (prevSlide && !prevSlide.classList.contains('swiper-slide-visible')) {
-          //    this.thumbnailSwiper.slidePrev()    
-          // }    
-        }
-      }
+      // autoHeight:true
+     
     };
     const params = {
       direction: "horizontal",

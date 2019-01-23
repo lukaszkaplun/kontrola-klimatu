@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import scrollToElement from "scroll-to-element";
+// import scrollToElement from "scroll-to-element";
 
 export default class MainMenu extends Component {
   render() {
