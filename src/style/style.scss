@@ -97,7 +97,6 @@ $max_font: 20px;
   }
 }
 
-
 html {
   box-sizing: border-box;
   background: white;
@@ -122,12 +121,13 @@ body,
   min-height: 100%;
 }
 
-
-
-html { height: 100%; overflow:auto; }
-body { height: 100%; }
-
-
+html {
+  height: 100%;
+  overflow: auto;
+}
+body {
+  height: 100%;
+}
 
 .heading {
   font-size: 3.125em;
@@ -292,12 +292,11 @@ footer {
         position: relative;
         transition: all 0.3s ease;
         margin-right: 0.868vw;
-        font-size: 1.111vw;
+        // font-size: 1.111vw;
         text-transform: capitalize;
         letter-spacing: 0.2em;
         &:before {
           transition: all 0.3s ease;
-
           content: "";
           position: absolute;
           width: 0;
@@ -312,6 +311,33 @@ footer {
           &:before {
             transition: all 0.3s ease;
             width: 25px;
+          }
+
+
+
+        
+        }
+
+        &.reversed{
+          &:before {
+            transition: all 0.3s ease;
+            width: 3px;
+            height: 0px;
+            bottom:3px;
+            left:10px;
+            transform: translate(0%, 100%);
+          }
+          &.active {
+            transition: all 0.3s ease;
+            text-shadow: 0 0 0 $mainBlue, 0 0 0 $mainBlue;
+            &:before {
+             transition: all 0.3s ease;
+             height: 14px;
+            }
+  
+  
+  
+          
           }
         }
       }
@@ -371,10 +397,12 @@ footer {
 
   .scroll-animation-wrapper {
     flex: 0 0 2.292vw;
+    max-width: 33px;
     .mouse {
       position: relative;
       width: 100%;
-      height: 3.924vw;
+      // height: 3.924vw;
+      height: 55px;
       border: 2px solid $mainBlue;
       border-radius: 25px;
       &-ball {
@@ -731,7 +759,6 @@ section {
         .subheading {
           cursor: pointer;
         }
-     
       }
     }
     .paragraph {
@@ -751,10 +778,9 @@ section {
     .swiper-container {
       padding: $pagePadding 0;
       &:nth-of-type(2) {
-        display: none;
+        // display: none;
       }
       .swiper-slide {
-      
         position: relative;
         // &:after {
         //   content: "";
@@ -790,8 +816,9 @@ section {
 .gallery-thumbs-wrapper {
   width: 50%;
   margin: auto;
-  .swiper-slide{
-      pointer-events: all !important;
+  display: none;
+  .swiper-slide {
+    pointer-events: auto !important;
   }
   img {
     width: 100%;
@@ -805,7 +832,6 @@ section {
   // max-height: 100%;
   // margin-top: 110px;
 }
-
 
 .button {
   text-transform: uppercase;
@@ -847,8 +873,7 @@ section {
     padding-bottom: 100%;
   }
 
-  &.reversed{
-  
+  &.reversed {
     transform: rotate(-45deg);
     animation-name: chevron-reversed;
   }
@@ -899,7 +924,6 @@ section {
     .content-wrapper {
       .offer-wrapper {
         li {
-         
         }
       }
     }
@@ -942,6 +966,24 @@ section {
   header,
   footer {
     height: 110px;
+    font-size: 1rem;
+    .main-menu-wrapper {
+      .main-menu {
+        li {
+          ul {
+            display: flex;
+            position: absolute;
+            top: 0;
+
+            flex-direction: row;
+            left: 50%;
+
+            white-space: nowrap;
+            transform: translate(-50%, 30px);
+          }
+        }
+      }
+    }
   }
 
   footer {
@@ -1040,7 +1082,7 @@ section {
           .swiper-container {
             width: 50%;
             // padding: 10px 0;
-            .swiper-slide{
+            .swiper-slide {
               height: 80%;
             }
           }
@@ -1052,13 +1094,16 @@ section {
       }
     }
     &.certificates {
-      .swiper-slide {
-        text-align: center;
-        img {
-          width: auto;
-          height: 100%;
+      .swiper-container {
+        .swiper-slide {
+          text-align: center;
+          img {
+            width: auto;
+            height: 100%;
+          }
         }
       }
+
       .gallery-thumbs-wrapper {
         height: 10%;
         .swiper-container {
@@ -1068,6 +1113,9 @@ section {
         }
       }
     }
+  }
+  .gallery-thumbs-wrapper {
+    display: block;
   }
 }
 .swiper-pagination {
@@ -1097,7 +1145,7 @@ section {
       position: absolute;
       top: 50%;
       left: 50%;
-      width:6px;
+      width: 6px;
       height: 6px;
       transform: translate(-50%, -50%) scale(0);
       background: #ef7544;
@@ -1111,4 +1159,8 @@ section {
       }
     }
   }
+}
+
+.swiper-slide-active {
+  z-index: 10;
 }

@@ -1,11 +1,25 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { Row, Col } from "reactstrap";
 import slide1 from "../img/erv/slide1.png";
 import slide2 from "../img/erv/slide2.png";
 import slide3 from "../img/erv/slide3.png";
 import Swiper from "react-id-swiper";
 export default class ERV extends Component {
+  constructor(props) {
+    super(props);
+    this.ervSwiper = null;
+  }
 
+  componentDidMount() {
+    this.ervSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+      "swiper-container"
+    )[0].swiper;
+    if( this.ervSwiper!== null) {
+      this.props.setActiveSubpageIndex(this.ervSwiper, 0);
+    }
+   
+  }
 
   render() {
     const params = {
@@ -142,7 +156,7 @@ export default class ERV extends Component {
         </Swiper>
         <button
           className="button"
-          onClick={() => this.props.showSubpage(2)}
+          onClick={() => this.props.showSubpage(0)}
           style={{ margin: "0 auto" }}
         >
           <div className="button-chevron reversed" />

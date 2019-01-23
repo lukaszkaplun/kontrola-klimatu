@@ -6,26 +6,6 @@ import { Row, Col } from "reactstrap";
 import backgroundImage from "../img/offer-bg.png";
 import CollapsibleItem from "./CollapsibleItem";
 export default class Offer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { collapse: null, subpage: null };
-  }
-  toggle = number => {
-    if (this.state.collapse === number) {
-      this.setState({ collapse: null });
-    } else {
-      this.setState({ collapse: number });
-    }
-  };
-  showSubpage = number => {
-  
-    if (this.state.subpage === number) {
-      this.setState({ subpage: null, collapse:null });
-    } else {
-      this.setState({ subpage: number });
-    }
-  };
-
   render() {
     return (
       <React.Fragment>
@@ -34,12 +14,14 @@ export default class Offer extends Component {
           className={
             !this.props.visible
               ? `swiper-slide single-slide ${
-                  this.state.subpage === null ? "offer" : "subpage"
+                  this.props.subpage === null
+                    ? "offer swiper-slide-active"
+                    : "subpage swiper-slide-active"
                 } hidden`
               : "swiper-slide single-slide offer"
           }
         >
-          {this.state.subpage === null && (
+          {this.props.subpage === null && (
             <div className="content-wrapper">
               <Row noGutters>
                 <Col xs={12} md={6}>
@@ -49,12 +31,12 @@ export default class Offer extends Component {
                     {this.props.mainMenu[2].submenu.map((item, index) => {
                       return (
                         <CollapsibleItem
-                          showSubpage={this.showSubpage}
+                          showSubpage={this.props.showSubpage}
                           key={index}
                           index={index}
-                          collapse={this.state.collapse}
+                          collapse={this.props.collapse}
                           data={item.content}
-                          toggle={this.toggle}
+                          toggle={this.props.toggleCollapse}
                         />
                       );
                     })}
@@ -73,14 +55,26 @@ export default class Offer extends Component {
               </Row>
             </div>
           )}
-          {this.state.subpage === 0 && (
-            <AC isSmallScreen={this.props.isSmallScreen}  showSubpage={this.showSubpage}/>
+          {this.props.subpage === 0 && (
+            <ERV
+              setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+              isSmallScreen={this.props.isSmallScreen}
+             showSubpage={this.props.showSubpage}
+            />
           )}
-          {this.state.subpage === 1 && (
-            <Pump isSmallScreen={this.props.isSmallScreen} showSubpage={this.showSubpage}/>
+          {this.props.subpage === 1 && (
+            <AC
+              setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+              isSmallScreen={this.props.isSmallScreen}
+             showSubpage={this.props.showSubpage}
+            />
           )}
-          {this.state.subpage === 2 && (
-            <ERV isSmallScreen={this.props.isSmallScreen} showSubpage={this.showSubpage}/>
+          {this.props.subpage === 2 && (
+            <Pump
+              setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+              isSmallScreen={this.props.isSmallScreen}
+             showSubpage={this.props.showSubpage}
+            />
           )}
         </section>
       </React.Fragment>

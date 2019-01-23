@@ -1,43 +1,80 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 // import scrollToElement from "scroll-to-element";
 
 export default class MainMenu extends Component {
+  renderClassNames = index => {
+    let menuClasses = classNames({
+     
+      "active": index === this.props.activeIndex,
+      "reversed": index === 2,
+      
+    });
+    return menuClasses;
+  };
+
   render() {
+  
     return (
       <ul className="main-menu">
         {this.props.mainMenu.map((item, index) => {
           if (item.submenu !== null) {
             return (
-              <li
-                onClick={this.props.handleOpenMenu}
-                key={index}
-                className={index === 0 ? "active" : ""}
-              >
-                <span>{item.name}</span>
+              <li key={index} className={this.renderClassNames(index)}>
+                <a
+                  href="#"
+                  onClick={(event) =>
+                    this.props.isSmallScreen
+                      ? this.props.handleCloseMenu
+                      : this.props.handleMenu(index, event)
+                  }
+                >
+                  <span>{item.name}</span>
+                </a>
 
-                {/* <ul>
-                  {item.submenu.map((subitem, subindex) => {
-                    return (
-                      <li
-                        onClick={this.props.handleOpenMenu}
-                        key={subindex}
-                        className={subindex === 0 ? "active" : ""}
-                      >
-                        <span>{subitem.name}</span>
-                      </li>
-                    );
-                  })}
-                </ul> */}
+                {(this.props.isSmallScreen || 
+                  this.props.activeIndex === 2) && (
+                    <ul>
+                      {item.submenu.map((subitem, subindex) => {
+                        return (
+                          <li
+                           
+                            key={subindex}
+                            className={subindex === this.props.activeSubpageIndex ? "active" : ""}
+                          >
+                            <a
+                              href="#"
+                              onClick={() =>
+                                this.props.isSmallScreen
+                                  ? this.props.handleCloseMenu
+                                  : this.props.showSubpage(subindex)
+                              }
+                            >
+                              <span>{subitem.name}</span>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
               </li>
             );
           }
           return (
             <li
-              onClick={this.props.handleCloseMenu}
               key={index}
-              className={index === 0 ? "active" : ""}
+              className={this.renderClassNames(index)}
             >
-              <span>{item.name}</span>
+              <a
+                href="#"
+                onClick={(event) =>
+                  this.props.isSmallScreen
+                    ? this.props.handleCloseMenu
+                    : this.props.handleMenu(index, event)
+                }
+              >
+                <span>{item.name}</span>
+              </a>
             </li>
           );
         })}

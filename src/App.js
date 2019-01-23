@@ -31,9 +31,12 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      subpage: null,
+      collapse: null,
       visible: false,
+      activeIndex: 0,
+      activeSubpageIndex: null,
       isMobile: false,
       isSmallScreen: false,
       isMenuOpen: false,
@@ -100,23 +103,32 @@ class App extends Component {
       ]
     };
 
-    // if (!this.state.isSmallScreen) {
-    // this.swiperRef = null;
-    // this.setSwiperRef = node => {
-    //   if (!this.state.isSmallScreen) {
-    //     this.swiperRef = node.swiper;
-    //   } else {
-    //     this.swiperRef = null;
-    //   }
-    // };
-    // }
+    this.pageSwiper = null;
   }
+  showSubpage = number => {
+console.log(number)
+
+
+    if (this.state.subpage === number) {
+      this.setState({ subpage: null, collapse: null, activeSubpageIndex: null});
+    } else {
+      this.setState({ subpage: number });
+    }
+  };
+  toggleCollapse = number => {
+    if (this.state.collapse === number) {
+      this.setState({ collapse: null });
+    } else {
+      this.setState({ collapse: number });
+    }
+  };
+
   updateScrollPosition = el => {
     console.log(window.history);
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    let elDistanceToTop = scrollTop + el.getBoundingClientRect().top;
+    // let elDistanceToTop = scrollTop + el.getBoundingClientRect().top;
 
-    console.log(elDistanceToTop);
+    // console.log(elDistanceToTop);
 
     setTimeout(function() {
       window.scrollTo(0, 0);
@@ -136,6 +148,19 @@ class App extends Component {
     this.setState({ isMenuOpen: false }, () => {
       enableBodyScroll(ReactDOM.findDOMNode(this));
     });
+  };
+  handleMenu = (index,event) => {
+    event.stopPropagation();
+    console.log(index)
+    console.log(event)
+
+    this.pageSwiper.slideTo(index, 1000);
+    this.setState({ activeIndex: this.pageSwiper.activeIndex, subpage: null, collapse: null, activeSubpageIndex: null });
+  };
+
+  setActiveSubpageIndex = (swiper, index) => {
+    this.setState({ activeSubpageIndex: index });
+    console.log(swiper);
   };
 
   handleIsMobile = () => {
@@ -179,6 +204,13 @@ class App extends Component {
   };
   componentDidMount() {
     // window.addEventListener("scroll", this.updateScrollPosition, true);
+
+    this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+      "swiper-container"
+    )[0].swiper;
+
+    this.setState({ activeIndex: this.pageSwiper.activeIndex });
+
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
@@ -195,17 +227,26 @@ class App extends Component {
     return (
       <div className="app-wrapper">
         <Header
+          showSubpage={this.showSubpage}
+          activeSubpageIndex={this.state.activeSubpageIndex}
+          activeIndex={this.state.activeIndex}
           isMenuOpen={this.state.isMenuOpen}
           handleOpenMenu={this.handleOpenMenu}
           mainMenu={this.state.mainMenu}
           isMobile={this.state.isMobile}
           isSmallScreen={this.state.isSmallScreen}
           handleCloseMenu={this.handleCloseMenu}
+          handleMenu={this.handleMenu}
         />
 
         <Wrapper
+        showSubpage={this.showSubpage}
+        subpage={this.state.subpage}
+        toggleCollapse={this.toggleCollapse}
+        collapse={this.state.collapse}
+          setActiveSubpageIndex={this.setActiveSubpageIndex}
+          activeSubpageIndex={this.state.activeSubpageIndex}
           updateScrollPosition={this.updateScrollPosition}
-          refProp={this.myRef}
           visible={this.state.visible}
           mainMenu={this.state.mainMenu}
           isSmallScreen={this.state.isSmallScreen}

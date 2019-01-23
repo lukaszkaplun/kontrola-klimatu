@@ -17,6 +17,11 @@ export default class PageBody extends Component {
         <HomePage dataHistory={this.props.mainMenu[0].name}  updateScrollPosition={this.props.updateScrollPosition} />
         <About visible={this.props.visible} dataHistory={this.props.mainMenu[1].name} />
         <Offer
+           showSubpage={this.props.showSubpage}
+           subpage={this.props.subpage}
+           toggleCollapse={this.props.toggleCollapse}
+           collapse={this.props.collapse}
+        setActiveSubpageIndex={this.props.setActiveSubpageIndex}
           visible={this.props.visible}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[2].name}

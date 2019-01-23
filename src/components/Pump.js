@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
+import ReactDOM from "react-dom";
 import slide1 from "../img/pump/slide1.png";
 import slide2 from "../img/pump/slide2.png";
 import slide3 from "../img/pump/slide3.png";
@@ -8,7 +9,20 @@ import slide5 from "../img/pump/slide5.png";
 import slide6 from "../img/pump/slide6.png";
 import Swiper from "react-id-swiper";
 export default class Pump extends Component {
- 
+  constructor(props) {
+    super(props);
+    this.pumpSwiper = null;
+  }
+
+  componentDidMount() {
+    this.pumpSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+      "swiper-container"
+    )[0].swiper;
+    if( this.pumpSwiper!== null) {
+      this.props.setActiveSubpageIndex(this.pumpSwiper, 2);
+    }
+   
+  }
   
 
   render() {
@@ -221,7 +235,7 @@ export default class Pump extends Component {
         </Swiper>
         <button
           className="button"
-          onClick={() => this.props.showSubpage(1)}
+          onClick={() => this.props.showSubpage(2)}
           style={{ margin: "0 auto" }}
         >
           <div className="button-chevron reversed" />

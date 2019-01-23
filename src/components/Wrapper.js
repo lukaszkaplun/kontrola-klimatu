@@ -7,14 +7,15 @@ export default class Wrapper extends React.PureComponent {
       direction: "vertical",
       history: {
         replaceState: true,
-        key:""
+        key: ""
       },
       speed: 1000,
       pagination: {
         el: ".swiper-pagination",
         type: "bullets",
-        clickable:true
+        clickable: true
       },
+
       allowTouchMove: false,
       effect: "fade",
       fadeEffect: {
@@ -33,7 +34,7 @@ export default class Wrapper extends React.PureComponent {
         slideNextTransitionStart: () => {
           // console.log("tesda");
         },
-        
+
         slideChangeTransitionEnd: () => {
           // console.log("end");
           this.setState({
@@ -47,6 +48,11 @@ export default class Wrapper extends React.PureComponent {
         {!this.props.isSmallScreen && (
           <Swiper {...this.swiperParams}>
             <PageBody
+              showSubpage={this.props.showSubpage}
+              subpage={this.props.subpage}
+              toggleCollapse={this.props.toggleCollapse}
+              collapse={this.props.collapse}
+              setActiveSubpageIndex={this.props.setActiveSubpageIndex}
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}
@@ -57,6 +63,11 @@ export default class Wrapper extends React.PureComponent {
         {this.props.isSmallScreen && (
           <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
             <PageBody
+              showSubpage={this.props.showSubpage}
+              subpage={this.props.subpage}
+              toggleCollapse={this.props.toggleCollapse}
+              collapse={this.props.collapse}
+              setActiveSubpageIndex={this.props.setActiveSubpageIndex}
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}

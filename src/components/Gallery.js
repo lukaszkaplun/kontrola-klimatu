@@ -25,6 +25,7 @@ export default class Gallery extends Component {
     if (this.gallerySwiper !== null && this.thumbnailSwiper !== null) {
       this.gallerySwiper.controller.control = this.thumbnailSwiper;
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
+
     }
   }
 
@@ -88,7 +89,10 @@ export default class Gallery extends Component {
                       backgroundPosition: !this.props.isSmallScreen
                         ? "center center"
                         : null,
-                      backgroundSize: !this.props.isSmallScreen ? "cover" : null
+                      backgroundSize: !this.props.isSmallScreen ? "cover" : null,
+                      backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
+                      
+
                     }}
                   >
                     {this.props.isSmallScreen && (
@@ -104,18 +108,29 @@ export default class Gallery extends Component {
               {this.props.mainMenu[4].gallery.map((photo, index) => {
                 return (
                   <div
-                    className={
-                      this.props.isSmallScreen
-                        ? "swiper-slide mobile"
-                        : "swiper-slide"
-                    }
-                    key={index}
-                    style={{
-                      backgroundImage: `url(${photo.src})`,
-                      backgroundPosition: "center center",
-                      backgroundSize: "cover"
-                    }}
-                  />
+                  className={
+                    this.props.isSmallScreen
+                      ? "swiper-slide mobile"
+                      : "swiper-slide"
+                  }
+                  key={index}
+                  style={{
+                    backgroundImage: !this.props.isSmallScreen
+                      ? `url(${photo.src})`
+                      : null,
+                    backgroundPosition: !this.props.isSmallScreen
+                      ? "center center"
+                      : null,
+                    backgroundSize: !this.props.isSmallScreen ? "cover" : null,
+                    backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
+                    
+
+                  }}
+                >
+                  {this.props.isSmallScreen && (
+                    <img src={photo.src} alt="gallery" />
+                  )}
+                </div>
                 );
               })}
             </Swiper>

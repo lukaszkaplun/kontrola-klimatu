@@ -19,7 +19,14 @@ export default class Header extends Component {
           }
         >
           {!this.props.isSmallScreen && (
-            <MainMenu mainMenu={this.props.mainMenu} />
+            <MainMenu
+              showSubpage={this.props.showSubpage}
+              activeSubpageIndex={this.props.activeSubpageIndex}
+              mainMenu={this.props.mainMenu}
+              isSmallScreen={this.props.isSmallScreen}
+              handleMenu={this.props.handleMenu}
+              activeIndex={this.props.activeIndex}
+            />
           )}
           {this.props.isSmallScreen && (
             <Hamb
@@ -29,7 +36,15 @@ export default class Header extends Component {
           )}
           {this.props.isSmallScreen && this.props.isMenuOpen && (
             <div className="hamb-menu-wrapper">
-              <MainMenu mainMenu={this.props.mainMenu} handleCloseMenu={this.props.handleCloseMenu} />
+              <MainMenu
+                showSubpage={this.props.showSubpage}
+                activeSubpageIndex={this.props.activeSubpageIndex}
+                mainMenu={this.props.mainMenu}
+                isSmallScreen={this.props.isSmallScreen}
+                handleMenu={this.props.handleMenu}
+                activeIndex={this.props.activeIndex}
+                handleCloseMenu={this.props.handleCloseMenu}
+              />
             </div>
           )}
         </div>
