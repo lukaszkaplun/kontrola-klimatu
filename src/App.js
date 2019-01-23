@@ -32,11 +32,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-
-
-
-
-    
     this.state = {
       visible: false,
       isMobile: false,
@@ -115,20 +110,20 @@ class App extends Component {
     //   }
     // };
     // }
-
   }
-  updateScrollPosition = () => {
-    console.log(window.history)
+  updateScrollPosition = el => {
+    console.log(window.history);
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // console.log(el - scrollTop);
-    setTimeout(function () {
+    let elDistanceToTop = scrollTop + el.getBoundingClientRect().top;
+
+    console.log(elDistanceToTop);
+
+    setTimeout(function() {
       window.scrollTo(0, 0);
-  },500);
+    }, 500);
 
-
-// console.log(el)
-
-};
+    // console.log(el)
+  };
   handleOpenMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
       this.state.isMenuOpen
@@ -188,17 +183,8 @@ class App extends Component {
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
-
-    this.updateScrollPosition()
-
-
-
-  
+    this.updateScrollPosition();
   }
-
- 
-
-
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleSmallScreen);
@@ -218,7 +204,7 @@ class App extends Component {
         />
 
         <Wrapper
-        updateScrollPosition={this.updateScrollPosition}
+          updateScrollPosition={this.updateScrollPosition}
           refProp={this.myRef}
           visible={this.state.visible}
           mainMenu={this.state.mainMenu}
