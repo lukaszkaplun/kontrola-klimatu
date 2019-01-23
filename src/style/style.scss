@@ -82,6 +82,22 @@ $max_font: 20px;
   }
 }
 
+@keyframes chevron-reversed {
+  0% {
+    opacity: 0;
+    transform: translate(0%, 0%) rotate(-45deg);
+  }
+  10% {
+    transform: translate(0%, 0%) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, 0%) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+
 html {
   box-sizing: border-box;
   background: white;
@@ -708,45 +724,7 @@ section {
         .subheading {
           cursor: pointer;
         }
-        button {
-          text-transform: uppercase;
-          font-family: "Montserrat", sans-serif;
-          font-weight: 800;
-          font-size: 1rem;
-          border: 2px solid $mainRed;
-          // line-height: 0.75;
-          padding: 1.25rem;
-          border-radius: 3.125rem;
-          white-space: nowrap;
-
-          display: flex;
-          align-items: center;
-
-          // height: 4.250em;
-          &:hover {
-            .button-chevron {
-              animation-play-state: paused;
-              animation-name: none;
-            }
-          }
-        }
-        .button-chevron {
-          border: 2px solid $mainBlue;
-          width: 0.45rem;
-          border-right-width: 0;
-          border-bottom-width: 0;
-          margin-left: 0.25rem;
-          transform: rotate(135deg);
-          animation-name: chevron;
-          animation-duration: 1.5s;
-          animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
-          animation-iteration-count: infinite;
-          &:after {
-            content: "";
-            display: block;
-            padding-bottom: 100%;
-          }
-        }
+     
       }
     }
     .paragraph {
@@ -769,7 +747,7 @@ section {
         display: none;
       }
       .swiper-slide {
-        pointer-events: all !important;
+      
         position: relative;
         // &:after {
         //   content: "";
@@ -805,6 +783,9 @@ section {
 .gallery-thumbs-wrapper {
   width: 50%;
   margin: auto;
+  .swiper-slide{
+      pointer-events: all !important;
+  }
   img {
     width: 100%;
   }
@@ -816,6 +797,54 @@ section {
   // // height: 100%!important;
   // max-height: 100%;
   // margin-top: 110px;
+}
+
+
+.button {
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 2px solid $mainRed;
+  // line-height: 0.75;
+  padding: 1.25rem;
+  border-radius: 3.125rem;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+
+  // height: 4.250em;
+  &:hover {
+    border: 2px solid $mainRed;
+    .button-chevron {
+      animation-play-state: paused;
+      animation-name: none;
+    }
+  }
+}
+.button-chevron {
+  border: 2px solid $mainBlue;
+  width: 0.45rem;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  margin-left: 0.25rem;
+  transform: rotate(135deg);
+  animation-name: chevron;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.15, 0.41, 0.69, 0.94);
+  animation-iteration-count: infinite;
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &.reversed{
+  
+    transform: rotate(-45deg);
+    animation-name: chevron-reversed;
+  }
 }
 
 @media (max-width: 480px) {
@@ -863,10 +892,7 @@ section {
     .content-wrapper {
       .offer-wrapper {
         li {
-          button {
-            font-size: 4vw;
-            padding: 4.63vw;
-          }
+         
         }
       }
     }
@@ -897,6 +923,11 @@ section {
   }
   footer {
     font-size: 4vw;
+  }
+
+  .button {
+    font-size: 4vw;
+    padding: 4.63vw;
   }
 }
 
@@ -1051,16 +1082,16 @@ section {
     border-radius: 50%;
     background: transparent;
     opacity: 1;
-    width: 0.875em;
+    width: 14px;
     position: relative;
-    height: 0.875em;
+    height: 14px;
     &:after {
       content: "";
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 0.5em;
-      height: 0.5em;
+      width:6px;
+      height: 6px;
       transform: translate(-50%, -50%) scale(0);
       background: #ef7544;
       transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);

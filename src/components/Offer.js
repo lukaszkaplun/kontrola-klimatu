@@ -12,10 +12,6 @@ export default class Offer extends Component {
     super(props);
     this.state = { collapse: null, subpage: null };
   }
-
-  componentDidMount() {
-    // console.log(ReactDOM.findDOMNode(this).getBoundingClientRect())
-  }
   toggle = number => {
     if (this.state.collapse === number) {
       this.setState({ collapse: null });
@@ -24,9 +20,9 @@ export default class Offer extends Component {
     }
   };
   showSubpage = number => {
-    console.log(number)
+  
     if (this.state.subpage === number) {
-      this.setState({ subpage: null });
+      this.setState({ subpage: null, collapse:null });
     } else {
       this.setState({ subpage: number });
     }
@@ -35,15 +31,17 @@ export default class Offer extends Component {
   render() {
     return (
       <React.Fragment>
-       { this.state.subpage === null && (
-          <section
-            data-history={this.props.dataHistory}
-            className={
-              !this.props.visible
-                ? "swiper-slide single-slide offer hidden"
-                : "swiper-slide single-slide offer"
-            }
-          >
+        <section
+          data-history={this.props.dataHistory}
+          className={
+            !this.props.visible
+              ? `swiper-slide single-slide ${
+                  this.state.subpage === null ? "offer" : "subpage"
+                } hidden`
+              : "swiper-slide single-slide offer"
+          }
+        >
+          {this.state.subpage === null && (
             <div className="content-wrapper">
               <Row noGutters>
                 <Col xs={12} md={6}>
@@ -76,17 +74,17 @@ export default class Offer extends Component {
                 </Col>
               </Row>
             </div>
-          </section>
-        )}
-        {this.state.subpage === 0 && (
-          <AC isSmallScreen={this.props.isSmallScreen} />
-        )}
-        {this.state.subpage === 1 && (
-          <Pump isSmallScreen={this.props.isSmallScreen} />
-        )}
-        {this.state.subpage === 2 && (
-          <ERV isSmallScreen={this.props.isSmallScreen} />
-        )}
+          )}
+          {this.state.subpage === 0 && (
+            <AC isSmallScreen={this.props.isSmallScreen}  showSubpage={this.showSubpage}/>
+          )}
+          {this.state.subpage === 1 && (
+            <Pump isSmallScreen={this.props.isSmallScreen} showSubpage={this.showSubpage}/>
+          )}
+          {this.state.subpage === 2 && (
+            <ERV isSmallScreen={this.props.isSmallScreen} showSubpage={this.showSubpage}/>
+          )}
+        </section>
       </React.Fragment>
     );
   }

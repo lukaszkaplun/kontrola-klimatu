@@ -13,7 +13,7 @@ export default class CollapsibleItem extends Component {
         </h3>
         <Collapse isOpen={this.props.collapse === this.props.index}>
           <p className="paragraph">{this.props.data.body}</p>
-          <button onClick={()=>this.props.showSubpage(this.props.index)}>
+          <button className="button" onClick={()=>this.props.showSubpage(this.props.index)}>
             {this.props.data.buttonCopy}
             <div className="button-chevron" />
           </button>
