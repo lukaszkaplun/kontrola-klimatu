@@ -154,10 +154,18 @@ class App extends Component {
   };
   handleMenu = (index, event) => {
     event.stopPropagation();
-    console.log(index);
-    console.log(event);
+    
+    if (!this.state.isSmallScreen) {
+      this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+        "main-swiper"
+      )[0].swiper;
 
-    this.pageSwiper.slideTo(index, 1000, true);
+
+
+      this.pageSwiper.slideTo(index, 1000, false);
+      console.log(this.pageSwiper.$el[0])
+    }
+   
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
       subpage: null,
@@ -168,7 +176,16 @@ class App extends Component {
 
   setActiveSubpageIndex = (swiper, index) => {
     this.setState({ activeSubpageIndex: index });
-    console.log(swiper);
+
+    if (!this.state.isSmallScreen) {
+      this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+        "main-swiper"
+      )[0].swiper;
+      console.log(this.pageSwiper.$el[0])
+    }
+
+
+    
   };
 
   handleIsMobile = () => {
@@ -230,7 +247,7 @@ class App extends Component {
     //   this.setState({ activeIndex: this.pageSwiper.activeIndex });
     // }
 
-    console.log(this.pageSwiper)
+    // console.log(this.pageSwiper)
 
   }
 
@@ -239,8 +256,12 @@ class App extends Component {
       console.log(this.state.isSmallScreen)
       if (!this.state.isSmallScreen) {
         this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
-          "swiper-container"
+          "main-swiper"
         )[0].swiper;
+
+
+
+        
         this.setState({ activeIndex: this.pageSwiper.activeIndex });
       }
     }

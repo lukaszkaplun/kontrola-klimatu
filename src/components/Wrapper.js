@@ -9,6 +9,7 @@ export default class Wrapper extends React.PureComponent {
 
       rebuildOnUpdate:true,
       direction: "vertical",
+      
       history: {
         replaceState: true,
         key: ""
@@ -22,6 +23,7 @@ export default class Wrapper extends React.PureComponent {
 
       allowTouchMove: false,
       effect: "fade",
+      observer:true,
       fadeEffect: {
         crossFade: true
       },
@@ -50,7 +52,7 @@ export default class Wrapper extends React.PureComponent {
     return (
       <React.Fragment>
         {!this.props.isSmallScreen && (
-          <Swiper {...this.swiperParams}>
+          <Swiper containerClass="swiper-container main-swiper" {...this.swiperParams}>
             <PageBody
               showSubpage={this.props.showSubpage}
               subpage={this.props.subpage}

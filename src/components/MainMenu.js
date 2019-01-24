@@ -21,8 +21,8 @@ export default class MainMenu extends Component {
           if (item.submenu !== null) {
             return (
               <li key={index} className={this.renderClassNames(index)}>
-                <a
-                  href="#"
+                <button
+                 
                   onClick={(event) =>
                     this.props.isSmallScreen
                       ? this.props.handleCloseMenu
@@ -30,7 +30,7 @@ export default class MainMenu extends Component {
                   }
                 >
                   <span>{item.name}</span>
-                </a>
+                </button>
 
                 {(this.props.isSmallScreen || 
                   this.props.activeIndex === 2) && (
@@ -42,8 +42,8 @@ export default class MainMenu extends Component {
                             key={subindex}
                             className={subindex === this.props.activeSubpageIndex ? "active" : ""}
                           >
-                            <a
-                              href="#"
+                            <button
+                             
                               onClick={() =>
                                 this.props.isSmallScreen
                                   ? this.props.handleCloseMenu
@@ -51,7 +51,7 @@ export default class MainMenu extends Component {
                               }
                             >
                               <span>{subitem.name}</span>
-                            </a>
+                            </button>
                           </li>
                         );
                       })}
@@ -65,8 +65,8 @@ export default class MainMenu extends Component {
               key={index}
               className={this.renderClassNames(index)}
             >
-              <a
-                href="#"
+              <button
+               
                 onClick={(event) =>
                   this.props.isSmallScreen
                     ? this.props.handleCloseMenu
@@ -74,7 +74,7 @@ export default class MainMenu extends Component {
                 }
               >
                 <span>{item.name}</span>
-              </a>
+              </button>
             </li>
           );
         })}
