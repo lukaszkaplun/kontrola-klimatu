@@ -4,6 +4,10 @@ import PageBody from "./PageBody";
 export default class Wrapper extends React.PureComponent {
   render() {
     this.swiperParams = {
+
+
+
+      rebuildOnUpdate:true,
       direction: "vertical",
       history: {
         replaceState: true,

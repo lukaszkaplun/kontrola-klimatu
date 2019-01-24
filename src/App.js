@@ -38,7 +38,7 @@ class App extends Component {
       activeIndex: 0,
       activeSubpageIndex: null,
       isMobile: false,
-      isSmallScreen: false,
+      isSmallScreen: null,
       isMenuOpen: false,
       mainMenu: [
         { name: "home", submenu: null },
@@ -106,11 +106,14 @@ class App extends Component {
     this.pageSwiper = null;
   }
   showSubpage = number => {
-console.log(number)
-
+    console.log(number);
 
     if (this.state.subpage === number) {
-      this.setState({ subpage: null, collapse: null, activeSubpageIndex: null});
+      this.setState({
+        subpage: null,
+        collapse: null,
+        activeSubpageIndex: null
+      });
     } else {
       this.setState({ subpage: number });
     }
@@ -149,13 +152,18 @@ console.log(number)
       enableBodyScroll(ReactDOM.findDOMNode(this));
     });
   };
-  handleMenu = (index,event) => {
+  handleMenu = (index, event) => {
     event.stopPropagation();
-    console.log(index)
-    console.log(event)
+    console.log(index);
+    console.log(event);
 
-    this.pageSwiper.slideTo(index, 1000);
-    this.setState({ activeIndex: this.pageSwiper.activeIndex, subpage: null, collapse: null, activeSubpageIndex: null });
+    this.pageSwiper.slideTo(index, 1000, true);
+    this.setState({
+      activeIndex: this.pageSwiper.activeIndex,
+      subpage: null,
+      collapse: null,
+      activeSubpageIndex: null
+    });
   };
 
   setActiveSubpageIndex = (swiper, index) => {
@@ -196,26 +204,46 @@ console.log(number)
         isSmallScreen: true
       });
     } else if (window.innerWidth >= 1200) {
-      this.setState({
-        isSmallScreen: false
-      });
+      this.setState(
+        {
+          isSmallScreen: false
+        },
+        () => {}
+      );
       // this.swiperRef.destroy(false, true)
     }
   };
   componentDidMount() {
     // window.addEventListener("scroll", this.updateScrollPosition, true);
 
-    this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
-      "swiper-container"
-    )[0].swiper;
-
-    this.setState({ activeIndex: this.pageSwiper.activeIndex });
-
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
     this.updateScrollPosition();
+
+
+    // if (!this.state.isSmallScreen) {
+    //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+    //     "swiper-container"
+    //   )[0].swiper;
+    //   this.setState({ activeIndex: this.pageSwiper.activeIndex });
+    // }
+
+    console.log(this.pageSwiper)
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isSmallScreen !== this.state.isSmallScreen) {
+      console.log(this.state.isSmallScreen)
+      if (!this.state.isSmallScreen) {
+        this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+          "swiper-container"
+        )[0].swiper;
+        this.setState({ activeIndex: this.pageSwiper.activeIndex });
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -224,6 +252,7 @@ console.log(number)
   }
 
   render() {
+   
     return (
       <div className="app-wrapper">
         <Header
@@ -240,10 +269,10 @@ console.log(number)
         />
 
         <Wrapper
-        showSubpage={this.showSubpage}
-        subpage={this.state.subpage}
-        toggleCollapse={this.toggleCollapse}
-        collapse={this.state.collapse}
+          showSubpage={this.showSubpage}
+          subpage={this.state.subpage}
+          toggleCollapse={this.toggleCollapse}
+          collapse={this.state.collapse}
           setActiveSubpageIndex={this.setActiveSubpageIndex}
           activeSubpageIndex={this.state.activeSubpageIndex}
           updateScrollPosition={this.updateScrollPosition}
