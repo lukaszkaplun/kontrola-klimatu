@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Swiper from "react-id-swiper";
+import Waypoint from "react-waypoint";
 export default class Certificates extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,21 @@ export default class Certificates extends Component {
     this.gallerySwiper = null;
     this.thumbnailSwiper = null;
   }
+
+  
+
+  onLeave = ({ currentPosition }) => {
+    if (currentPosition === Waypoint.above) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
+
+
+
+
+
+
+
   componentDidMount() {
     if (this.gallerySwiper !== null) {
       this.gallerySwiper.controller.control = this.thumbnailSwiper;
@@ -70,9 +86,22 @@ export default class Certificates extends Component {
 
     return (
       <section
+      id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
+      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+          <div
+            style={{
+              width: "10px",
+              position: "absolute",
+              top: "-110px",
+              left: "0px",
+              height: "1px",
+              background: "transparent"
+            }}
+          />
+        </Waypoint>
         <div className="content-wrapper">
           <h2 className="heading">Certyfikaty</h2>
           <div className="gallery-wrapper">

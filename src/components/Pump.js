@@ -7,6 +7,8 @@ import slide3 from "../img/pump/slide3.png";
 import slide4 from "../img/pump/slide4.png";
 import slide5 from "../img/pump/slide5.png";
 import slide6 from "../img/pump/slide6.png";
+import {TweenLite} from 'gsap/TweenLite'
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 import Swiper from "react-id-swiper";
 export default class Pump extends Component {
   constructor(props) {
@@ -29,6 +31,11 @@ export default class Pump extends Component {
     const params = {
       autoHeight: true,
       loop: true,
+      on:{
+        transitionEnd:()=>{
+          TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
+        }
+      },
       pagination: {
         el: ".swiper-pagination",
         clickable: true
@@ -36,7 +43,7 @@ export default class Pump extends Component {
     };
 
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper"  id={this.props.dataHistorySubmenu.slug}>
         <h2 className="heading">Pompy ciepła</h2>
 
         <Swiper {...params}>

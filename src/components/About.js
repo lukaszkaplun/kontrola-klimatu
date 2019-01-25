@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
+import Waypoint from "react-waypoint";
 import backgroundImage from "../img/about-bg.png";
 import kasai from "../img/clients/kasai.png";
 import zehnder from "../img/clients/zehnder.png";
@@ -7,10 +8,32 @@ import fujitsu from "../img/clients/fujitsu.png";
 import klimor from "../img/clients/klimor.png";
 
 export default class About extends Component {
+
+
+  onLeave = ({ currentPosition }) => {
+    if (currentPosition === Waypoint.above) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+    if (currentPosition === Waypoint.below) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
   render() {
     return (
-      <section data-history={this.props.dataHistory}
+      <section data-history={this.props.dataHistory} id={this.props.dataHistory}
       className={!this.props.visible?"swiper-slide single-slide about hidden": "swiper-slide single-slide about"}>
+             <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+          <div
+            style={{
+              width: "10px",
+              position: "absolute",
+              top: "-110px",
+              left: "0px",
+              height: "1px",
+              background: "transparent"
+            }}
+          />
+        </Waypoint>
         <div className="content-wrapper">
          
             <Row noGutters>

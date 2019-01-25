@@ -9,7 +9,7 @@ export default class HomePage extends Component {
   }
   render() {
     return (
-      <section
+      <section id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={"swiper-slide single-slide homepage"}
       >

@@ -22,6 +22,9 @@ import gallery2 from "./img/gallery/apartment-art-bright-1027516.png";
 import gallery3 from "./img/gallery/apartment-architecture-bookcase-271795.png";
 import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309.png";
 
+import { TweenLite } from "gsap/TweenLite";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -32,6 +35,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      scrollEnabled: false,
       subpage: null,
       collapse: null,
       visible: false,
@@ -41,13 +45,15 @@ class App extends Component {
       isSmallScreen: null,
       isMenuOpen: false,
       mainMenu: [
-        { name: "home", submenu: null },
-        { name: "kim jesteśmy?", submenu: null },
+        { name: "home", submenu: null, slug: "home" },
+        { name: "kim jesteśmy?", submenu: null, slug: "kim-jestesmy" },
         {
           name: "nasza oferta",
+          slug: "oferta",
           // submenu: null
           submenu: [
             {
+              slug: "rekuperacja",
               name: "rekuperacja",
               content: {
                 heading: "Niezawodna klimatyzacja",
@@ -57,6 +63,7 @@ class App extends Component {
             },
             {
               name: "klimatyzacja",
+              slug: "klimatyzacja",
               content: {
                 heading: "Solidna wentylacja",
                 body: `Zapewniamy profesjonalny montaż oraz szybki serwis. W naszej ofercie znajdziesz urządzenia renomowanych marek które sprawdzą się w różnych pomieszczeniach. Oferujemy klimatyzatory typu Split i Multi Split. Wszystkie urządzenia są wydajne, energooszczędne oraz proste w obsłudze.`,
@@ -64,7 +71,8 @@ class App extends Component {
               }
             },
             {
-              name: "pompy powietrza typu powietrze - woda",
+              name: "pompy powietrza",
+              slug: "pompy powietrza",
               content: {
                 heading: "Energooszczędne ogrzewanie za pomocą pompy ciepła",
                 body: `Instalacje centralnego ogrzewania z wykorzystaniem powietrznych pompy ciepła.  Każdy wykonany przez nas układ jest idealnie dopasowana do obsługującego budynku. Pomożemy Ci wybrać urządzenie, które zapewni ekonomiczne i wydajne ogrzewanie. Oferowane przez nas systemy mogą być instalowane w nowych oraz modernizowanych budynkach.`,
@@ -75,6 +83,7 @@ class App extends Component {
         },
         {
           name: "certyfikaty",
+          slug: "certyfikaty",
           submenu: null,
           gallery: [
             { src: dyplom, alt: "dyplom" },
@@ -85,6 +94,7 @@ class App extends Component {
         },
         {
           name: "galeria",
+          slug: "galeria",
           submenu: null,
           gallery: [
             { src: gallery1, alt: "gallery1" },
@@ -93,7 +103,7 @@ class App extends Component {
             { src: gallery4, alt: "gallery4" }
           ]
         },
-        { name: "kontakt", submenu: null }
+        { name: "kontakt", submenu: null, slug: "kontakt" }
       ],
       socialMenu: [
         { name: "youtube", icon: youtube, address: "" },
@@ -106,14 +116,19 @@ class App extends Component {
     this.pageSwiper = null;
   }
   showSubpage = number => {
-    console.log(number);
-
     if (this.state.subpage === number) {
-      this.setState({
-        subpage: null,
-        collapse: null,
-        activeSubpageIndex: null
-      });
+      this.setState(
+        {
+          subpage: null,
+          collapse: null,
+          activeSubpageIndex: null
+        },
+        () => {
+          TweenLite.to(window, 1, {
+            scrollTo: { y: `#${this.state.mainMenu[2].slug}`, offsetY: 110 }
+          });
+        }
+      );
     } else {
       this.setState({ subpage: number });
     }
@@ -126,46 +141,82 @@ class App extends Component {
     }
   };
 
-  updateScrollPosition = el => {
-    console.log(window.history);
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // let elDistanceToTop = scrollTop + el.getBoundingClientRect().top;
-
-    // console.log(elDistanceToTop);
-
-    setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 500);
-
-    // console.log(el)
+  updateHistory = slug => {
+    window.history.pushState(null, null, slug);
   };
+  restoreScrollPosition = () => {
+    let slugArr = [];
+    this.state.mainMenu.map(item => {
+      slugArr.push(item.slug);
+    });
+
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+
+      var pathArray = window.location.pathname.split("/");
+      var slug = pathArray[1];
+      if (slug.length !== 0 && slugArr.indexOf(slug) !== -1) {
+        this.setState({ scrollEnabled: true }, () => {
+          if (this.state.scrollEnabled) {
+            this.updateHistory(slug);
+
+            TweenLite.to(window, 1, {
+              scrollTo: { y: `#${slug}`, offsetY: 110 }
+            });
+          }
+        });
+      }
+    }, 400);
+  };
+  // updateScrollPosition = el => {
+  //   //     setTimeout(() =>  {
+  //   //       let element = ReactDOM.findDOMNode(this)
+  //   //       .getElementsByClassName("offer")[0].getBoundingClientRect().top
+  //   // console.log(ReactDOM.findDOMNode(this)
+  //   // .getElementsByClassName("offer")[0].getBoundingClientRect())
+  //   //     console.log(window.pageYOffset)
+  //   //       // window.scrollTo(0, 0);
+  //   //       // window.scrollTo(0, element - 110);
+  //   //     }, 500);
+  //   // console.log(el)
+  // };
   handleOpenMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
-      this.state.isMenuOpen
-        ? disableBodyScroll(ReactDOM.findDOMNode(this))
-        : enableBodyScroll(ReactDOM.findDOMNode(this));
+      // this.state.isMenuOpen
+      //   ? disableBodyScroll(ReactDOM.findDOMNode(this))
+      //   : enableBodyScroll(ReactDOM.findDOMNode(this));
     });
   };
 
-  handleCloseMenu = () => {
+  handleCloseMenu = index => {
     this.setState({ isMenuOpen: false }, () => {
-      enableBodyScroll(ReactDOM.findDOMNode(this));
+      // enableBodyScroll(ReactDOM.findDOMNode(this));
+      // window.history.replaceState(null, null, this.state.mainMenu[index].slug);
+      this.updateHistory(this.state.mainMenu[index].slug);
+      TweenLite.to(window, 1, {
+        scrollTo: { y: `#${this.state.mainMenu[index].slug}`, offsetY: 110 }
+      });
+
+      // setTimeout(() => {
+      //   let element = ReactDOM.findDOMNode(this)
+      //     .getElementsByClassName("offer")[0]
+      //     .getBoundingClientRect().top;
+      //   window.scrollTo(0, element - 110);
+      // }, 400);
     });
   };
   handleMenu = (index, event) => {
     event.stopPropagation();
-    
+
     if (!this.state.isSmallScreen) {
       this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
         "main-swiper"
       )[0].swiper;
 
-
-
       this.pageSwiper.slideTo(index, 1000, false);
-      console.log(this.pageSwiper.$el[0])
+      console.log(this.pageSwiper.$el[0]);
     }
-   
+
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
       subpage: null,
@@ -181,11 +232,8 @@ class App extends Component {
       this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
         "main-swiper"
       )[0].swiper;
-      console.log(this.pageSwiper.$el[0])
+      console.log(this.pageSwiper.$el[0]);
     }
-
-
-    
   };
 
   handleIsMobile = () => {
@@ -236,9 +284,11 @@ class App extends Component {
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
+    this.restoreScrollPosition();
 
-    this.updateScrollPosition();
+    // setTimeout(() => {
 
+    // }, 500);
 
     // if (!this.state.isSmallScreen) {
     //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
@@ -248,20 +298,17 @@ class App extends Component {
     // }
 
     // console.log(this.pageSwiper)
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isSmallScreen !== this.state.isSmallScreen) {
-      console.log(this.state.isSmallScreen)
+      console.log(this.state.isSmallScreen);
+
       if (!this.state.isSmallScreen) {
         this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
           "main-swiper"
         )[0].swiper;
 
-
-
-        
         this.setState({ activeIndex: this.pageSwiper.activeIndex });
       }
     }
@@ -273,7 +320,6 @@ class App extends Component {
   }
 
   render() {
-   
     return (
       <div className="app-wrapper">
         <Header
@@ -290,6 +336,7 @@ class App extends Component {
         />
 
         <Wrapper
+        updateHistory={this.updateHistory}
           showSubpage={this.showSubpage}
           subpage={this.state.subpage}
           toggleCollapse={this.toggleCollapse}

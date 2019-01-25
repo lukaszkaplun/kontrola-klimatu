@@ -1,11 +1,29 @@
 import React, { Component } from "react";
 import backgroundImage from "../img/logo.png";
 import { Row, Col } from "reactstrap";
-
+import Waypoint from "react-waypoint";
 export default class Contact extends Component {
+  onLeave = ({ currentPosition }) => {
+    if (currentPosition === Waypoint.above) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
   render() {
     return (
-      <section data-history={this.props.dataHistory} className={" swiper-slide single-slide contact"}>
+      <section data-history={this.props.dataHistory} id={this.props.dataHistory} className={" swiper-slide single-slide contact"}>
+      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+          <div
+            style={{
+              width: "10px",
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              height: "10px",
+              zIndex:1000,
+              background: "red"
+            }}
+          />
+        </Waypoint>
         <div className="content-wrapper">
 
           <Row noGutters>

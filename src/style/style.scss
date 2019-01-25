@@ -295,6 +295,10 @@ footer {
         // font-size: 1.111vw;
         text-transform: capitalize;
         letter-spacing: 0.2em;
+        button{
+          text-transform: inherit;
+          letter-spacing: inherit;
+        }
         &:before {
           transition: all 0.3s ease;
           content: "";
@@ -353,7 +357,7 @@ footer {
 }
 
 header {
-  z-index: 10;
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;

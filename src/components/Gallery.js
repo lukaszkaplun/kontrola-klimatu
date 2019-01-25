@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import Waypoint from "react-waypoint";
 import Swiper from "react-id-swiper";
 export default class Gallery extends Component {
   constructor(props) {
@@ -28,6 +29,11 @@ export default class Gallery extends Component {
 
     }
   }
+  onLeave = ({ currentPosition }) => {
+    if (currentPosition === Waypoint.above) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
 
   render() {
     const paramsThumb = {
@@ -65,10 +71,22 @@ export default class Gallery extends Component {
     };
 
     return (
-      <section
+      <section id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={"swiper-slide single-slide gallery"}
       >
+      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+          <div
+            style={{
+              width: "10px",
+              position: "absolute",
+              top: "-110px",
+              left: "0px",
+              height: "1px",
+              background: "transparent"
+            }}
+          />
+        </Waypoint>
         <div className="content-wrapper">
           <h2 className="heading">Galeria</h2>
           <div className="gallery-wrapper">

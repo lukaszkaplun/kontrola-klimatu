@@ -14,6 +14,7 @@ export default class MainMenu extends Component {
   };
 
   render() {
+    console.log( this.props.isSmallScreen)
   
     return (
       <ul className="main-menu">
@@ -25,7 +26,7 @@ export default class MainMenu extends Component {
                  
                   onClick={(event) =>
                     this.props.isSmallScreen
-                      ? this.props.handleCloseMenu
+                      ? this.props.handleCloseMenu(index)
                       : this.props.handleMenu(index, event)
                   }
                 >
@@ -46,7 +47,7 @@ export default class MainMenu extends Component {
                              
                               onClick={() =>
                                 this.props.isSmallScreen
-                                  ? this.props.handleCloseMenu
+                                  ? this.props.handleCloseMenu(index)
                                   : this.props.showSubpage(subindex)
                               }
                             >
@@ -69,7 +70,7 @@ export default class MainMenu extends Component {
                
                 onClick={(event) =>
                   this.props.isSmallScreen
-                    ? this.props.handleCloseMenu
+                    ? this.props.handleCloseMenu(index)
                     : this.props.handleMenu(index, event)
                 }
               >

@@ -26,6 +26,7 @@ export default class Header extends Component {
               isSmallScreen={this.props.isSmallScreen}
               handleMenu={this.props.handleMenu}
               activeIndex={this.props.activeIndex}
+              handleCloseMenu={this.props.handleCloseMenu}
             />
           )}
           {this.props.isSmallScreen && (

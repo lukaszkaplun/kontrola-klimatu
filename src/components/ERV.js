@@ -5,6 +5,8 @@ import slide1 from "../img/erv/slide1.png";
 import slide2 from "../img/erv/slide2.png";
 import slide3 from "../img/erv/slide3.png";
 import Swiper from "react-id-swiper";
+import {TweenLite} from 'gsap/TweenLite'
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 export default class ERV extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,11 @@ export default class ERV extends Component {
     const params = {
       autoHeight: true,
       loop: true,
+      on:{
+        transitionEnd:()=>{
+          TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
+        }
+      },
       pagination: {
         el: ".swiper-pagination",
         clickable: true
@@ -35,7 +42,7 @@ export default class ERV extends Component {
     };
 
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper" id={this.props.dataHistorySubmenu.slug}>
         <h2 className="heading">Rekuperacja</h2>
 
         <Swiper {...params}>

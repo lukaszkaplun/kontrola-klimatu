@@ -5,6 +5,8 @@ import slide1 from "../img/ac/slide1.png";
 import slide2 from "../img/ac/slide2.png";
 import slide3 from "../img/ac/slide3.png";
 import Swiper from "react-id-swiper";
+import {TweenLite} from 'gsap/TweenLite'
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 export default class AC extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,11 @@ export default class AC extends Component {
     const params = {
       autoHeight: true,
       loop: true,
+      on:{
+        transitionEnd:()=>{
+          TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
+        }
+      },
       pagination: {
         el: ".swiper-pagination",
         clickable: true
@@ -32,7 +39,7 @@ export default class AC extends Component {
     };
 
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper"  id={this.props.dataHistorySubmenu.slug}>
         <h2 className="heading">Klimatyzacja</h2>
 
         <Swiper {...params}>
