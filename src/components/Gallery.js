@@ -26,11 +26,20 @@ export default class Gallery extends Component {
     if (this.gallerySwiper !== null && this.thumbnailSwiper !== null) {
       this.gallerySwiper.controller.control = this.thumbnailSwiper;
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
-
     }
   }
   onLeave = ({ currentPosition }) => {
     if (currentPosition === Waypoint.above) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
+  onEnter = ({ currentPosition }) => {
+    var pathArray = window.location.pathname.split("/");
+    var slug = pathArray[1];
+    if (
+      currentPosition === Waypoint.inside &&
+      slug !== this.props.dataHistory
+    ) {
       this.props.updateHistory(this.props.dataHistory);
     }
   };
@@ -71,22 +80,40 @@ export default class Gallery extends Component {
     };
 
     return (
-      <section id={this.props.dataHistory}
+      <section
+        id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={"swiper-slide single-slide gallery"}
       >
-      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-          <div
-            style={{
-              width: "10px",
-              position: "absolute",
-              top: "-110px",
-              left: "0px",
-              height: "1px",
-              background: "transparent"
-            }}
-          />
-        </Waypoint>
+        {!this.props.scrollEnabled && (
+          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "-110px",
+                left: "0px",
+                height: "1px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
+
+{!this.props.scrollEnabled && (
+          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "0px",
+                height: "10px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
         <div className="content-wrapper">
           <h2 className="heading">Galeria</h2>
           <div className="gallery-wrapper">
@@ -107,10 +134,12 @@ export default class Gallery extends Component {
                       backgroundPosition: !this.props.isSmallScreen
                         ? "center center"
                         : null,
-                      backgroundSize: !this.props.isSmallScreen ? "cover" : null,
-                      backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
-                      
-
+                      backgroundSize: !this.props.isSmallScreen
+                        ? "cover"
+                        : null,
+                      backgroundRepeat: !this.props.isSmallScreen
+                        ? "no-repeat"
+                        : null
                     }}
                   >
                     {this.props.isSmallScreen && (
@@ -126,29 +155,31 @@ export default class Gallery extends Component {
               {this.props.mainMenu[4].gallery.map((photo, index) => {
                 return (
                   <div
-                  className={
-                    this.props.isSmallScreen
-                      ? "swiper-slide mobile"
-                      : "swiper-slide"
-                  }
-                  key={index}
-                  style={{
-                    backgroundImage: !this.props.isSmallScreen
-                      ? `url(${photo.src})`
-                      : null,
-                    backgroundPosition: !this.props.isSmallScreen
-                      ? "center center"
-                      : null,
-                    backgroundSize: !this.props.isSmallScreen ? "cover" : null,
-                    backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
-                    
-
-                  }}
-                >
-                  {this.props.isSmallScreen && (
-                    <img src={photo.src} alt="gallery" />
-                  )}
-                </div>
+                    className={
+                      this.props.isSmallScreen
+                        ? "swiper-slide mobile"
+                        : "swiper-slide"
+                    }
+                    key={index}
+                    style={{
+                      backgroundImage: !this.props.isSmallScreen
+                        ? `url(${photo.src})`
+                        : null,
+                      backgroundPosition: !this.props.isSmallScreen
+                        ? "center center"
+                        : null,
+                      backgroundSize: !this.props.isSmallScreen
+                        ? "cover"
+                        : null,
+                      backgroundRepeat: !this.props.isSmallScreen
+                        ? "no-repeat"
+                        : null
+                    }}
+                  >
+                    {this.props.isSmallScreen && (
+                      <img src={photo.src} alt="gallery" />
+                    )}
+                  </div>
                 );
               })}
             </Swiper>

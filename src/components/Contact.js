@@ -8,36 +8,64 @@ export default class Contact extends Component {
       this.props.updateHistory(this.props.dataHistory);
     }
   };
+  onEnter = ({ currentPosition }) => {
+    var pathArray = window.location.pathname.split("/");
+    var slug = pathArray[1];
+    if (
+      currentPosition === Waypoint.inside &&
+      slug !== this.props.dataHistory
+    ) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
   render() {
     return (
-      <section data-history={this.props.dataHistory} id={this.props.dataHistory} className={" swiper-slide single-slide contact"}>
-      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-          <div
-            style={{
-              width: "10px",
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              height: "10px",
-              zIndex:1000,
-              background: "red"
-            }}
-          />
-        </Waypoint>
-        <div className="content-wrapper">
+      <section
+        data-history={this.props.dataHistory}
+        id={this.props.dataHistory}
+        className={" swiper-slide single-slide contact"}
+      >
+        {!this.props.scrollEnabled && (
+          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "-110px",
+                left: "0px",
+                height: "1px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
 
+        {!this.props.scrollEnabled && (
+          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "0px",
+                height: "10px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
+        <div className="content-wrapper">
           <Row noGutters>
             <Col xs={12} md={6}>
-
               <h2 className="heading">Kontakt</h2>
               <p className="paragraph">
                 Skontaktuj się z nami, lorem ipsum dolor sit amed:
-          </p>
+              </p>
               <div className="contact-wrapper">
                 <div itemScope itemType="http://schema.org/LocalBusiness">
                   <span style={{ display: "none" }} itemProp="name">
                     Kontrola Klimatu
-              </span>
+                  </span>
                   <div
                     itemProp="address"
                     itemScope
@@ -50,7 +78,7 @@ export default class Contact extends Component {
                         itemProp="addressLocality"
                       >
                         Zambrów
-                  </span>
+                      </span>
                     </div>
                     <div>
                       ul.<span itemProp="streetAddress">Poświątne 64</span>
@@ -59,11 +87,15 @@ export default class Contact extends Component {
                   <div>
                     <a href="tel:+48518864368" itemProp="telephone">
                       +48{" "}
-                      <span className="text-red font-weight-800">518 864 368</span>
+                      <span className="text-red font-weight-800">
+                        518 864 368
+                      </span>
                     </a>
                     <a href="tel:+48517188545" itemProp="telephone">
                       +48{" "}
-                      <span className="text-red font-weight-800">517 188 545</span>
+                      <span className="text-red font-weight-800">
+                        517 188 545
+                      </span>
                     </a>
                   </div>
                   <div>
@@ -73,11 +105,10 @@ export default class Contact extends Component {
                       itemProp="email"
                     >
                       <span className="text-red">biuro</span>@kontrolaklimatu.pl
-                </a>
+                    </a>
                   </div>
                 </div>
               </div>
-
             </Col>
             <Col className="align-self-center" xs={12} md={6}>
               <div
@@ -89,7 +120,6 @@ export default class Contact extends Component {
                 }}
               />
             </Col>
-
           </Row>
         </div>
       </section>

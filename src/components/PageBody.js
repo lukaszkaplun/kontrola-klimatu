@@ -11,21 +11,20 @@ export default class PageBody extends Component {
   render() {
     return (
       <React.Fragment>
-
-
-
-        
         <HomePage
+          scrollEnabled={this.props.scrollEnabled}
           dataHistory={this.props.mainMenu[0].name}
           updateScrollPosition={this.props.updateScrollPosition}
         />
         <About
-           updateHistory={this.props.updateHistory}
+          scrollEnabled={this.props.scrollEnabled}
+          updateHistory={this.props.updateHistory}
           visible={this.props.visible}
           dataHistory={this.props.mainMenu[1].slug}
         />
         <Offer
-        updateHistory={this.props.updateHistory}
+          scrollEnabled={this.props.scrollEnabled}
+          updateHistory={this.props.updateHistory}
           showSubpage={this.props.showSubpage}
           subpage={this.props.subpage}
           toggleCollapse={this.props.toggleCollapse}
@@ -38,19 +37,22 @@ export default class PageBody extends Component {
         />
 
         <Certificates
-           updateHistory={this.props.updateHistory}
+          scrollEnabled={this.props.scrollEnabled}
+          updateHistory={this.props.updateHistory}
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[3].slug}
         />
         <Gallery
-           updateHistory={this.props.updateHistory}
+          scrollEnabled={this.props.scrollEnabled}
+          updateHistory={this.props.updateHistory}
           isSmallScreen={this.props.isSmallScreen}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[4].slug}
         />
         <Contact
-           updateHistory={this.props.updateHistory}
+          scrollEnabled={this.props.scrollEnabled}
+          updateHistory={this.props.updateHistory}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.mainMenu[5].slug}
         />

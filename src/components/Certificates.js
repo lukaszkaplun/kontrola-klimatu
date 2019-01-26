@@ -6,24 +6,25 @@ export default class Certificates extends Component {
   constructor(props) {
     super(props);
 
-    
     this.gallerySwiper = null;
     this.thumbnailSwiper = null;
   }
-
-  
 
   onLeave = ({ currentPosition }) => {
     if (currentPosition === Waypoint.above) {
       this.props.updateHistory(this.props.dataHistory);
     }
   };
-
-
-
-
-
-
+  onEnter = ({ currentPosition }) => {
+    var pathArray = window.location.pathname.split("/");
+    var slug = pathArray[1];
+    if (
+      currentPosition === Waypoint.inside &&
+      slug !== this.props.dataHistory
+    ) {
+      this.props.updateHistory(this.props.dataHistory);
+    }
+  };
 
   componentDidMount() {
     if (this.gallerySwiper !== null) {
@@ -31,10 +32,6 @@ export default class Certificates extends Component {
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
     }
 
-
-
-
-    
     this.thumbnailSwiper = ReactDOM.findDOMNode(this)
       .getElementsByClassName("gallery-thumbs-wrapper")[0]
       .getElementsByClassName("swiper-container")[0].swiper;
@@ -48,7 +45,6 @@ export default class Certificates extends Component {
     }
   }
   render() {
-   
     const paramsThumb = {
       spaceBetween: 20,
       slidesPerView: 4,
@@ -83,90 +79,107 @@ export default class Certificates extends Component {
       }
     };
 
-
     return (
       <section
-      id={this.props.dataHistory}
+        id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
-      <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-          <div
-            style={{
-              width: "10px",
-              position: "absolute",
-              top: "-110px",
-              left: "0px",
-              height: "1px",
-              background: "transparent"
-            }}
-          />
-        </Waypoint>
+         {!this.props.scrollEnabled && (
+          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "-110px",
+                left: "0px",
+                height: "1px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
+
+{!this.props.scrollEnabled && (
+          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "0px",
+                height: "10px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
         <div className="content-wrapper">
           <h2 className="heading">Certyfikaty</h2>
           <div className="gallery-wrapper">
-          <Swiper  {...params}>
-            {this.props.mainMenu[3].gallery.map((photo, index) => {
-              return (
-                <div
-                  className={
-                    this.props.isSmallScreen
-                      ? "swiper-slide mobile"
-                      : "swiper-slide"
-                  }
-                  key={index}
-                  // style={{
-                  //   backgroundImage: !this.props.isSmallScreen
-                  //     ? `url(${photo.src})`
-                  //     : null,
-                  //   backgroundPosition: !this.props.isSmallScreen
-                  //     ? "center center"
-                  //     : null,
-                  //   backgroundSize: !this.props.isSmallScreen ? "cover" : null,
-                  //   backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
-                    
+            <Swiper {...params}>
+              {this.props.mainMenu[3].gallery.map((photo, index) => {
+                return (
+                  <div
+                    className={
+                      this.props.isSmallScreen
+                        ? "swiper-slide mobile"
+                        : "swiper-slide"
+                    }
+                    key={index}
+                    // style={{
+                    //   backgroundImage: !this.props.isSmallScreen
+                    //     ? `url(${photo.src})`
+                    //     : null,
+                    //   backgroundPosition: !this.props.isSmallScreen
+                    //     ? "center center"
+                    //     : null,
+                    //   backgroundSize: !this.props.isSmallScreen ? "cover" : null,
+                    //   backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
 
-                  // }}
-                >
-                  {/* {this.props.isSmallScreen && ( */}
+                    // }}
+                  >
+                    {/* {this.props.isSmallScreen && ( */}
                     <img src={photo.src} alt="gallery" />
-                  {/* )} */}
-                </div>
-              );
-            })}
-          </Swiper>
-         </div>
-         <div className="gallery-thumbs-wrapper">
-          <Swiper {...paramsThumb}>
-            {this.props.mainMenu[3].gallery.map((photo, index) => {
-               return (
-                <div
-                className={
-                  this.props.isSmallScreen
-                    ? "swiper-slide mobile"
-                    : "swiper-slide"
-                }
-                key={index}
-                style={{
-                  backgroundImage: !this.props.isSmallScreen
-                    ? `url(${photo.src})`
-                    : null,
-                  backgroundPosition: !this.props.isSmallScreen
-                    ? "center center"
-                    : null,
-                  backgroundSize: !this.props.isSmallScreen ? "cover" : null,
-                  backgroundRepeat: !this.props.isSmallScreen ? "no-repeat" : null,
-                  
-
-                }}
-              >
-                {this.props.isSmallScreen && (
-                  <img src={photo.src} alt="gallery" />
-                )}
-              </div>
-              );
-            })}
-          </Swiper>
+                    {/* )} */}
+                  </div>
+                );
+              })}
+            </Swiper>
+          </div>
+          <div className="gallery-thumbs-wrapper">
+            <Swiper {...paramsThumb}>
+              {this.props.mainMenu[3].gallery.map((photo, index) => {
+                return (
+                  <div
+                    className={
+                      this.props.isSmallScreen
+                        ? "swiper-slide mobile"
+                        : "swiper-slide"
+                    }
+                    key={index}
+                    style={{
+                      backgroundImage: !this.props.isSmallScreen
+                        ? `url(${photo.src})`
+                        : null,
+                      backgroundPosition: !this.props.isSmallScreen
+                        ? "center center"
+                        : null,
+                      backgroundSize: !this.props.isSmallScreen
+                        ? "cover"
+                        : null,
+                      backgroundRepeat: !this.props.isSmallScreen
+                        ? "no-repeat"
+                        : null
+                    }}
+                  >
+                    {this.props.isSmallScreen && (
+                      <img src={photo.src} alt="gallery" />
+                    )}
+                  </div>
+                );
+              })}
+            </Swiper>
           </div>
         </div>
       </section>

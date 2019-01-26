@@ -47,7 +47,7 @@ export default class MainMenu extends Component {
                              
                               onClick={() =>
                                 this.props.isSmallScreen
-                                  ? this.props.handleCloseMenu(index)
+                                  ? this.props.handleCloseMenu(2, subindex)
                                   : this.props.showSubpage(subindex)
                               }
                             >

@@ -22,7 +22,7 @@ import gallery2 from "./img/gallery/apartment-art-bright-1027516.png";
 import gallery3 from "./img/gallery/apartment-architecture-bookcase-271795.png";
 import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309.png";
 
-import { TweenLite } from "gsap/TweenLite";
+import { TweenLite, TimelineLite } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 import {
@@ -72,7 +72,7 @@ class App extends Component {
             },
             {
               name: "pompy powietrza",
-              slug: "pompy powietrza",
+              slug: "pompy-powietrza",
               content: {
                 heading: "Energooszczędne ogrzewanie za pomocą pompy ciepła",
                 body: `Instalacje centralnego ogrzewania z wykorzystaniem powietrznych pompy ciepła.  Każdy wykonany przez nas układ jest idealnie dopasowana do obsługującego budynku. Pomożemy Ci wybrać urządzenie, które zapewni ekonomiczne i wydajne ogrzewanie. Oferowane przez nas systemy mogą być instalowane w nowych oraz modernizowanych budynkach.`,
@@ -129,8 +129,10 @@ class App extends Component {
           });
         }
       );
+      this.updateHistory(this.state.mainMenu[2].slug);
     } else {
       this.setState({ subpage: number });
+      this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
     }
   };
   toggleCollapse = number => {
@@ -147,39 +149,52 @@ class App extends Component {
   restoreScrollPosition = () => {
     let slugArr = [];
     this.state.mainMenu.map(item => {
+      if (item.submenu !== null) {
+        item.submenu.map(subitem => {
+          slugArr.push(subitem.slug);
+        });
+      }
       slugArr.push(item.slug);
     });
-
+    console.log(slugArr);
     setTimeout(() => {
       window.scrollTo(0, 0);
-
+      var tl = new TimelineLite({
+        onComplete: () => {
+          this.setState({ scrollEnabled: false });
+        }
+      });
       var pathArray = window.location.pathname.split("/");
       var slug = pathArray[1];
       if (slug.length !== 0 && slugArr.indexOf(slug) !== -1) {
-        this.setState({ scrollEnabled: true }, () => {
-          if (this.state.scrollEnabled) {
-            this.updateHistory(slug);
+        if (
+          slug !== this.state.mainMenu[2].submenu[0].slug ||
+          slug !== this.state.mainMenu[2].submenu[1].slug ||
+          slug !== this.state.mainMenu[2].submenu[2].slug
+        ) {
+          this.setState({ scrollEnabled: true }, () => {
+            if (this.state.scrollEnabled) {
+              this.updateHistory(slug);
+              tl.to(window, 1, {
+                scrollTo: { y: `#${slug}`, offsetY: 110 }
+              });
+            }
+          });
+        }
 
-            TweenLite.to(window, 1, {
-              scrollTo: { y: `#${slug}`, offsetY: 110 }
-            });
-          }
-        });
+        if (slug === this.state.mainMenu[2].submenu[0].slug) {
+          this.showSubpage(0);
+        }
+        if (slug === this.state.mainMenu[2].submenu[1].slug) {
+          this.showSubpage(1);
+        }
+        if (slug === this.state.mainMenu[2].submenu[2].slug) {
+          this.showSubpage(2);
+        }
       }
     }, 400);
   };
-  // updateScrollPosition = el => {
-  //   //     setTimeout(() =>  {
-  //   //       let element = ReactDOM.findDOMNode(this)
-  //   //       .getElementsByClassName("offer")[0].getBoundingClientRect().top
-  //   // console.log(ReactDOM.findDOMNode(this)
-  //   // .getElementsByClassName("offer")[0].getBoundingClientRect())
-  //   //     console.log(window.pageYOffset)
-  //   //       // window.scrollTo(0, 0);
-  //   //       // window.scrollTo(0, element - 110);
-  //   //     }, 500);
-  //   // console.log(el)
-  // };
+
   handleOpenMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen }, () => {
       // this.state.isMenuOpen
@@ -188,21 +203,40 @@ class App extends Component {
     });
   };
 
-  handleCloseMenu = index => {
-    this.setState({ isMenuOpen: false }, () => {
+  handleCloseMenu = (index, subindex = null) => {
+    this.setState({ isMenuOpen: false, scrollEnabled: true }, () => {
       // enableBodyScroll(ReactDOM.findDOMNode(this));
-      // window.history.replaceState(null, null, this.state.mainMenu[index].slug);
-      this.updateHistory(this.state.mainMenu[index].slug);
-      TweenLite.to(window, 1, {
-        scrollTo: { y: `#${this.state.mainMenu[index].slug}`, offsetY: 110 }
-      });
 
-      // setTimeout(() => {
-      //   let element = ReactDOM.findDOMNode(this)
-      //     .getElementsByClassName("offer")[0]
-      //     .getBoundingClientRect().top;
-      //   window.scrollTo(0, element - 110);
-      // }, 400);
+      var tl = new TimelineLite({
+        onComplete: () => {
+          this.setState({ scrollEnabled: false });
+        }
+      });
+      if (subindex === null) {
+        this.setState({
+          subpage: null,
+          collapse: null,
+          activeSubpageIndex: null
+        });
+        this.updateHistory(this.state.mainMenu[index].slug);
+        tl.to(window, 1, {
+          scrollTo: { y: `#${this.state.mainMenu[index].slug}`, offsetY: 110 }
+        });
+      } else {
+        var pathArray = window.location.pathname.split("/");
+        var slug = pathArray[1];
+        if (slug !== this.state.mainMenu[index].submenu[subindex].slug) {
+          this.showSubpage(subindex);
+        }
+
+        this.updateHistory(this.state.mainMenu[index].submenu[subindex].slug);
+        tl.to(window, 1, {
+          scrollTo: {
+            y: `#${this.state.mainMenu[index].submenu[subindex].slug}`,
+            offsetY: 110
+          }
+        });
+      }
     });
   };
   handleMenu = (index, event) => {
@@ -336,7 +370,8 @@ class App extends Component {
         />
 
         <Wrapper
-        updateHistory={this.updateHistory}
+          scrollEnabled={this.state.scrollEnabled}
+          updateHistory={this.updateHistory}
           showSubpage={this.showSubpage}
           subpage={this.state.subpage}
           toggleCollapse={this.toggleCollapse}
