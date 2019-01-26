@@ -87,7 +87,7 @@ export default class Certificates extends Component {
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -102,7 +102,7 @@ export default class Certificates extends Component {
           </Waypoint>
         )}
 
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -117,7 +117,11 @@ export default class Certificates extends Component {
           </Waypoint>
         )}
         <div className="content-wrapper">
-          <h2 className="heading">Certyfikaty</h2>
+          <h2 className="heading">
+            {" "}
+            <div className="bar-1" />
+            Certyfikaty
+          </h2>
           <div className="gallery-wrapper">
             <Swiper {...params}>
               {this.props.mainMenu[3].gallery.map((photo, index) => {

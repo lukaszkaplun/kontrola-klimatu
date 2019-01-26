@@ -7,7 +7,7 @@ export default class CollapsibleItem extends Component {
       <li>
         <h3
           className="subheading"
-          onClick={() => this.props.toggle(this.props.index)}
+          onClick={(event) => this.props.toggle(this.props.index, event)}
         >
           {this.props.data.heading}
         </h3>

@@ -128,8 +128,12 @@ html {
 body {
   height: 100%;
 }
-
+.left-animation,
+.right-animation {
+  opacity: 0;
+}
 .heading {
+  // opacity:0;
   font-size: 3.125em;
   // font-size: 9.26vw;
 
@@ -616,6 +620,7 @@ section {
       }
     }
   }
+
   &.about {
     // &.hidden {
     //   * {
@@ -649,9 +654,9 @@ section {
         padding: 0 $pagePadding;
         font-size: 1.563rem;
         margin: 1rem 0;
-        img{
+        img {
           max-width: 16px;
-         
+
           margin-right: 15px;
         }
         a {
@@ -884,22 +889,23 @@ section {
 
 .floating-icon {
   position: fixed;
-  bottom:$pagePadding;
-  right:$pagePadding;
-  width:4.25em;
-  height:4.25em;
-  border-radius:50%;
+  bottom: $pagePadding;
+  right: $pagePadding;
+  width: 4.25em;
+  height: 4.25em;
+  border-radius: 50%;
   border: 5px solid $mainBlue;
   background: white;
-  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.75);
   z-index: 100;
-  button{
-    width:100%;
+  button {
+    width: 100%;
     height: 100%;
   }
-  img, svg{
-    width:60%;
-    fill:$mainBlue;
+  img,
+  svg {
+    width: 60%;
+    fill: $mainBlue;
   }
 }
 
@@ -1036,9 +1042,18 @@ section {
       }
     }
   }
-
+  .bar-1,.bar-2{                    
+    position: absolute;
+    width:0%;
+    top:0%;
+    height: 100%;
+    // z-index: -1;
+    background:$lightBlue;
+}
   .heading {
+    position: relative;
     margin-top: 2.219rem;
+    display: inline-block;
   }
   .app-wrapper {
     display: flex;
@@ -1073,6 +1088,26 @@ section {
     }
     &.homepage {
       width: 100% !important;
+      .content-wrapper {
+        .wrapper {
+          width:45%;
+          // opacity: 1;
+          position: absolute;
+          left: 0;
+          top: 2.219rem;
+          .heading {
+            position: relative;
+            left: auto;
+            top: auto;
+          }
+          .paragraph{
+            margin-left:$pagePadding*3;
+            color:white;
+          }
+        }
+
+       
+      }
     }
     &.gallery,
     &.certificates {

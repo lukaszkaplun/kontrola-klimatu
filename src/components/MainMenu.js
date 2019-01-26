@@ -5,17 +5,13 @@ import classNames from "classnames";
 export default class MainMenu extends Component {
   renderClassNames = index => {
     let menuClasses = classNames({
-     
-      "active": index === this.props.activeIndex,
-      "reversed": index === 2,
-      
+      active: index === this.props.activeIndex,
+      reversed: index === 2
     });
     return menuClasses;
   };
 
   render() {
-    console.log( this.props.isSmallScreen)
-  
     return (
       <ul className="main-menu">
         {this.props.mainMenu.map((item, index) => {
@@ -23,8 +19,7 @@ export default class MainMenu extends Component {
             return (
               <li key={index} className={this.renderClassNames(index)}>
                 <button
-                 
-                  onClick={(event) =>
+                  onClick={event =>
                     this.props.isSmallScreen
                       ? this.props.handleCloseMenu(index)
                       : this.props.handleMenu(index, event)
@@ -33,42 +28,39 @@ export default class MainMenu extends Component {
                   <span>{item.name}</span>
                 </button>
 
-                {(this.props.isSmallScreen || 
-                  this.props.activeIndex === 2) && (
-                    <ul>
-                      {item.submenu.map((subitem, subindex) => {
-                        return (
-                          <li
-                           
-                            key={subindex}
-                            className={subindex === this.props.activeSubpageIndex ? "active" : ""}
+                {(this.props.isSmallScreen || this.props.activeIndex === 2) && (
+                  <ul>
+                    {item.submenu.map((subitem, subindex) => {
+                      return (
+                        <li
+                          key={subindex}
+                          className={
+                            subindex === this.props.activeSubpageIndex
+                              ? "active"
+                              : ""
+                          }
+                        >
+                          <button
+                            onClick={() =>
+                              this.props.isSmallScreen
+                                ? this.props.handleCloseMenu(2, subindex)
+                                : this.props.showSubpage(subindex)
+                            }
                           >
-                            <button
-                             
-                              onClick={() =>
-                                this.props.isSmallScreen
-                                  ? this.props.handleCloseMenu(2, subindex)
-                                  : this.props.showSubpage(subindex)
-                              }
-                            >
-                              <span>{subitem.name}</span>
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
+                            <span>{subitem.name}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </li>
             );
           }
           return (
-            <li
-              key={index}
-              className={this.renderClassNames(index)}
-            >
+            <li key={index} className={this.renderClassNames(index)}>
               <button
-               
-                onClick={(event) =>
+                onClick={event =>
                   this.props.isSmallScreen
                     ? this.props.handleCloseMenu(index)
                     : this.props.handleMenu(index, event)

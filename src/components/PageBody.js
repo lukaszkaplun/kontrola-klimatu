@@ -13,7 +13,7 @@ export default class PageBody extends Component {
       <React.Fragment>
         <HomePage
           scrollEnabled={this.props.scrollEnabled}
-          dataHistory={this.props.mainMenu[0].name}
+          dataHistory={this.props.mainMenu[0].slug}
           updateScrollPosition={this.props.updateScrollPosition}
         />
         <About

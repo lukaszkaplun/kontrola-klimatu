@@ -137,7 +137,9 @@ class App extends Component {
       this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
     }
   };
-  toggleCollapse = number => {
+  toggleCollapse = (number, event) => {
+    event.stopPropagation();
+   
     if (this.state.collapse === number) {
       this.setState({ collapse: null });
     } else {
@@ -194,12 +196,9 @@ class App extends Component {
           this.showSubpage(2);
         }
 
-
-        if(slug===this.state.mainMenu[5].slug) {
-          this.setState({  enableFloatingIcon: false });
+        if (slug === this.state.mainMenu[5].slug) {
+          this.setState({ enableFloatingIcon: false });
         }
-
-
       }
     }, 400);
   };
@@ -214,20 +213,20 @@ class App extends Component {
 
   handleClick = () => {
     setTimeout(() => {
-    var tl = new TimelineLite({
-      onComplete: () => {
-        this.setState({ scrollEnabled: false, enableFloatingIcon: false });
-      }
-    });
-    this.setState({ scrollEnabled: true }, () => {
-      if (this.state.scrollEnabled) {
-        this.updateHistory("kontakt");
-        tl.to(window, 1, {
-          scrollTo: { y: `#kontakt`, offsetY: 0 }
-        });
-      }
-    });
-  }, 400);
+      var tl = new TimelineLite({
+        onComplete: () => {
+          this.setState({ scrollEnabled: false, enableFloatingIcon: false });
+        }
+      });
+      this.setState({ scrollEnabled: true }, () => {
+        if (this.state.scrollEnabled) {
+          this.updateHistory("kontakt");
+          tl.to(window, 1, {
+            scrollTo: { y: `#kontakt`, offsetY: 0 }
+          });
+        }
+      });
+    }, 400);
   };
 
   handleCloseMenu = (index, subindex = null) => {
@@ -240,12 +239,9 @@ class App extends Component {
         }
       });
 
-if(index===5) {
-  this.setState({  enableFloatingIcon: false });
-}
-
-
-
+      if (index === 5) {
+        this.setState({ enableFloatingIcon: false });
+      }
 
       if (subindex === null) {
         this.setState({
@@ -285,12 +281,23 @@ if(index===5) {
       this.pageSwiper.slideTo(index, 1000, false);
       console.log(this.pageSwiper.$el[0]);
     }
-
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
       subpage: null,
       collapse: null,
       activeSubpageIndex: null
+    });
+  };
+
+  setActiveIndex = index => {
+
+
+
+    this.setState({
+      activeIndex: index,
+      // subpage: null,
+      // collapse: null,
+      // activeSubpageIndex: null
     });
   };
 
@@ -306,9 +313,6 @@ if(index===5) {
   };
 
   enableFloatingIcon = () => {
-
-
-
     this.setState({ enableFloatingIcon: true });
   };
   disableFloatingIcon = () => {
@@ -363,13 +367,14 @@ if(index===5) {
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
-    this.restoreScrollPosition();
 
     // setTimeout(() => {
 
     // }, 500);
 
-    // if (!this.state.isSmallScreen) {
+    if (this.state.isSmallScreen) {
+      this.restoreScrollPosition();
+    }
     //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
     //     "swiper-container"
     //   )[0].swiper;
@@ -415,6 +420,8 @@ if(index===5) {
         />
 
         <Wrapper
+          
+          setActiveIndex={this.setActiveIndex}
           enableFloatingIcon={this.enableFloatingIcon}
           disableFloatingIcon={this.disableFloatingIcon}
           scrollEnabled={this.state.scrollEnabled}
@@ -431,7 +438,7 @@ if(index===5) {
           isSmallScreen={this.state.isSmallScreen}
         />
 
-        {this.state.enableFloatingIcon && (
+        {this.state.enableFloatingIcon && this.state.isSmallScreen && (
           <FloatingIcon handleClick={this.handleClick} />
         )}
 

@@ -36,7 +36,7 @@ export default class About extends Component {
             : "swiper-slide single-slide about"
         }
       >
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -51,7 +51,7 @@ export default class About extends Component {
           </Waypoint>
         )}
 
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -69,35 +69,38 @@ export default class About extends Component {
         <div className="content-wrapper">
           <Row noGutters>
             <Col xs={12} md={6}>
-              <h2 className="heading">Kim jesteśmy?</h2>
-              <p className="paragraph">
-                Zespołem dwóch młodych ludzi który swoje doświadczenie
-                instalacyjne zdobywał{" "}
-                <strong>
-                  podczas realizacji projektów zarówno w Wielkiej Brytanii jak i
-                  w Polsce.
-                </strong>{" "}
-                Idziemy z duchem czasu, jesteśmy na bieżąco ze wszelkimi
-                nowinkami w branży. Stawiamy na produkty i usługi najwyższej
-                jakości.
-              </p>
-              <p className="paragraph">Nasi partnerzy:</p>
-              <div className="partner-wrapper">
-                <div className="partner">
-                  <img src={kasai} alt="partner-logo" />
-                </div>
-                <div className="partner">
-                  <img src={zehnder} alt="partner-logo" />
-                </div>
-                <div className="partner">
-                  <img src={fujitsu} alt="partner-logo" />
-                </div>
-                <div className="partner">
-                  <img src={klimor} alt="partner-logo" />
+              <h2 className="heading"><div className="bar-1"></div>
+    Kim jesteśmy?</h2>
+              <div className="left-animation">
+                <p className="paragraph">
+                  Zespołem dwóch młodych ludzi który swoje doświadczenie
+                  instalacyjne zdobywał{" "}
+                  <strong>
+                    podczas realizacji projektów zarówno w Wielkiej Brytanii jak
+                    i w Polsce.
+                  </strong>{" "}
+                  Idziemy z duchem czasu, jesteśmy na bieżąco ze wszelkimi
+                  nowinkami w branży. Stawiamy na produkty i usługi najwyższej
+                  jakości.
+                </p>
+                <p className="paragraph">Nasi partnerzy:</p>
+                <div className="partner-wrapper">
+                  <div className="partner">
+                    <img src={kasai} alt="partner-logo" />
+                  </div>
+                  <div className="partner">
+                    <img src={zehnder} alt="partner-logo" />
+                  </div>
+                  <div className="partner">
+                    <img src={fujitsu} alt="partner-logo" />
+                  </div>
+                  <div className="partner">
+                    <img src={klimor} alt="partner-logo" />
+                  </div>
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} className="right-animation">
               <div
                 className="image-wrapper"
                 style={{

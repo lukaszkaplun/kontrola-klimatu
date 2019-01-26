@@ -29,7 +29,7 @@ export default class Offer extends Component {
     this.props.enableFloatingIcon();
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
-    
+
     if (
       currentPosition === Waypoint.inside
       // &&
@@ -65,7 +65,7 @@ export default class Offer extends Component {
             : "swiper-slide single-slide offer"
         }
       >
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -80,7 +80,7 @@ export default class Offer extends Component {
           </Waypoint>
         )}
 
-        {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -98,24 +98,26 @@ export default class Offer extends Component {
           <div className="content-wrapper">
             <Row noGutters>
               <Col xs={12} md={6}>
-                <h2 className="heading">Nasza oferta</h2>
-
-                <ul className="offer-wrapper">
-                  {this.props.mainMenu[2].submenu.map((item, index) => {
-                    return (
-                      <CollapsibleItem
-                        showSubpage={this.props.showSubpage}
-                        key={index}
-                        index={index}
-                        collapse={this.props.collapse}
-                        data={item.content}
-                        toggle={this.props.toggleCollapse}
-                      />
-                    );
-                  })}
-                </ul>
+                <h2 className="heading"><div className="bar-1"></div>
+          Nasza oferta</h2>
+                <div className="left-animation">
+                  <ul className="offer-wrapper">
+                    {this.props.mainMenu[2].submenu.map((item, index) => {
+                      return (
+                        <CollapsibleItem
+                          showSubpage={this.props.showSubpage}
+                          key={index}
+                          index={index}
+                          collapse={this.props.collapse}
+                          data={item.content}
+                          toggle={this.props.toggleCollapse}
+                        />
+                      );
+                    })}
+                  </ul>
+                </div>
               </Col>
-              <Col className="align-self-center" xs={12} md={6}>
+              <Col className="align-self-center right-animation" xs={12} md={6}>
                 <div
                   className="image-wrapper"
                   style={{
