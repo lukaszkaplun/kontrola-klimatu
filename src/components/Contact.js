@@ -1,20 +1,28 @@
 import React, { Component } from "react";
+import telIcon from "../img/tel-icon.svg";
+import addressIcon from "../img/address-icon.svg";
+import mailIcon from "../img/mail-icon.svg";
+
 import backgroundImage from "../img/logo.png";
 import { Row, Col } from "reactstrap";
 import Waypoint from "react-waypoint";
 export default class Contact extends Component {
   onLeave = ({ currentPosition }) => {
+   
     if (currentPosition === Waypoint.above) {
+      this.props.disableFloatingIcon();
       this.props.updateHistory(this.props.dataHistory);
     }
   };
   onEnter = ({ currentPosition }) => {
+   
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
     if (
       currentPosition === Waypoint.inside &&
       slug !== this.props.dataHistory
     ) {
+      this.props.disableFloatingIcon();
       this.props.updateHistory(this.props.dataHistory);
     }
   };
@@ -31,7 +39,7 @@ export default class Contact extends Component {
               style={{
                 width: "10px",
                 position: "absolute",
-                top: "-110px",
+                top: "0px",
                 left: "0px",
                 height: "1px",
                 background: "transparent"
@@ -46,9 +54,9 @@ export default class Contact extends Component {
               style={{
                 width: "10px",
                 position: "absolute",
-                top: "50%",
+                bottom: "0px",
                 left: "0px",
-                height: "10px",
+                height: "1px",
                 background: "transparent"
               }}
             />
@@ -71,8 +79,9 @@ export default class Contact extends Component {
                     itemScope
                     itemType="http://schema.org/PostalAddress"
                   >
-                    <div>
-                      <span itemProp="postalCode">18-300</span>{" "}
+                    <div className="d-flex align-items-center">
+                      <img src={addressIcon} alt="address"/>
+                      <span style={{marginRight:"15px"}}itemProp="postalCode">18-300</span>{" "}
                       <span
                         className="text-red font-weight-800"
                         itemProp="addressLocality"
@@ -81,24 +90,28 @@ export default class Contact extends Component {
                       </span>
                     </div>
                     <div>
+                   
+
                       ul.<span itemProp="streetAddress">Poświątne 64</span>
                     </div>
                   </div>
-                  <div>
+                  <div className="d-flex align-items-center flex-wrap">
+                  <img src={telIcon} alt="telephone"/>
                     <a href="tel:+48518864368" itemProp="telephone">
                       +48{" "}
                       <span className="text-red font-weight-800">
                         518 864 368
                       </span>
                     </a>
-                    <a href="tel:+48517188545" itemProp="telephone">
+                    <a style={{flex: "0 0 100%", marginLeft:"31px"}} href="tel:+48517188545" itemProp="telephone">
                       +48{" "}
                       <span className="text-red font-weight-800">
                         517 188 545
                       </span>
                     </a>
                   </div>
-                  <div>
+                  <div className="d-flex align-items-center flex-wrap">
+                  <img src={mailIcon} alt="email"/>
                     <a
                       className="font-weight-800"
                       href="mailto:biuro@kontrolaklimatu.pl"

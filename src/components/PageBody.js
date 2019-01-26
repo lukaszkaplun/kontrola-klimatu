@@ -17,12 +17,16 @@ export default class PageBody extends Component {
           updateScrollPosition={this.props.updateScrollPosition}
         />
         <About
+          enableFloatingIcon={this.props.enableFloatingIcon}
+          disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
           updateHistory={this.props.updateHistory}
           visible={this.props.visible}
           dataHistory={this.props.mainMenu[1].slug}
         />
         <Offer
+          enableFloatingIcon={this.props.enableFloatingIcon}
+          disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
           updateHistory={this.props.updateHistory}
           showSubpage={this.props.showSubpage}
@@ -37,6 +41,8 @@ export default class PageBody extends Component {
         />
 
         <Certificates
+          enableFloatingIcon={this.props.enableFloatingIcon}
+          disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
           updateHistory={this.props.updateHistory}
           isSmallScreen={this.props.isSmallScreen}
@@ -44,6 +50,8 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[3].slug}
         />
         <Gallery
+          enableFloatingIcon={this.props.enableFloatingIcon}
+          disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
           updateHistory={this.props.updateHistory}
           isSmallScreen={this.props.isSmallScreen}
@@ -51,6 +59,8 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[4].slug}
         />
         <Contact
+          enableFloatingIcon={this.props.enableFloatingIcon}
+          disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
           updateHistory={this.props.updateHistory}
           mainMenu={this.props.mainMenu}

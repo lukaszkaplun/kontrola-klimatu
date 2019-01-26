@@ -9,6 +9,7 @@ import CollapsibleItem from "./CollapsibleItem";
 import { InView } from "./InView";
 export default class Offer extends Component {
   onLeave = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     if (currentPosition === Waypoint.above) {
       if (this.props.subpage === null) {
         this.props.updateHistory(this.props.dataHistory);
@@ -25,9 +26,10 @@ export default class Offer extends Component {
     }
   };
   onEnter = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
-    console.log(slug);
+    
     if (
       currentPosition === Waypoint.inside
       // &&

@@ -29,11 +29,13 @@ export default class Gallery extends Component {
     }
   }
   onLeave = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     if (currentPosition === Waypoint.above) {
       this.props.updateHistory(this.props.dataHistory);
     }
   };
   onEnter = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
     if (

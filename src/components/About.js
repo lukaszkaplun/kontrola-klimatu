@@ -10,10 +10,12 @@ import klimor from "../img/clients/klimor.png";
 export default class About extends Component {
   onLeave = ({ currentPosition }) => {
     if (currentPosition === Waypoint.above) {
+      this.props.enableFloatingIcon();
       this.props.updateHistory(this.props.dataHistory);
     }
   };
   onEnter = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
     if (

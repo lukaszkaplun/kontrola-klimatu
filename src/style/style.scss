@@ -295,7 +295,7 @@ footer {
         // font-size: 1.111vw;
         text-transform: capitalize;
         letter-spacing: 0.2em;
-        button{
+        button {
           text-transform: inherit;
           letter-spacing: inherit;
         }
@@ -316,32 +316,24 @@ footer {
             transition: all 0.3s ease;
             width: 25px;
           }
-
-
-
-        
         }
 
-        &.reversed{
+        &.reversed {
           &:before {
             transition: all 0.3s ease;
             width: 3px;
             height: 0px;
-            bottom:3px;
-            left:10px;
+            bottom: 3px;
+            left: 10px;
             transform: translate(0%, 100%);
           }
           &.active {
             transition: all 0.3s ease;
             text-shadow: 0 0 0 $mainBlue, 0 0 0 $mainBlue;
             &:before {
-             transition: all 0.3s ease;
-             height: 14px;
+              transition: all 0.3s ease;
+              height: 14px;
             }
-  
-  
-  
-          
           }
         }
       }
@@ -657,6 +649,11 @@ section {
         padding: 0 $pagePadding;
         font-size: 1.563rem;
         margin: 1rem 0;
+        img{
+          max-width: 16px;
+         
+          margin-right: 15px;
+        }
         a {
           display: block;
         }
@@ -781,6 +778,8 @@ section {
   &.certificates {
     .swiper-container {
       padding: $pagePadding 0;
+      .swiper-wrapper {
+      }
       &:nth-of-type(2) {
         // display: none;
       }
@@ -880,6 +879,27 @@ section {
   &.reversed {
     transform: rotate(-45deg);
     animation-name: chevron-reversed;
+  }
+}
+
+.floating-icon {
+  position: fixed;
+  bottom:$pagePadding;
+  right:$pagePadding;
+  width:4.25em;
+  height:4.25em;
+  border-radius:50%;
+  border: 5px solid $mainBlue;
+  background: white;
+  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+  z-index: 100;
+  button{
+    width:100%;
+    height: 100%;
+  }
+  img, svg{
+    width:60%;
+    fill:$mainBlue;
   }
 }
 

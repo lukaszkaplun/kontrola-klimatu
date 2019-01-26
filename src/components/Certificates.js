@@ -11,11 +11,13 @@ export default class Certificates extends Component {
   }
 
   onLeave = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     if (currentPosition === Waypoint.above) {
       this.props.updateHistory(this.props.dataHistory);
     }
   };
   onEnter = ({ currentPosition }) => {
+    this.props.enableFloatingIcon();
     var pathArray = window.location.pathname.split("/");
     var slug = pathArray[1];
     if (
@@ -85,7 +87,7 @@ export default class Certificates extends Component {
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
-         {!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -100,7 +102,7 @@ export default class Certificates extends Component {
           </Waypoint>
         )}
 
-{!this.props.scrollEnabled && (
+        {!this.props.scrollEnabled && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{

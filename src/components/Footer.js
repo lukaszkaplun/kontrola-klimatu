@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Footer extends Component {
   render() {
     return (
-      <footer>
+      <footer id="footer">
         <div className="footer-tel-wrapper">
           <span>Skontaktuj się z nami:</span>{" "}
           <a className="footer-tel" href="tel:+48535952092">

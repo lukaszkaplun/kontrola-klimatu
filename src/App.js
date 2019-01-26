@@ -30,11 +30,13 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks
 } from "body-scroll-lock";
+import FloatingIcon from "./components/FloatingIcon";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      enableFloatingIcon: true,
       scrollEnabled: false,
       subpage: null,
       collapse: null,
@@ -191,6 +193,13 @@ class App extends Component {
         if (slug === this.state.mainMenu[2].submenu[2].slug) {
           this.showSubpage(2);
         }
+
+
+        if(slug===this.state.mainMenu[5].slug) {
+          this.setState({  enableFloatingIcon: false });
+        }
+
+
       }
     }, 400);
   };
@@ -203,6 +212,24 @@ class App extends Component {
     });
   };
 
+  handleClick = () => {
+    setTimeout(() => {
+    var tl = new TimelineLite({
+      onComplete: () => {
+        this.setState({ scrollEnabled: false, enableFloatingIcon: false });
+      }
+    });
+    this.setState({ scrollEnabled: true }, () => {
+      if (this.state.scrollEnabled) {
+        this.updateHistory("kontakt");
+        tl.to(window, 1, {
+          scrollTo: { y: `#kontakt`, offsetY: 0 }
+        });
+      }
+    });
+  }, 400);
+  };
+
   handleCloseMenu = (index, subindex = null) => {
     this.setState({ isMenuOpen: false, scrollEnabled: true }, () => {
       // enableBodyScroll(ReactDOM.findDOMNode(this));
@@ -212,6 +239,14 @@ class App extends Component {
           this.setState({ scrollEnabled: false });
         }
       });
+
+if(index===5) {
+  this.setState({  enableFloatingIcon: false });
+}
+
+
+
+
       if (subindex === null) {
         this.setState({
           subpage: null,
@@ -268,6 +303,16 @@ class App extends Component {
       )[0].swiper;
       console.log(this.pageSwiper.$el[0]);
     }
+  };
+
+  enableFloatingIcon = () => {
+
+
+
+    this.setState({ enableFloatingIcon: true });
+  };
+  disableFloatingIcon = () => {
+    this.setState({ enableFloatingIcon: false });
   };
 
   handleIsMobile = () => {
@@ -370,6 +415,8 @@ class App extends Component {
         />
 
         <Wrapper
+          enableFloatingIcon={this.enableFloatingIcon}
+          disableFloatingIcon={this.disableFloatingIcon}
           scrollEnabled={this.state.scrollEnabled}
           updateHistory={this.updateHistory}
           showSubpage={this.showSubpage}
@@ -383,6 +430,11 @@ class App extends Component {
           mainMenu={this.state.mainMenu}
           isSmallScreen={this.state.isSmallScreen}
         />
+
+        {this.state.enableFloatingIcon && (
+          <FloatingIcon handleClick={this.handleClick} />
+        )}
+
         <Footer
           isSmallScreen={this.state.isSmallScreen}
           socialMenu={this.state.socialMenu}
