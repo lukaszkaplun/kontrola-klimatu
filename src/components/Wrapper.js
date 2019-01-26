@@ -6,6 +6,8 @@ import { TweenLite, TimelineLite } from "gsap";
 
 const timing = 1;
 export default class Wrapper extends React.PureComponent {
+ 
+
   render() {
     this.swiperParams = {
       rebuildOnUpdate: true,
@@ -15,6 +17,7 @@ export default class Wrapper extends React.PureComponent {
         replaceState: true,
         key: ""
       },
+      preventInteractionOnTransition:true,
       speed: timing * 1000,
       pagination: {
         el: ".swiper-pagination",
@@ -28,115 +31,119 @@ export default class Wrapper extends React.PureComponent {
       fadeEffect: {
         crossFade: true
       },
+      preventClick: true,
       preventClicksPropagation: true,
       slidesPerView: 1,
       mousewheel: true,
       breakpointsInverse: true,
       on: {
-       
         init: () => {
           this.pageSwiper = ReactDOM.findDOMNode(this).swiper;
         },
-        slideChangeTransitionStart: () => {
-          // console.log(this.pageSwiper.activeIndex);
+       
+        slideChangeTransitionEnd: () =>{
+
         },
-      
         slideNextTransitionStart: () => {
-          this.activeSection = ReactDOM.findDOMNode(
-            this
-          ).getElementsByClassName("main-slide-active")[0];
-          this.header = this.activeSection.getElementsByClassName("heading")[0];
-          this.bar1 = this.header.getElementsByClassName("bar-1")[0];
+        
+          if (!this.props.blocked) {
+            this.activeSection = ReactDOM.findDOMNode(
+              this
+            ).getElementsByClassName("main-slide-active")[0];
+            this.header = this.activeSection.getElementsByClassName(
+              "heading"
+            )[0];
+            this.bar1 = this.header.getElementsByClassName("bar-1")[0];
 
-          this.leftAnimation = this.activeSection.getElementsByClassName(
-            "left-animation"
-          )[0];
-          this.rightAnimation = this.activeSection.getElementsByClassName(
-            "right-animation"
-          )[0];
+            this.leftAnimation = this.activeSection.getElementsByClassName(
+              "left-animation"
+            )[0];
+            this.rightAnimation = this.activeSection.getElementsByClassName(
+              "right-animation"
+            )[0];
 
-          if (
-            this.leftAnimation !== undefined ||
-            this.rightAnimation !== undefined
-          ) {
-            let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            if (
+              this.leftAnimation !== undefined ||
+              this.rightAnimation !== undefined
+            ) {
+              let tl = new TimelineLite();
+              tl.to(this.bar1, timing, { width: "110%" })
 
-              .fromTo(
-                this.leftAnimation,
-                timing,
-                { y: 100, opacity: 0 },
-                { y: 0, opacity: 1 },
-                `-=${timing}`
-              )
+                .fromTo(
+                  this.leftAnimation,
+                  timing,
+                  { y: 100, opacity: 0 },
+                  { y: 0, opacity: 1 },
+                  `-=${timing}`
+                )
 
-              .fromTo(
-                this.rightAnimation,
-                timing,
-                { x: 100, opacity: 0 },
-                { x: 0, opacity: 1 },
-                `-=${timing}`
-              )
-              .to(this.bar1, timing / 2, { width: "0%" });
+                .fromTo(
+                  this.rightAnimation,
+                  timing,
+                  { x: 100, opacity: 0 },
+                  { x: 0, opacity: 1 },
+                  `-=${timing}`
+                )
+                .to(this.bar1, timing / 2, { width: "0%" });
+            }
           }
         },
         slidePrevTransitionStart: () => {
-          this.activeSection = ReactDOM.findDOMNode(
-            this
-          ).getElementsByClassName("main-slide-active")[0];
-          this.header = this.activeSection.getElementsByClassName("heading")[0];
+         
+          if (!this.props.blocked) {
+            this.activeSection = ReactDOM.findDOMNode(
+              this
+            ).getElementsByClassName("main-slide-active")[0];
+            this.header = this.activeSection.getElementsByClassName(
+              "heading"
+            )[0];
 
-          this.bar1 = this.header.getElementsByClassName("bar-1")[0];
+            this.bar1 = this.header.getElementsByClassName("bar-1")[0];
 
-          this.leftAnimation = this.activeSection.getElementsByClassName(
-            "left-animation"
-          )[0];
-          this.rightAnimation = this.activeSection.getElementsByClassName(
-            "right-animation"
-          )[0];
+            this.leftAnimation = this.activeSection.getElementsByClassName(
+              "left-animation"
+            )[0];
+            this.rightAnimation = this.activeSection.getElementsByClassName(
+              "right-animation"
+            )[0];
 
-          if (
-            this.leftAnimation !== undefined ||
-            this.rightAnimation !== undefined
-          ) {
-            let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            if (
+              this.leftAnimation !== undefined ||
+              this.rightAnimation !== undefined
+            ) {
+              let tl = new TimelineLite();
+              tl.to(this.bar1, timing, { width: "110%" })
 
-              // .fromTo(
-              //   this.header,
-              //   timing,
-              //   { x: -100, opacity: 0 },
-              //   { x: 0, opacity: 1 }
-              // )
-              .fromTo(
-                this.leftAnimation,
-                timing,
-                { y: -100, opacity: 0 },
-                { y: 0, opacity: 1 },
-                `-=${timing}`
-              );
+                // .fromTo(
+                //   this.header,
+                //   timing,
+                //   { x: -100, opacity: 0 },
+                //   { x: 0, opacity: 1 }
+                // )
+                .fromTo(
+                  this.leftAnimation,
+                  timing,
+                  { y: -100, opacity: 0 },
+                  { y: 0, opacity: 1 },
+                  `-=${timing}`
+                );
 
-            if (this.rightAnimation !== undefined) {
-              tl.fromTo(
-                this.rightAnimation,
-                timing,
-                { x: -100, opacity: 0 },
-                { x: 0, opacity: 1 },
-                `-=${timing}`
-              );
+              if (this.rightAnimation !== undefined) {
+                tl.fromTo(
+                  this.rightAnimation,
+                  timing,
+                  { x: -100, opacity: 0 },
+                  { x: 0, opacity: 1 },
+                  `-=${timing}`
+                );
+              }
+              tl.to(this.bar1, timing / 2, { width: "0%" });
             }
-            tl.to(this.bar1, timing / 2, { width: "0%" });
           }
         },
 
-        slideChangeTransitionEnd: () => {
-          // this.setState({
-          //   visible: true
-          // });
-        },
-        setTranslate: translate => {
-          // console.log(translate)
-        },
+       
+       
         setTransition: transition => {
           // console.log(transition);
         },

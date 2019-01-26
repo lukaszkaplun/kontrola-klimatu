@@ -36,6 +36,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isBlocked: false,
       enableFloatingIcon: true,
       scrollEnabled: false,
       subpage: null,
@@ -137,14 +138,28 @@ class App extends Component {
       this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
     }
   };
+
+  handleBlocked = () => {
+    this.setState({isBlocked: true})
+  }
+
+
+
   toggleCollapse = (number, event) => {
-    event.stopPropagation();
+  //   event.stopPropagation();
+  //   event.preventDefault();
+  //   if(!this.state.isBlocked) {
+  //     this.handleBlocked()
+  //   }
+    
+
+  //  console.log(number)
    
-    if (this.state.collapse === number) {
-      this.setState({ collapse: null });
-    } else {
-      this.setState({ collapse: number });
-    }
+  //   if (this.state.collapse === number) {
+  //     this.setState({ collapse: null });
+  //   } else {
+  //     this.setState({ collapse: number });
+  //   }
   };
 
   updateHistory = slug => {
@@ -420,7 +435,8 @@ class App extends Component {
         />
 
         <Wrapper
-          
+          handleBlocked={this.handleBlocked}
+          isBlocked={this.state.isBlocked}
           setActiveIndex={this.setActiveIndex}
           enableFloatingIcon={this.enableFloatingIcon}
           disableFloatingIcon={this.disableFloatingIcon}

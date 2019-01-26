@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Collapse } from "reactstrap";
 
 export default class CollapsibleItem extends Component {
+
   render() {
     return (
       <li>

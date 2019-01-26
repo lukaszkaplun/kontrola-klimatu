@@ -8,6 +8,14 @@ import backgroundImage from "../img/offer-bg.png";
 import CollapsibleItem from "./CollapsibleItem";
 import { InView } from "./InView";
 export default class Offer extends Component {
+
+constructor(props){
+  super(props)
+  this.state = {
+    collapse: null
+  }
+}
+
   onLeave = ({ currentPosition }) => {
     this.props.enableFloatingIcon();
     if (currentPosition === Waypoint.above) {
@@ -49,7 +57,22 @@ export default class Offer extends Component {
       }
     }
   };
-
+  toggleCollapse = (number, event) => {
+    //   event.stopPropagation();
+    //   event.preventDefault();
+    //   if(!this.state.isBlocked) {
+    //     this.handleBlocked()
+    //   }
+      
+  
+    //  console.log(number)
+     
+      if (this.state.collapse === number) {
+        this.setState({ collapse: null });
+      } else {
+        this.setState({ collapse: number });
+      }
+    };
   render() {
     return (
       <section
@@ -98,8 +121,10 @@ export default class Offer extends Component {
           <div className="content-wrapper">
             <Row noGutters>
               <Col xs={12} md={6}>
-                <h2 className="heading"><div className="bar-1"></div>
-          Nasza oferta</h2>
+                <h2 className="heading">
+                  <div className="bar-1" />
+                  Nasza oferta
+                </h2>
                 <div className="left-animation">
                   <ul className="offer-wrapper">
                     {this.props.mainMenu[2].submenu.map((item, index) => {
@@ -108,9 +133,9 @@ export default class Offer extends Component {
                           showSubpage={this.props.showSubpage}
                           key={index}
                           index={index}
-                          collapse={this.props.collapse}
+                          collapse={this.state.collapse}
                           data={item.content}
-                          toggle={this.props.toggleCollapse}
+                          toggle={this.toggleCollapse}
                         />
                       );
                     })}
