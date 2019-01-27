@@ -132,39 +132,48 @@ class App extends Component {
           });
         }
       );
-      this.updateHistory(this.state.mainMenu[2].slug);
+
+      if (this.state.isSmallScreen) {
+        this.updateHistory(this.state.mainMenu[2].slug);
+      }
     } else {
       this.setState({ subpage: number });
-      this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
+      // this.pageSwiper.prependSlide('<div class="swiper-slide">Slide ' + (2) + '</div>');
+      if (this.state.isSmallScreen) {
+        this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
+      } else {
+
+         this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
+       
+      
+      }
+
+     
     }
   };
 
   handleBlocked = () => {
-    this.setState({isBlocked: true})
-  }
-
-
+    this.setState({ isBlocked: true });
+  };
 
   toggleCollapse = (number, event) => {
-  //   event.stopPropagation();
-  //   event.preventDefault();
-  //   if(!this.state.isBlocked) {
-  //     this.handleBlocked()
-  //   }
-    
-
-  //  console.log(number)
-   
-  //   if (this.state.collapse === number) {
-  //     this.setState({ collapse: null });
-  //   } else {
-  //     this.setState({ collapse: number });
-  //   }
+    //   event.stopPropagation();
+    //   event.preventDefault();
+    //   if(!this.state.isBlocked) {
+    //     this.handleBlocked()
+    //   }
+    //  console.log(number)
+    //   if (this.state.collapse === number) {
+    //     this.setState({ collapse: null });
+    //   } else {
+    //     this.setState({ collapse: number });
+    //   }
   };
 
   updateHistory = slug => {
     window.history.pushState(null, null, slug);
   };
+  
   restoreScrollPosition = () => {
     let slugArr = [];
     this.state.mainMenu.map(item => {
@@ -175,7 +184,10 @@ class App extends Component {
       }
       slugArr.push(item.slug);
     });
-    console.log(slugArr);
+    var pathArray = window.location.pathname.split("/");
+    var slug = pathArray[1];
+
+    if(this.state.isSmallScreen) {
     setTimeout(() => {
       window.scrollTo(0, 0);
       var tl = new TimelineLite({
@@ -216,6 +228,30 @@ class App extends Component {
         }
       }
     }, 400);
+  }
+
+   else {
+    this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+      "main-swiper"
+    )[0].swiper;
+   
+   
+    this.pageSwiper.slideTo(2, 1000, false);
+
+
+
+
+    if(slug === this.state.mainMenu[2].submenu[0].slug) {
+      this.showSubpage(0)
+    }
+    if(slug === this.state.mainMenu[2].submenu[1].slug) {
+      this.showSubpage(1)
+    }
+    if(slug === this.state.mainMenu[2].submenu[2].slug) {
+      this.showSubpage(2)
+    }
+   
+    }
   };
 
   handleOpenMenu = () => {
@@ -293,7 +329,7 @@ class App extends Component {
         "main-swiper"
       )[0].swiper;
 
-      this.pageSwiper.slideTo(index, 1000, false);
+      this.pageSwiper.slideTo(index, 1000, true);
       console.log(this.pageSwiper.$el[0]);
     }
     this.setState({
@@ -305,11 +341,8 @@ class App extends Component {
   };
 
   setActiveIndex = index => {
-
-
-
     this.setState({
-      activeIndex: index,
+      activeIndex: index
       // subpage: null,
       // collapse: null,
       // activeSubpageIndex: null
@@ -324,6 +357,7 @@ class App extends Component {
         "main-swiper"
       )[0].swiper;
       console.log(this.pageSwiper.$el[0]);
+      
     }
   };
 
@@ -387,9 +421,9 @@ class App extends Component {
 
     // }, 500);
 
-    if (this.state.isSmallScreen) {
+    // if (this.state.isSmallScreen) {
       this.restoreScrollPosition();
-    }
+    // }
     //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
     //     "swiper-container"
     //   )[0].swiper;
@@ -401,7 +435,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isSmallScreen !== this.state.isSmallScreen) {
-      console.log(this.state.isSmallScreen);
+      // console.log(this.state.isSmallScreen);
 
       if (!this.state.isSmallScreen) {
         this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
@@ -435,6 +469,7 @@ class App extends Component {
         />
 
         <Wrapper
+        updateHistory={this.updateHistory}
           handleBlocked={this.handleBlocked}
           isBlocked={this.state.isBlocked}
           setActiveIndex={this.setActiveIndex}

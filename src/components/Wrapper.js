@@ -9,8 +9,12 @@ export default class Wrapper extends React.PureComponent {
  
 
   render() {
+
+// console.log(this.props.isSmallScreen)
+
+
     this.swiperParams = {
-      rebuildOnUpdate: true,
+      // rebuildOnUpdate: true,
       direction: "vertical",
       slideActiveClass: "swiper-slide-active main-slide-active",
       history: {
@@ -36,13 +40,17 @@ export default class Wrapper extends React.PureComponent {
       slidesPerView: 1,
       mousewheel: true,
       breakpointsInverse: true,
+      
       on: {
         init: () => {
           this.pageSwiper = ReactDOM.findDOMNode(this).swiper;
+        
         },
-       
+       slideChange: () => {
+// console.log('test')
+       }, 
         slideChangeTransitionEnd: () =>{
-
+          // console.log('test')
         },
         slideNextTransitionStart: () => {
         
@@ -169,6 +177,7 @@ export default class Wrapper extends React.PureComponent {
               toggleCollapse={this.props.toggleCollapse}
               collapse={this.props.collapse}
               setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+              activeSubpageIndex={this.props.activeSubpageIndex}
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}
@@ -188,6 +197,7 @@ export default class Wrapper extends React.PureComponent {
               toggleCollapse={this.props.toggleCollapse}
               collapse={this.props.collapse}
               setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+              activeSubpageIndex={this.props.activeSubpageIndex}
               updateScrollPosition={this.props.updateScrollPosition}
               visible={this.props.visible}
               mainMenu={this.props.mainMenu}

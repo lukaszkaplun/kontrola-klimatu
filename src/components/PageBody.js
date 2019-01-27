@@ -12,11 +12,13 @@ export default class PageBody extends Component {
     return (
       <React.Fragment>
         <HomePage
+          isSmallScreen={this.props.isSmallScreen}
           scrollEnabled={this.props.scrollEnabled}
           dataHistory={this.props.mainMenu[0].slug}
           updateScrollPosition={this.props.updateScrollPosition}
         />
         <About
+        isSmallScreen={this.props.isSmallScreen}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -25,6 +27,7 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[1].slug}
         />
         <Offer
+        isSmallScreen={this.props.isSmallScreen}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -36,7 +39,7 @@ export default class PageBody extends Component {
           setActiveSubpageIndex={this.props.setActiveSubpageIndex}
           visible={this.props.visible}
           mainMenu={this.props.mainMenu}
-          dataHistory={this.props.mainMenu[2].slug}
+          dataHistory={this.props.activeSubpageIndex === null ?this.props.mainMenu[2].slug : this.props.mainMenu[2].submenu[this.props.activeSubpageIndex].slug}
           dataHistorySubmenu={this.props.mainMenu[2].submenu}
         />
 
@@ -59,6 +62,7 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[4].slug}
         />
         <Contact
+        isSmallScreen={this.props.isSmallScreen}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}

@@ -31,24 +31,26 @@ export default class Pump extends Component {
     const params = {
       autoHeight: true,
       loop: true,
+
       on:{
         transitionEnd:()=>{
           TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
         }
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination-nested",
         clickable: true
       }
     };
 
     return (
       <div className="content-wrapper"  id={this.props.dataHistorySubmenu.slug}>
-        <h2 className="heading">Pompy ciepła</h2>
+        
 
         <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
+            <h2 className="heading">Pompy ciepła</h2>
               <h3 className="subheading">Co zyskujemy?</h3>
               <ul>
                 <li>
@@ -76,19 +78,21 @@ export default class Pump extends Component {
                 </li>
               </ul>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide1})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
           <Row noGutters className="slide-2">
             <Col xs={12} md={6}>
+            <h2 className="heading">Pompy ciepła</h2>
               <h3 className="subheading">Zasada działania</h3>
               <p className="paragraph">
                 Pompa ciepła dostarczy ciepło zarówno na potrzeby centralnego
@@ -97,19 +101,21 @@ export default class Pump extends Component {
                 klimatyzator.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide2})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
           <Row noGutters className="slide-3">
             <Col xs={12} md={6}>
+            <h2 className="heading">Pompy ciepła</h2>
               <h3 className="subheading">Typy pomp ciepła</h3>
               <ul>
                 <li>
@@ -130,13 +136,14 @@ export default class Pump extends Component {
                 </li>
               </ul>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide3})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
@@ -159,13 +166,14 @@ export default class Pump extends Component {
                 </li>
               </ul>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide4})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
@@ -199,13 +207,14 @@ export default class Pump extends Component {
                 elektrycznej.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide5})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
@@ -228,13 +237,14 @@ export default class Pump extends Component {
                 widzenia.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide6})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>

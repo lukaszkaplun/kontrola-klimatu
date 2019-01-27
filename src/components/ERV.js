@@ -5,7 +5,7 @@ import slide1 from "../img/erv/slide1.png";
 import slide2 from "../img/erv/slide2.png";
 import slide3 from "../img/erv/slide3.png";
 import Swiper from "react-id-swiper";
-import {TweenLite} from 'gsap/TweenLite'
+import { TweenLite } from "gsap/TweenLite";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 export default class ERV extends Component {
   constructor(props) {
@@ -17,37 +17,46 @@ export default class ERV extends Component {
     this.ervSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
       "swiper-container"
     )[0].swiper;
-    if( this.ervSwiper!== null) {
+    if (this.ervSwiper !== null) {
       this.props.setActiveSubpageIndex(this.ervSwiper, 0);
     }
-   
   }
 
   render() {
     const params = {
       autoHeight: true,
+
       loop: true,
-      on:{
-        transitionEnd:()=>{
-          TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
+      on: {
+        transitionEnd: () => {
+          TweenLite.to(window, 1, {
+            scrollTo: {
+              y: `#${this.props.dataHistorySubmenu.slug}`,
+              offsetY: 110
+            }
+          });
+        }
+      },
+      breakpointsInverse: true,
+      breakpoints: {
+        1200: {
+          autoHeight: false
         }
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination-nested",
         clickable: true
-        // renderBullet: (index, className) => {
-        //   return '<span class="' + className + '">' + (index + 1) + '</span>';
-        // },
       }
     };
 
     return (
       <div className="content-wrapper" id={this.props.dataHistorySubmenu.slug}>
-        <h2 className="heading">Rekuperacja</h2>
-
+       
         <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
+            <h2  className="heading">Rekuperacja</h2>
+
               <h3 className="subheading">Jakie ma zalety?</h3>
               <ul>
                 <li>
@@ -86,19 +95,21 @@ export default class ERV extends Component {
                 </li>
               </ul>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide1})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                   backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
           <Row noGutters className="slide-2">
             <Col xs={12} md={6}>
+            <h2  className="heading">Rekuperacja</h2>
               <h3 className="subheading">Co to takiego?</h3>
               <p className="paragraph">
                 Rekuperacja to nic innego jak instalacja wentylacji mechanicznej
@@ -113,26 +124,21 @@ export default class ERV extends Component {
                 eksploatacyjnych.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide2})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                   backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
-              <ul>
-                <li>świeże powietrze z zewnątrz</li>
-                <li>czyste, świeże powietrze</li>
-                <li>zużyte powietrze z zanieczyszczniami bytowymi</li>
-                <li>zużyte powietrze z zanieczyszczniami bytowymi</li>
-                <li>zanieczyszczone powietrze, z którego odzyskano energię</li>
-              </ul>
             </Col>
           </Row>
           <Row noGutters className="slide-3">
             <Col xs={12} md={6}>
+            <h2  className="heading">Rekuperacja</h2>
               <h3 className="subheading">Serce układu - rekuperator</h3>
               <p className="paragraph">
                 Głównym elementem urządzenia jest wymiennik który odpowiedzialny
@@ -144,31 +150,29 @@ export default class ERV extends Component {
                 przed zanieczyszczeniami.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6} >
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide3})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                   backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
-              <ul>
-                <li>krzyżowy wymiennik ciepła</li>
-                <li>filtr</li>
-                <li>wentylator</li>
-              </ul>
             </Col>
           </Row>
         </Swiper>
-        <button
-          className="button"
-          onClick={() => this.props.showSubpage(0)}
-          style={{ margin: "0 auto" }}
-        >
-          <div className="button-chevron reversed" />
-          Powrót
-        </button>
+        {this.props.isSmallScreen && (
+          <button
+            className="button"
+            onClick={() => this.props.showSubpage(0)}
+            style={{ margin: "0 auto" }}
+          >
+            <div className="button-chevron reversed" />
+            Powrót
+          </button>
+        )}
       </div>
     );
   }

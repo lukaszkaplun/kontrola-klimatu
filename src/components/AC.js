@@ -33,18 +33,19 @@ export default class AC extends Component {
         }
       },
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination-nested",
         clickable: true
       }
     };
 
     return (
       <div className="content-wrapper"  id={this.props.dataHistorySubmenu.slug}>
-        <h2 className="heading">Klimatyzacja</h2>
+        
 
         <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
+            <h2 className="heading">Klimatyzacja</h2>
               <h3 className="subheading">Po co montować klimatyzację?</h3>
               <p className="paragraph">
                 Coraz większą uwagę przykładamy do komfortu w jakim pracujemy
@@ -56,19 +57,21 @@ export default class AC extends Component {
                 organizmu.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6}>
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide1})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
           <Row noGutters className="slide-2">
             <Col xs={12} md={6}>
+            <h2 className="heading">Klimatyzacja</h2>
               <h3 className="subheading">Jak działa klimatyzacja?</h3>
               <p className="paragraph">
                 Czynnik chłodniczy jako chłodna ciecz dostaje się do wymiennika
@@ -80,19 +83,21 @@ export default class AC extends Component {
                 „ubocznym” jest schłodzone powietrze.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6}>
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide2})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
           <Row noGutters className="slide-3">
             <Col xs={12} md={6}>
+            <h2 className="heading">Klimatyzacja</h2>
               <h3 className="subheading">
                 Najczęściej stosowane rozwiązania w domach
               </h3>
@@ -120,18 +125,20 @@ export default class AC extends Component {
                 jednostki kasetonowe.
               </p>
             </Col>
-            <Col xs={12} md={6} className="align-self-center">
+            <Col xs={12} md={6}>
               <div
                 className="image-wrapper"
                 style={{
                   backgroundImage: `url(${slide3})`,
                   backgroundPosition: "center center",
-                  backgroundSize: "cover"
+                 backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat"
                 }}
               />
             </Col>
           </Row>
         </Swiper>
+        {this.props.isSmallScreen && 
         <button
           className="button"
           onClick={() => this.props.showSubpage(1)}
@@ -140,6 +147,7 @@ export default class AC extends Component {
           <div className="button-chevron reversed" />
           Powrót
         </button>
+        }
       </div>
     );
   }
