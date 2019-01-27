@@ -268,7 +268,7 @@ export default class ERV extends Component {
             </Col>
           </Row>
         </Swiper>
-        {(this.props.isSmallScreen || this.props.isMobile) && (
+        {this.props.isSmallScreen && (
           <button
             className="button"
             onClick={() => this.props.showSubpage(0)}

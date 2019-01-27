@@ -87,8 +87,7 @@ export default class Gallery extends Component {
         data-history={this.props.dataHistory}
         className={"swiper-slide single-slide gallery"}
       >
-         {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -103,8 +102,7 @@ export default class Gallery extends Component {
           </Waypoint>
         )}
 
- {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -119,34 +117,37 @@ export default class Gallery extends Component {
           </Waypoint>
         )}
         <div className="content-wrapper">
-          <h2 className="heading"> <div className="bar-1"></div>Galeria</h2>
+          <h2 className="heading">
+            {" "}
+            <div className="bar-1" />Galeria
+          </h2>
           <div className="gallery-wrapper">
             <Swiper {...params}>
               {this.props.mainMenu[4].gallery.map((photo, index) => {
                 return (
                   <div
                     className={
-                      (this.props.isSmallScreen || this.props.isMobile)
+                      this.props.isSmallScreen
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
                     key={index}
                     style={{
-                      backgroundImage: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundImage: !this.props.isSmallScreen
                         ? `url(${photo.src})`
                         : null,
-                      backgroundPosition: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundPosition: !this.props.isSmallScreen
                         ? "center center"
                         : null,
-                      backgroundSize: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundSize: !this.props.isSmallScreen
                         ? "cover"
                         : null,
-                      backgroundRepeat: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundRepeat: !this.props.isSmallScreen
                         ? "no-repeat"
                         : null
                     }}
                   >
-                    {(this.props.isSmallScreen || this.props.isMobile) && (
+                    {this.props.isSmallScreen && (
                       <img src={photo.src} alt="gallery" />
                     )}
                   </div>
@@ -160,27 +161,27 @@ export default class Gallery extends Component {
                 return (
                   <div
                     className={
-                      (this.props.isSmallScreen || this.props.isMobile)
+                      this.props.isSmallScreen
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
                     key={index}
                     style={{
-                      backgroundImage: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundImage: !this.props.isSmallScreen
                         ? `url(${photo.src})`
                         : null,
-                      backgroundPosition: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundPosition: !this.props.isSmallScreen
                         ? "center center"
                         : null,
-                      backgroundSize: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundSize: !this.props.isSmallScreen
                         ? "cover"
                         : null,
-                      backgroundRepeat: (!this.props.isSmallScreen && !this.props.isMobile)
+                      backgroundRepeat: !this.props.isSmallScreen
                         ? "no-repeat"
                         : null
                     }}
                   >
-                    {(this.props.isSmallScreen || this.props.isMobile) && (
+                    {this.props.isSmallScreen && (
                       <img src={photo.src} alt="gallery" />
                     )}
                   </div>

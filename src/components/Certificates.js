@@ -90,8 +90,8 @@ export default class Certificates extends Component {
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
-        {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
+        {!this.props.scrollEnabled &&
+          this.props.isSmallScreen  && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -106,8 +106,8 @@ export default class Certificates extends Component {
           </Waypoint>
         )}
 
-        {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
+        {!this.props.scrollEnabled &&
+          this.props.isSmallScreen  && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -135,7 +135,7 @@ export default class Certificates extends Component {
                 return (
                   <div
                     className={
-                      (this.props.isSmallScreen || this.props.isMobile)
+                      this.props.isSmallScreen 
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
@@ -166,7 +166,7 @@ export default class Certificates extends Component {
                 return (
                   <div
                     className={
-                      (this.props.isSmallScreen || this.props.isMobile)
+                      this.props.isSmallScreen 
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
@@ -186,7 +186,7 @@ export default class Certificates extends Component {
                         : null
                     }}
                   >
-                    {(this.props.isSmallScreen || this.props.isMobile) && (
+                    {this.props.isSmallScreen && (
                       <img src={photo.src} alt="gallery" />
                     )}
                   </div>

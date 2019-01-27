@@ -36,37 +36,35 @@ export default class About extends Component {
             : "swiper-slide single-slide about"
         }
       >
-        {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
-            <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-              <div
-                style={{
-                  width: "10px",
-                  position: "absolute",
-                  top: "-110px",
-                  left: "0px",
-                  height: "1px",
-                  background: "transparent"
-                }}
-              />
-            </Waypoint>
-          )}
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "-110px",
+                left: "0px",
+                height: "1px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
 
-        {(!this.props.scrollEnabled &&
-          (this.props.isSmallScreen || this.props.isMobile)) && (
-            <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
-              <div
-                style={{
-                  width: "10px",
-                  position: "absolute",
-                  top: "50%",
-                  left: "0px",
-                  height: "10px",
-                  background: "transparent"
-                }}
-              />
-            </Waypoint>
-          )}
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "0px",
+                height: "10px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
 
         <div className="content-wrapper">
           <Row noGutters>

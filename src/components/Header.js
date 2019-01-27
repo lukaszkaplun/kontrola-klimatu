@@ -13,12 +13,12 @@ export default class Header extends Component {
 
         <div
           className={
-            (this.props.isSmallScreen || this.props.isMobile)
+            (this.props.isSmallScreen)
               ? "main-menu-wrapper hamb-wrapper"
               : "main-menu-wrapper"
           }
         >
-          {(!this.props.isSmallScreen && !this.props.isMobile) && (
+          {!this.props.isSmallScreen  && (
             <MainMenu
               showSubpage={this.props.showSubpage}
               activeSubpageIndex={this.props.activeSubpageIndex}
@@ -30,13 +30,13 @@ export default class Header extends Component {
               handleCloseMenu={this.props.handleCloseMenu}
             />
           )}
-          {  (this.props.isSmallScreen || this.props.isMobile) && (
+          {  this.props.isSmallScreen && (
             <Hamb
               isMenuOpen={this.props.isMenuOpen}
               handleOpenMenu={this.props.handleOpenMenu}
             />
           )}
-          {(this.props.isSmallScreen || this.props.isMobile) && this.props.isMenuOpen && (
+          {this.props.isSmallScreen && this.props.isMenuOpen && (
             <div className="hamb-menu-wrapper">
               <MainMenu
                isMobile={this.props.isMobile}
