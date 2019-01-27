@@ -122,6 +122,8 @@ export default class Certificates extends Component {
             <div className="bar-1" />
             Certyfikaty
           </h2>
+
+          
           <div className="gallery-wrapper">
             <Swiper {...params}>
               {this.props.mainMenu[3].gallery.map((photo, index) => {

@@ -236,18 +236,21 @@ class App extends Component {
     )[0].swiper;
    
    
-    this.pageSwiper.slideTo(2, 1000, false);
+   
 
 
 
 
     if(slug === this.state.mainMenu[2].submenu[0].slug) {
+      this.pageSwiper.slideTo(2, 1000, false);
       this.showSubpage(0)
     }
     if(slug === this.state.mainMenu[2].submenu[1].slug) {
+      this.pageSwiper.slideTo(2, 1000, false);
       this.showSubpage(1)
     }
     if(slug === this.state.mainMenu[2].submenu[2].slug) {
+      this.pageSwiper.slideTo(2, 1000, false);
       this.showSubpage(2)
     }
    
@@ -356,7 +359,7 @@ class App extends Component {
       this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
         "main-swiper"
       )[0].swiper;
-      console.log(this.pageSwiper.$el[0]);
+     
       
     }
   };

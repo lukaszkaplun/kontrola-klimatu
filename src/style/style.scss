@@ -992,9 +992,9 @@ section {
 
 @media (min-width: 1200px) {
   .left-animation,
-.right-animation {
-  opacity: 0;
-}
+  .right-animation {
+    opacity: 0;
+  }
   header,
   footer {
     height: 110px;
@@ -1044,14 +1044,15 @@ section {
       }
     }
   }
-  .bar-1,.bar-2{                    
+  .bar-1,
+  .bar-2 {
     position: absolute;
-    width:0%;
-    top:0%;
+    width: 0%;
+    top: 0%;
     height: 100%;
     // z-index: -1;
-    background:$lightBlue;
-}
+    background: $lightBlue;
+  }
   .heading {
     position: relative;
     margin-top: 2.219rem;
@@ -1073,13 +1074,19 @@ section {
   section {
     overflow: hidden;
     .row {
-      height: 100%!important;
+      height: 100% !important;
+      width: calc(100% - 8vw) !important;
+      margin: 0 auto;
     }
     margin-bottom: 0;
-    width: calc(100% - 8vw) !important;
-    margin: 0 auto;
+.heading{
+  &::before{
+    width: calc(25px + 4vw)
+  }
+}
     .content-wrapper {
       height: 100%;
+
       .image-wrapper {
         height: 100%;
         margin-bottom: 0;
@@ -1092,7 +1099,7 @@ section {
       width: 100% !important;
       .content-wrapper {
         .wrapper {
-          width:45%;
+          width: 45%;
           // opacity: 1;
           position: absolute;
           left: 0;
@@ -1102,13 +1109,11 @@ section {
             left: auto;
             top: auto;
           }
-          .paragraph{
-            margin-left:$pagePadding*3;
-            color:white;
+          .paragraph {
+            margin-left: $pagePadding * 3;
+            color: white;
           }
         }
-
-       
       }
     }
     &.gallery,
@@ -1117,6 +1122,8 @@ section {
 
       .heading {
         position: absolute;
+        z-index: 10;
+        left: 4vw;
       }
       .content-wrapper {
         .gallery-wrapper {
@@ -1174,18 +1181,16 @@ section {
         }
       }
     }
-    &.subpage{
-      .content-wrapper{
-        .image-wrapper{
-          margin-top:0;
+    &.subpage {
+      .content-wrapper {
+        .image-wrapper {
+          margin-top: 0;
         }
       }
-    
-      .swiper-container{
+
+      .swiper-container {
         height: 100%;
-        
       }
-      
     }
   }
   .gallery-thumbs-wrapper {
@@ -1193,9 +1198,8 @@ section {
   }
 }
 
-
-
-.swiper-pagination, .swiper-pagination-nested {
+.swiper-pagination,
+.swiper-pagination-nested {
   &:after {
     content: "";
     position: absolute;
@@ -1237,11 +1241,11 @@ section {
     }
   }
 }
-.swiper-pagination-nested{
+.swiper-pagination-nested {
   position: absolute;
   text-align: center;
   z-index: 100;
-  &:after{
+  &:after {
     display: none;
   }
 }

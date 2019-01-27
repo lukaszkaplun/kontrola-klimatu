@@ -5,8 +5,10 @@ import slide1 from "../img/ac/slide1.png";
 import slide2 from "../img/ac/slide2.png";
 import slide3 from "../img/ac/slide3.png";
 import Swiper from "react-id-swiper";
-import {TweenLite} from 'gsap/TweenLite'
+
+import { TweenLite, TimelineLite } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+const timing = 1;
 export default class AC extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +28,125 @@ export default class AC extends Component {
   render() {
     const params = {
       autoHeight: true,
+      slideActiveClass: "swiper-slide-active ac-slide-active",
       loop: true,
-      on:{
-        transitionEnd:()=>{
-          TweenLite.to(window, 1, {scrollTo:{y:`#${this.props.dataHistorySubmenu.slug}`, offsetY:110}});
+      on: {
+        transitionEnd: () => {
+          TweenLite.to(window, 1, {
+            scrollTo: {
+              y: `#${this.props.dataHistorySubmenu.slug}`,
+              offsetY: 110
+            }
+          });
+        }
+      },
+      speed: timing * 1000,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
+      breakpointsInverse: true,
+      breakpoints: {
+        1200: {
+          autoHeight: false
         }
       },
       pagination: {
         el: ".swiper-pagination-nested",
         clickable: true
+      },
+      on: {
+        init: () => {
+          this.acSwiper = ReactDOM.findDOMNode(this).swiper;
+        },
+
+        slideNextTransitionStart: () => {
+          this.activeSection = ReactDOM.findDOMNode(
+            this
+          ).getElementsByClassName("ac-slide-active")[0];
+          this.header = this.activeSection.getElementsByClassName("heading")[0];
+          this.bar1 = this.header.getElementsByClassName("bar-1")[0];
+
+          this.leftAnimation = this.activeSection.getElementsByClassName(
+            "left-animation"
+          )[0];
+          this.rightAnimation = this.activeSection.getElementsByClassName(
+            "right-animation"
+          )[0];
+
+          if (
+            this.leftAnimation !== undefined ||
+            this.rightAnimation !== undefined
+          ) {
+            let tl = new TimelineLite();
+            tl.to(this.bar1, timing, { width: "110%" })
+
+              .fromTo(
+                this.leftAnimation,
+                timing,
+                { y: 100, opacity: 0 },
+                { y: 0, opacity: 1 },
+                `-=${timing}`
+              )
+
+              .fromTo(
+                this.rightAnimation,
+                timing,
+                { x: 100, opacity: 0 },
+                { x: 0, opacity: 1 },
+                `-=${timing}`
+              )
+              .to(this.bar1, timing / 2, { width: "0%" });
+          }
+        },
+        slidePrevTransitionStart: () => {
+          this.activeSection = ReactDOM.findDOMNode(
+            this
+          ).getElementsByClassName("ac-slide-active")[0];
+          this.header = this.activeSection.getElementsByClassName("heading")[0];
+
+          this.bar1 = this.header.getElementsByClassName("bar-1")[0];
+
+          this.leftAnimation = this.activeSection.getElementsByClassName(
+            "left-animation"
+          )[0];
+          this.rightAnimation = this.activeSection.getElementsByClassName(
+            "right-animation"
+          )[0];
+
+          if (
+            this.leftAnimation !== undefined ||
+            this.rightAnimation !== undefined
+          ) {
+            let tl = new TimelineLite();
+            tl.to(this.bar1, timing, { width: "110%" })
+
+              // .fromTo(
+              //   this.header,
+              //   timing,
+              //   { x: -100, opacity: 0 },
+              //   { x: 0, opacity: 1 }
+              // )
+              .fromTo(
+                this.leftAnimation,
+                timing,
+                { y: -100, opacity: 0 },
+                { y: 0, opacity: 1 },
+                `-=${timing}`
+              );
+
+            if (this.rightAnimation !== undefined) {
+              tl.fromTo(
+                this.rightAnimation,
+                timing,
+                { x: -100, opacity: 0 },
+                { x: 0, opacity: 1 },
+                `-=${timing}`
+              );
+            }
+            tl.to(this.bar1, timing / 2, { width: "0%" });
+          }
+        }
       }
     };
 
@@ -45,7 +157,8 @@ export default class AC extends Component {
         <Swiper {...params}>
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
-            <h2 className="heading">Klimatyzacja</h2>
+            <h2 className="heading"><div className="bar-1" /> Klimatyzacja</h2>
+            <div className="left-animation">
               <h3 className="subheading">Po co montować klimatyzację?</h3>
               <p className="paragraph">
                 Coraz większą uwagę przykładamy do komfortu w jakim pracujemy
@@ -56,8 +169,9 @@ export default class AC extends Component {
                 na tyle aby ich wartość były dokładnie dopasowane do naszego
                 organizmu.
               </p>
+            </div>
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} className="right-animation">
               <div
                 className="image-wrapper"
                 style={{
@@ -71,7 +185,8 @@ export default class AC extends Component {
           </Row>
           <Row noGutters className="slide-2">
             <Col xs={12} md={6}>
-            <h2 className="heading">Klimatyzacja</h2>
+            <h2 className="heading"><div className="bar-1" /> Klimatyzacja</h2>
+            <div className="left-animation">
               <h3 className="subheading">Jak działa klimatyzacja?</h3>
               <p className="paragraph">
                 Czynnik chłodniczy jako chłodna ciecz dostaje się do wymiennika
@@ -82,8 +197,9 @@ export default class AC extends Component {
                 przez czynnik będący w tym czasie w wymienniku czego produktem
                 „ubocznym” jest schłodzone powietrze.
               </p>
+            </div>
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} className="right-animation">
               <div
                 className="image-wrapper"
                 style={{
@@ -97,7 +213,8 @@ export default class AC extends Component {
           </Row>
           <Row noGutters className="slide-3">
             <Col xs={12} md={6}>
-            <h2 className="heading">Klimatyzacja</h2>
+            <h2 className="heading"><div className="bar-1" /> Klimatyzacja</h2>
+            <div className="left-animation">
               <h3 className="subheading">
                 Najczęściej stosowane rozwiązania w domach
               </h3>
@@ -124,8 +241,9 @@ export default class AC extends Component {
                 Najczęściej spotykanymi modelami są jednostki ścienne oraz
                 jednostki kasetonowe.
               </p>
+           </div>
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} className="right-animation">
               <div
                 className="image-wrapper"
                 style={{
