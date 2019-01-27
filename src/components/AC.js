@@ -256,7 +256,7 @@ export default class AC extends Component {
             </Col>
           </Row>
         </Swiper>
-        {this.props.isSmallScreen && 
+        {(this.props.isSmallScreen || this.props.isMobile) && (
         <button
           className="button"
           onClick={() => this.props.showSubpage(1)}
@@ -265,7 +265,7 @@ export default class AC extends Component {
           <div className="button-chevron reversed" />
           Powrót
         </button>
-        }
+        )}
       </div>
     );
   }

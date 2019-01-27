@@ -20,7 +20,7 @@ export default class MainMenu extends Component {
               <li key={index} className={this.renderClassNames(index)}>
                 <button
                   onClick={event =>
-                    this.props.isSmallScreen
+                    (this.props.isSmallScreen || this.props.isMobile)
                       ? this.props.handleCloseMenu(index)
                       : this.props.handleMenu(index, event)
                   }
@@ -28,7 +28,7 @@ export default class MainMenu extends Component {
                   <span>{item.name}</span>
                 </button>
 
-                {(this.props.isSmallScreen || this.props.activeIndex === 2) && (
+                {((this.props.isSmallScreen || this.props.isMobile) || this.props.activeIndex === 2) && (
                   <ul>
                     {item.submenu.map((subitem, subindex) => {
                       return (
@@ -42,7 +42,7 @@ export default class MainMenu extends Component {
                         >
                           <button
                             onClick={() =>
-                              this.props.isSmallScreen
+                              (this.props.isSmallScreen || this.props.isMobile)
                                 ? this.props.handleCloseMenu(2, subindex)
                                 : this.props.showSubpage(subindex)
                             }
@@ -61,7 +61,7 @@ export default class MainMenu extends Component {
             <li key={index} className={this.renderClassNames(index)}>
               <button
                 onClick={event =>
-                  this.props.isSmallScreen
+                  (this.props.isSmallScreen || this.props.isMobile)
                     ? this.props.handleCloseMenu(index)
                     : this.props.handleMenu(index, event)
                 }

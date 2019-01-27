@@ -81,13 +81,17 @@ export default class Certificates extends Component {
       }
     };
 
+
+    
+
     return (
       <section
         id={this.props.dataHistory}
         data-history={this.props.dataHistory}
         className={" swiper-slide single-slide certificates"}
       >
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+        {(!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile)) && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -102,7 +106,8 @@ export default class Certificates extends Component {
           </Waypoint>
         )}
 
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+        {(!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile)) && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{
@@ -130,7 +135,7 @@ export default class Certificates extends Component {
                 return (
                   <div
                     className={
-                      this.props.isSmallScreen
+                      (this.props.isSmallScreen || this.props.isMobile)
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
@@ -161,27 +166,27 @@ export default class Certificates extends Component {
                 return (
                   <div
                     className={
-                      this.props.isSmallScreen
+                      (this.props.isSmallScreen || this.props.isMobile)
                         ? "swiper-slide mobile"
                         : "swiper-slide"
                     }
                     key={index}
                     style={{
-                      backgroundImage: !this.props.isSmallScreen
+                      backgroundImage: (!this.props.isSmallScreen && !this.props.isMobile)
                         ? `url(${photo.src})`
                         : null,
-                      backgroundPosition: !this.props.isSmallScreen
+                      backgroundPosition: (!this.props.isSmallScreen && !this.props.isMobile)
                         ? "center center"
                         : null,
-                      backgroundSize: !this.props.isSmallScreen
+                      backgroundSize:(!this.props.isSmallScreen && !this.props.isMobile)
                         ? "cover"
                         : null,
-                      backgroundRepeat: !this.props.isSmallScreen
+                      backgroundRepeat: (!this.props.isSmallScreen && !this.props.isMobile)
                         ? "no-repeat"
                         : null
                     }}
                   >
-                    {this.props.isSmallScreen && (
+                    {(this.props.isSmallScreen || this.props.isMobile) && (
                       <img src={photo.src} alt="gallery" />
                     )}
                   </div>

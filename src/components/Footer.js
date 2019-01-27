@@ -10,7 +10,7 @@ export default class Footer extends Component {
             <span>{" "}+48 </span>535-952-092
           </a>
         </div>
-        {!this.props.isSmallScreen && (
+        {(!this.props.isSmallScreen && !this.props.isMobile) && (
           <div className="scroll-animation-wrapper">
             <div className="mouse">
               <div className="mouse-ball" />

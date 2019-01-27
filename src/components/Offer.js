@@ -8,13 +8,12 @@ import backgroundImage from "../img/offer-bg.png";
 import CollapsibleItem from "./CollapsibleItem";
 import { InView } from "./InView";
 export default class Offer extends Component {
-
-constructor(props){
-  super(props)
-  this.state = {
-    collapse: null
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapse: null
+    };
   }
-}
 
   onLeave = ({ currentPosition }) => {
     this.props.enableFloatingIcon();
@@ -63,16 +62,15 @@ constructor(props){
     //   if(!this.state.isBlocked) {
     //     this.handleBlocked()
     //   }
-      
-  
+
     //  console.log(number)
-     
-      if (this.state.collapse === number) {
-        this.setState({ collapse: null });
-      } else {
-        this.setState({ collapse: number });
-      }
-    };
+
+    if (this.state.collapse === number) {
+      this.setState({ collapse: null });
+    } else {
+      this.setState({ collapse: number });
+    }
+  };
   render() {
     return (
       <section
@@ -88,35 +86,37 @@ constructor(props){
             : "swiper-slide single-slide offer"
         }
       >
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
-          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-            <div
-              style={{
-                width: "10px",
-                position: "absolute",
-                top: "-110px",
-                left: "0px",
-                height: "1px",
-                background: "transparent"
-              }}
-            />
-          </Waypoint>
-        )}
+        {!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile) && (
+            <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+              <div
+                style={{
+                  width: "10px",
+                  position: "absolute",
+                  top: "-110px",
+                  left: "0px",
+                  height: "1px",
+                  background: "transparent"
+                }}
+              />
+            </Waypoint>
+          )}
 
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
-          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
-            <div
-              style={{
-                width: "10px",
-                position: "absolute",
-                top: "50%",
-                left: "0px",
-                height: "10px",
-                background: "transparent"
-              }}
-            />
-          </Waypoint>
-        )}
+        {!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile) && (
+            <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+              <div
+                style={{
+                  width: "10px",
+                  position: "absolute",
+                  top: "50%",
+                  left: "0px",
+                  height: "10px",
+                  background: "transparent"
+                }}
+              />
+            </Waypoint>
+          )}
         {this.props.subpage === null && (
           <div className="content-wrapper">
             <Row noGutters>
@@ -160,6 +160,7 @@ constructor(props){
             dataHistorySubmenu={this.props.mainMenu[2].submenu[0]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}
+            isMobile={this.props.isMobile}
             showSubpage={this.props.showSubpage}
           />
         )}
@@ -168,6 +169,7 @@ constructor(props){
             dataHistorySubmenu={this.props.mainMenu[2].submenu[1]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}
+            isMobile={this.props.isMobile}
             showSubpage={this.props.showSubpage}
           />
         )}
@@ -176,6 +178,7 @@ constructor(props){
             dataHistorySubmenu={this.props.mainMenu[2].submenu[2]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}
+            isMobile={this.props.isMobile}
             showSubpage={this.props.showSubpage}
           />
         )}

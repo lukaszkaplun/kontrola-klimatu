@@ -41,9 +41,6 @@ export default class Wrapper extends React.PureComponent {
         init: () => {
           this.pageSwiper = ReactDOM.findDOMNode(this).swiper;
 
-
-
-
           this.activeSection = ReactDOM.findDOMNode(
             this
           ).getElementsByClassName("main-slide-active")[0];
@@ -89,15 +86,11 @@ export default class Wrapper extends React.PureComponent {
               );
             }
             tl.to(this.bar1, timing / 2, { width: "0%" });
-          }
-          else{
+          } else {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            tl.to(this.bar1, timing, { width: "110%" });
             tl.to(this.bar1, timing / 2, { width: "0%" });
           }
-
-
-
         },
         slideChange: () => {
           // console.log('test')
@@ -197,10 +190,9 @@ export default class Wrapper extends React.PureComponent {
               );
             }
             tl.to(this.bar1, timing / 2, { width: "0%" });
-          }
-          else{
+          } else {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            tl.to(this.bar1, timing, { width: "110%" });
             tl.to(this.bar1, timing / 2, { width: "0%" });
           }
         },
@@ -215,7 +207,7 @@ export default class Wrapper extends React.PureComponent {
     };
     return (
       <React.Fragment>
-        {!this.props.isSmallScreen && (
+        {!this.props.isSmallScreen && !this.props.isMobile && (
           <Swiper
             containerClass="swiper-container main-swiper"
             {...this.swiperParams}
@@ -238,9 +230,10 @@ export default class Wrapper extends React.PureComponent {
             />
           </Swiper>
         )}
-        {this.props.isSmallScreen && (
+        {(this.props.isSmallScreen || this.props.isMobile) && (
           <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
             <PageBody
+              isMobile={this.props.isMobile}
               enableFloatingIcon={this.props.enableFloatingIcon}
               disableFloatingIcon={this.props.disableFloatingIcon}
               scrollEnabled={this.props.scrollEnabled}

@@ -31,7 +31,8 @@ export default class Contact extends Component {
         id={this.props.dataHistory}
         className={" swiper-slide single-slide contact"}
       >
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+        {(!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile)) && (
           <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
             <div
               style={{
@@ -46,7 +47,8 @@ export default class Contact extends Component {
           </Waypoint>
         )}
 
-        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+        {(!this.props.scrollEnabled &&
+          (this.props.isSmallScreen || this.props.isMobile)) && (
           <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
             <div
               style={{

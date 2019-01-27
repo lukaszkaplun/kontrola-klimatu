@@ -395,7 +395,7 @@ export default class Pump extends Component {
           </Row>
         </Swiper>
 
-        {this.props.isSmallScreen && (
+        {(this.props.isSmallScreen || this.props.isMobile) && (
           <button
             className="button"
             onClick={() => this.props.showSubpage(2)}

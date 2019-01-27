@@ -13,12 +13,14 @@ export default class PageBody extends Component {
       <React.Fragment>
         <HomePage
           isSmallScreen={this.props.isSmallScreen}
+          isMobile={this.props.isMobile}
           scrollEnabled={this.props.scrollEnabled}
           dataHistory={this.props.mainMenu[0].slug}
           updateScrollPosition={this.props.updateScrollPosition}
         />
         <About
         isSmallScreen={this.props.isSmallScreen}
+        isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -28,6 +30,7 @@ export default class PageBody extends Component {
         />
         <Offer
         isSmallScreen={this.props.isSmallScreen}
+        isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -44,6 +47,7 @@ export default class PageBody extends Component {
         />
 
         <Certificates
+         isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -53,6 +57,7 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[3].slug}
         />
         <Gallery
+         isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
           scrollEnabled={this.props.scrollEnabled}
@@ -62,6 +67,7 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[4].slug}
         />
         <Contact
+         isMobile={this.props.isMobile}
         isSmallScreen={this.props.isSmallScreen}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
