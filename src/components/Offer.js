@@ -6,7 +6,7 @@ import ERV from "./ERV";
 import { Row, Col } from "reactstrap";
 import backgroundImage from "../img/offer-bg.png";
 import CollapsibleItem from "./CollapsibleItem";
-import { InView } from "./InView";
+
 export default class Offer extends Component {
   constructor(props) {
     super(props);
