@@ -34,8 +34,8 @@ export default class Offer extends Component {
   };
   onEnter = ({ currentPosition }) => {
     this.props.enableFloatingIcon();
-    var pathArray = window.location.pathname.split("/");
-    var slug = pathArray[1];
+   
+   
 
     if (
       currentPosition === Waypoint.inside
@@ -57,13 +57,7 @@ export default class Offer extends Component {
     }
   };
   toggleCollapse = (number, event) => {
-    //   event.stopPropagation();
-    //   event.preventDefault();
-    //   if(!this.state.isBlocked) {
-    //     this.handleBlocked()
-    //   }
-
-    //  console.log(number)
+  
 
     if (this.state.collapse === number) {
       this.setState({ collapse: null });

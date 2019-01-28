@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TweenLite, TimelineLite, Back} from "gsap";
+import {  TimelineLite, Back} from "gsap";
 export default class LoadingScreen extends Component {
   componentDidMount() {
     const timing = 2 ;

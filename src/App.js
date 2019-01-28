@@ -25,11 +25,7 @@ import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309
 import { TweenLite, TimelineLite } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks
-} from "body-scroll-lock";
+import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import FloatingIcon from "./components/FloatingIcon";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -150,11 +146,10 @@ class App extends Component {
     }
   };
 
-
   disableLoadingScreen = () => {
-    this.setState({isLoadingScreen:false})
+    this.setState({ isLoadingScreen: false });
     // enableBodyScroll(ReactDOM.findDOMNode(this));
-  }
+  };
   handleBlocked = () => {
     this.setState({ isBlocked: true });
   };
@@ -327,7 +322,7 @@ class App extends Component {
       )[0].swiper;
 
       this.pageSwiper.slideTo(index, 1000, true);
-      console.log(this.pageSwiper.$el[0]);
+     
     }
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
@@ -382,21 +377,17 @@ class App extends Component {
     // }
   };
   handleSmallScreen = () => {
-   let initialValue = this.state.isSmallScreen;
-   console.log(initialValue)
+    let initialValue = this.state.isSmallScreen;
+   
     if (window.innerWidth <= 1199) {
       this.setState(
         {
           isSmallScreen: true
         },
         () => {
-          
-         if(initialValue !== this.state.isSmallScreen) {
-          this.restoreScrollPosition();
-         }
-            
-          
-         
+          if (initialValue !== this.state.isSmallScreen) {
+            this.restoreScrollPosition();
+          }
         }
       );
     } else if (window.innerWidth >= 1200) {
@@ -405,54 +396,25 @@ class App extends Component {
           isSmallScreen: false
         },
         () => {
-          
-          if(initialValue !== this.state.isSmallScreen) {
+          if (initialValue !== this.state.isSmallScreen) {
             this.restoreScrollPosition();
-           }
-         
+          }
         }
       );
     }
   };
   componentDidMount() {
-    // window.addEventListener("scroll", this.updateScrollPosition, true);
-    // {
-    //   this.state.isLoadingScreen &&
-    //     disableBodyScroll(ReactDOM.findDOMNode(this));
-    // }
+   
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
 
     
-
-   
-
-    // setTimeout(() => {
-
-    // }, 500);
-
-    // if (this.state.isSmallScreen) {
-
-    // }
-    //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
-    //     "swiper-container"
-    //   )[0].swiper;
-    //   this.setState({ activeIndex: this.pageSwiper.activeIndex });
-    // }
-
-    // console.log(this.pageSwiper)
   }
 
   componentDidUpdate(prevProps, prevState) {
- 
     if (prevState.isSmallScreen !== this.state.isSmallScreen) {
-
-
-
-
-      // console.log(this.state.isSmallScreen);
-
+     
       if (!this.state.isSmallScreen) {
         this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
           "main-swiper"
@@ -461,7 +423,6 @@ class App extends Component {
         this.setState({ activeIndex: this.pageSwiper.activeIndex });
       }
     }
-   
   }
 
   componentWillUnmount() {
@@ -472,7 +433,9 @@ class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
-        {this.state.isLoadingScreen && <LoadingScreen  disableLoadingScreen={this.disableLoadingScreen}/>}
+        {this.state.isLoadingScreen && (
+          <LoadingScreen disableLoadingScreen={this.disableLoadingScreen} />
+        )}
 
         <Header
           showSubpage={this.showSubpage}
@@ -489,8 +452,6 @@ class App extends Component {
 
         <Wrapper
           isMobile={this.state.isMobile}
-          updateHistory={this.updateHistory}
-          handleBlocked={this.handleBlocked}
           isBlocked={this.state.isBlocked}
           setActiveIndex={this.setActiveIndex}
           enableFloatingIcon={this.enableFloatingIcon}

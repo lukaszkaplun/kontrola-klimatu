@@ -2,12 +2,12 @@ import Swiper from "react-id-swiper";
 import ReactDOM from "react-dom";
 import React from "react";
 import PageBody from "./PageBody";
-import { TweenLite, TimelineLite } from "gsap";
+import {  TimelineLite } from "gsap";
 
 const timing = 1;
 export default class Wrapper extends React.PureComponent {
   render() {
-    // console.log(this.props.isSmallScreen)
+  
 
     this.swiperParams = {
       // rebuildOnUpdate: true,
@@ -93,9 +93,7 @@ export default class Wrapper extends React.PureComponent {
           }
         },
        
-        slideChangeTransitionEnd: () => {
-          // console.log('test')
-        },
+        
         slideNextTransitionStart: () => {
           this.activeSection = ReactDOM.findDOMNode(
             this
@@ -194,11 +192,7 @@ export default class Wrapper extends React.PureComponent {
             tl.to(this.bar1, timing / 2, { width: "0%" });
           }
         },
-
-        setTransition: transition => {
-          // console.log(transition);
-        },
-        slideChange: () => {
+             slideChange: () => {
           this.props.setActiveIndex(this.pageSwiper.activeIndex);
          
 
