@@ -92,9 +92,7 @@ export default class Wrapper extends React.PureComponent {
             tl.to(this.bar1, timing / 2, { width: "0%" });
           }
         },
-        slideChange: () => {
-          // console.log('test')
-        },
+       
         slideChangeTransitionEnd: () => {
           // console.log('test')
         },
@@ -202,6 +200,11 @@ export default class Wrapper extends React.PureComponent {
         },
         slideChange: () => {
           this.props.setActiveIndex(this.pageSwiper.activeIndex);
+         
+
+          if(this.props.activeIndex !== 2 && this.props.activeSubpageIndex !== null) {
+          this.props.showSubpage( this.props.activeSubpageIndex)
+          }
         }
       }
     };

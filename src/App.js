@@ -484,6 +484,7 @@ class App extends Component {
           collapse={this.state.collapse}
           setActiveSubpageIndex={this.setActiveSubpageIndex}
           activeSubpageIndex={this.state.activeSubpageIndex}
+          activeIndex={this.state.activeIndex}
           updateScrollPosition={this.updateScrollPosition}
           visible={this.state.visible}
           mainMenu={this.state.mainMenu}
