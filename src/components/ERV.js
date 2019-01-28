@@ -29,16 +29,7 @@ export default class ERV extends Component {
       autoHeight: true,
       slideActiveClass: "swiper-slide-active erv-slide-active",
       loop: true,
-      on: {
-        transitionEnd: () => {
-          TweenLite.to(window, 1, {
-            scrollTo: {
-              y: `#${this.props.dataHistorySubmenu.slug}`,
-              offsetY: 110
-            }
-          });
-        }
-      },
+      
       speed: timing * 1000,
       effect: "fade",
       fadeEffect: {
@@ -58,7 +49,14 @@ export default class ERV extends Component {
         init: () => {
           this.ervSwiper = ReactDOM.findDOMNode(this).swiper;
         },
-
+        transitionEnd: () => {
+          TweenLite.to(window, 1, {
+            scrollTo: {
+              y: `#${this.props.dataHistorySubmenu.slug}`,
+              offsetY: 110
+            }
+          });
+        },
         slideNextTransitionStart: () => {
           this.activeSection = ReactDOM.findDOMNode(
             this

@@ -31,11 +31,13 @@ import {
   clearAllBodyScrollLocks
 } from "body-scroll-lock";
 import FloatingIcon from "./components/FloatingIcon";
+import LoadingScreen from "./components/LoadingScreen";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoadingScreen: true,
       isBlocked: false,
       enableFloatingIcon: true,
       scrollEnabled: false,
@@ -147,6 +149,11 @@ class App extends Component {
     }
   };
 
+
+  disableLoadingScreen = () => {
+    this.setState({isLoadingScreen:false})
+    enableBodyScroll(ReactDOM.findDOMNode(this));
+  }
   handleBlocked = () => {
     this.setState({ isBlocked: true });
   };
@@ -183,7 +190,6 @@ class App extends Component {
     var slug = pathArray[1];
 
     if (this.state.isSmallScreen) {
-     
       setTimeout(() => {
         window.scrollTo(0, 0);
         var tl = new TimelineLite({
@@ -225,8 +231,6 @@ class App extends Component {
         }
       }, 400);
     } else {
-
-
       this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
         "main-swiper"
       )[0].swiper;
@@ -316,7 +320,7 @@ class App extends Component {
   handleMenu = (index, event) => {
     event.stopPropagation();
 
-    if (!this.state.isSmallScreen ) {
+    if (!this.state.isSmallScreen) {
       this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
         "main-swiper"
       )[0].swiper;
@@ -378,33 +382,45 @@ class App extends Component {
   };
   handleSmallScreen = () => {
     if (window.innerWidth <= 1199) {
-      this.setState({
-        isSmallScreen: true
-      },()=>{ this.restoreScrollPosition();});
+      this.setState(
+        {
+          isSmallScreen: true
+        },
+        () => {
+          this.restoreScrollPosition();
+        }
+      );
     } else if (window.innerWidth >= 1200) {
       this.setState(
         {
           isSmallScreen: false
         },
-        () => { this.restoreScrollPosition();}
+        () => {
+          this.restoreScrollPosition();
+        }
       );
-     
     }
   };
   componentDidMount() {
     // window.addEventListener("scroll", this.updateScrollPosition, true);
-
+    {
+      this.state.isLoadingScreen &&
+        disableBodyScroll(ReactDOM.findDOMNode(this));
+    }
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
+
+    
+
+   
 
     // setTimeout(() => {
 
     // }, 500);
 
     // if (this.state.isSmallScreen) {
-     
-    
+
     // }
     //   this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
     //     "swiper-container"
@@ -437,6 +453,8 @@ class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
+        {this.state.isLoadingScreen && <LoadingScreen  disableLoadingScreen={this.disableLoadingScreen}/>}
+
         <Header
           showSubpage={this.showSubpage}
           activeSubpageIndex={this.state.activeSubpageIndex}

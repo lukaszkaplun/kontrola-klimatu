@@ -30,16 +30,7 @@ export default class AC extends Component {
       autoHeight: true,
       slideActiveClass: "swiper-slide-active ac-slide-active",
       loop: true,
-      on: {
-        transitionEnd: () => {
-          TweenLite.to(window, 1, {
-            scrollTo: {
-              y: `#${this.props.dataHistorySubmenu.slug}`,
-              offsetY: 110
-            }
-          });
-        }
-      },
+     
       speed: timing * 1000,
       effect: "fade",
       fadeEffect: {
@@ -59,7 +50,14 @@ export default class AC extends Component {
         init: () => {
           this.acSwiper = ReactDOM.findDOMNode(this).swiper;
         },
-
+        transitionEnd: () => {
+          TweenLite.to(window, 1, {
+            scrollTo: {
+              y: `#${this.props.dataHistorySubmenu.slug}`,
+              offsetY: 110
+            }
+          });
+        },
         slideNextTransitionStart: () => {
           this.activeSection = ReactDOM.findDOMNode(
             this

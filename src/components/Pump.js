@@ -31,16 +31,7 @@ export default class Pump extends Component {
       autoHeight: true,
       slideActiveClass: "swiper-slide-active pump-slide-active",
       loop: true,
-      on: {
-        transitionEnd: () => {
-          TweenLite.to(window, 1, {
-            scrollTo: {
-              y: `#${this.props.dataHistorySubmenu.slug}`,
-              offsetY: 110
-            }
-          });
-        }
-      },
+     
       speed: timing * 1000,
       effect: "fade",
       fadeEffect: {
@@ -60,7 +51,14 @@ export default class Pump extends Component {
         init: () => {
           this.pumpSwiper = ReactDOM.findDOMNode(this).swiper;
         },
-
+        transitionEnd: () => {
+          TweenLite.to(window, 1, {
+            scrollTo: {
+              y: `#${this.props.dataHistorySubmenu.slug}`,
+              offsetY: 110
+            }
+          });
+        },
         slideNextTransitionStart: () => {
           this.activeSection = ReactDOM.findDOMNode(
             this
