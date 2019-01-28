@@ -152,7 +152,7 @@ class App extends Component {
 
   disableLoadingScreen = () => {
     this.setState({isLoadingScreen:false})
-    enableBodyScroll(ReactDOM.findDOMNode(this));
+    // enableBodyScroll(ReactDOM.findDOMNode(this));
   }
   handleBlocked = () => {
     this.setState({ isBlocked: true });
@@ -403,10 +403,10 @@ class App extends Component {
   };
   componentDidMount() {
     // window.addEventListener("scroll", this.updateScrollPosition, true);
-    {
-      this.state.isLoadingScreen &&
-        disableBodyScroll(ReactDOM.findDOMNode(this));
-    }
+    // {
+    //   this.state.isLoadingScreen &&
+    //     disableBodyScroll(ReactDOM.findDOMNode(this));
+    // }
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);

@@ -111,7 +111,7 @@ export default class Contact extends Component {
                         </span>
                       </a>
                       <a
-                        style={{ flex: "0 0 100%", marginLeft: "31px" }}
+                        style={{ flex: "0 0 90%", marginLeft: "31px" }}
                         href="tel:+48517188545"
                         itemProp="telephone"
                       >
