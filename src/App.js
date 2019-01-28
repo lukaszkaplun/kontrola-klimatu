@@ -37,6 +37,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shouldCheckSize: true,
       isLoadingScreen: true,
       isBlocked: false,
       enableFloatingIcon: true,
@@ -381,13 +382,21 @@ class App extends Component {
     // }
   };
   handleSmallScreen = () => {
+   let initialValue = this.state.isSmallScreen;
+   console.log(initialValue)
     if (window.innerWidth <= 1199) {
       this.setState(
         {
           isSmallScreen: true
         },
         () => {
+          
+         if(initialValue !== this.state.isSmallScreen) {
           this.restoreScrollPosition();
+         }
+            
+          
+         
         }
       );
     } else if (window.innerWidth >= 1200) {
@@ -396,7 +405,11 @@ class App extends Component {
           isSmallScreen: false
         },
         () => {
-          this.restoreScrollPosition();
+          
+          if(initialValue !== this.state.isSmallScreen) {
+            this.restoreScrollPosition();
+           }
+         
         }
       );
     }
@@ -432,7 +445,12 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+ 
     if (prevState.isSmallScreen !== this.state.isSmallScreen) {
+
+
+
+
       // console.log(this.state.isSmallScreen);
 
       if (!this.state.isSmallScreen) {
@@ -443,6 +461,7 @@ class App extends Component {
         this.setState({ activeIndex: this.pageSwiper.activeIndex });
       }
     }
+   
   }
 
   componentWillUnmount() {
