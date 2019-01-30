@@ -40,14 +40,11 @@ export default class Wrapper extends React.PureComponent {
       on: {
         init: () => {
           this.pageSwiper = ReactDOM.findDOMNode(this).swiper;
-
           this.activeSection = ReactDOM.findDOMNode(
             this
           ).getElementsByClassName("main-slide-active")[0];
           this.header = this.activeSection.getElementsByClassName("heading")[0];
-
           this.bar1 = this.header.getElementsByClassName("bar-1")[0];
-
           this.leftAnimation = this.activeSection.getElementsByClassName(
             "left-animation"
           )[0];
@@ -64,13 +61,6 @@ export default class Wrapper extends React.PureComponent {
           ) {
             let tl = new TimelineLite();
             tl.to(this.bar1, timing, { width: "110%" })
-
-              // .fromTo(
-              //   this.header,
-              //   timing,
-              //   { x: -100, opacity: 0 },
-              //   { x: 0, opacity: 1 }
-              // )
               .fromTo(
                 this.leftAnimation,
                 timing,

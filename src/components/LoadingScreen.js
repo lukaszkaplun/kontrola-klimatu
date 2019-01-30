@@ -12,7 +12,7 @@ export default class LoadingScreen extends Component {
     .fromTo("#logo", timing, { ease: easing,x: 150 }, {ease: easing, x: 0 },`-=${timing}`).fromTo(
       "#napis",
       timing,
-      {ease: easing, x: -100 },
+      {ease: easing, x: -50 },
       {ease: easing, x: 0 },
       `-=${timing}`
     ).to(".loading-screen", timing, {ease: easing, top: "-100%"});

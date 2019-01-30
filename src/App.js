@@ -17,10 +17,10 @@ import herz from "./img/certificates/herz.png";
 import venture from "./img/certificates/venture.png";
 import zehnder from "./img/certificates/zehnder.png";
 
-import gallery1 from "./img/gallery/architecture-building-driveway-186077.png";
-import gallery2 from "./img/gallery/apartment-art-bright-1027516.png";
-import gallery3 from "./img/gallery/apartment-architecture-bookcase-271795.png";
-import gallery4 from "./img/gallery/adult-architect-architectural-design-1260309.png";
+import gallery1 from "./img/gallery/1.png";
+import gallery2 from "./img/gallery/2.png";
+import gallery3 from "./img/gallery/3.png";
+import gallery4 from "./img/gallery/4.png";
 
 import { TweenLite, TimelineLite } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
@@ -331,6 +331,12 @@ class App extends Component {
       this.pageSwiper.slideTo(index, 1000, true);
      
     }
+
+
+
+
+
+    
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
       subpage: null,
@@ -413,6 +419,14 @@ class App extends Component {
       );
     }
   };
+
+
+
+
+
+
+
+  
   componentDidMount() {
    
     this.handleIsMobile();

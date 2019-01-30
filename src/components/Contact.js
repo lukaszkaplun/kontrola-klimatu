@@ -71,7 +71,7 @@ export default class Contact extends Component {
 
               <div className="left-animation">
                 <p className="paragraph">
-                  Skontaktuj się z nami, lorem ipsum dolor sit amed:
+                  Jeśli interesuje Cię nasza oferta, lub masz jakieś pytania, zadzwoń i umów się na spotkanie. To nic nie kosztuje!:
                 </p>
                 <div className="contact-wrapper">
                   <div itemScope itemType="http://schema.org/LocalBusiness">

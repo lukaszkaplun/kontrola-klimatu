@@ -310,9 +310,15 @@ footer {
           left: 0;
           bottom: -5px;
         }
+
         &.active {
           transition: all 0.3s ease;
-          text-shadow: 0 0 0 $mainBlue, 0 0 0 $mainBlue;
+          > button {
+            span {
+              text-shadow: 0 0 0 $mainBlue, 0 0 0 $mainBlue;
+            }
+          }
+
           &:before {
             transition: all 0.3s ease;
             width: 25px;
@@ -718,10 +724,6 @@ section {
     }
   }
   .content-wrapper {
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: nowrap;
-    // padding: 0 126px;
     .image-wrapper {
       margin-bottom: 1.75rem;
       position: relative;
@@ -1094,6 +1096,17 @@ section {
         //   display: none;
         // }
       }
+
+      .partner-wrapper {
+        .partner {
+          transition: all 0.3s ease;
+          opacity: 0.5;
+          &:hover {
+            opacity: 1;
+            transition: all 0.3s ease;
+          }
+        }
+      }
     }
     &.homepage {
       width: 100% !important;
@@ -1207,24 +1220,16 @@ section {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
   }
   header {
-  
     .main-menu-wrapper {
       .main-menu {
         li {
           ul {
-           
             top: 5px;
-
-           
-
-          
           }
         }
       }
     }
   }
-
-
 }
 .swiper-pagination,
 .swiper-pagination-nested {
