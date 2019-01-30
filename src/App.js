@@ -122,26 +122,31 @@ class App extends Component {
     this.pageSwiper = null;
   }
   showSubpage = number => {
-    if (this.state.subpage === number) {
-      this.setState(
-        {
-          subpage: null,
-          collapse: null,
-          activeSubpageIndex: null
-        },
-        () => {
-          TweenLite.to(window, 1, {
-            scrollTo: { y: `#${this.state.mainMenu[2].slug}`, offsetY: 110 }
-          });
-        }
-      );
+      if (this.state.subpage === number) {
+   
+     
 
       if (this.state.isSmallScreen) {
         this.updateHistory(this.state.mainMenu[2].slug);
+        this.setState(
+          {
+            subpage: null,
+            collapse: null,
+            activeSubpageIndex: null,
+            activeIndex: 2
+          },
+          () => {
+            TweenLite.to(window, 1, {
+              scrollTo: { y: `#${this.state.mainMenu[2].slug}`, offsetY: 110 }
+              
+            });
+            
+          }
+        );
       }
     } else {
       this.setState({ subpage: number });
-      // this.pageSwiper.prependSlide('<div class="swiper-slide">Slide ' + (2) + '</div>');
+     
       if (this.state.isSmallScreen) {
         this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
       } else {
@@ -278,6 +283,7 @@ class App extends Component {
   };
 
   handleCloseMenu = (index, subindex = null) => {
+    console.log(index)
     this.setState({ isMenuOpen: false, scrollEnabled: true }, () => {
       // enableBodyScroll(ReactDOM.findDOMNode(this));
 
@@ -319,6 +325,7 @@ class App extends Component {
     });
   };
   handleMenu = (index, event) => {
+   
     event.stopPropagation();
 
     if (!this.state.isSmallScreen) {
@@ -327,7 +334,21 @@ class App extends Component {
       )[0].swiper;
 
       this.pageSwiper.slideTo(index, 1000, true);
-      console.log(this.pageSwiper.$el[0]);
+
+
+
+if(index === 2 && this.state.activeSubpageIndex !== null) {
+  this.updateHistory(this.state.mainMenu[2].slug);
+ 
+
+
+
+
+
+}
+
+
+     
     }
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
@@ -335,6 +356,9 @@ class App extends Component {
       collapse: null,
       activeSubpageIndex: null
     });
+
+
+
   };
 
   setActiveIndex = index => {
@@ -383,7 +407,7 @@ class App extends Component {
   };
   handleSmallScreen = () => {
    let initialValue = this.state.isSmallScreen;
-   console.log(initialValue)
+ 
     if (window.innerWidth <= 1199) {
       this.setState(
         {
