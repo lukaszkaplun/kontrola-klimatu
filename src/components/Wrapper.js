@@ -10,7 +10,7 @@ export default class Wrapper extends React.PureComponent {
   
 
     this.swiperParams = {
-      // rebuildOnUpdate: true,
+     
       direction: "vertical",
       slideActiveClass: "swiper-slide-active main-slide-active",
       history: {
@@ -55,6 +55,9 @@ export default class Wrapper extends React.PureComponent {
             "right-animation"
           )[0];
 
+
+
+          
           if (
             this.leftAnimation !== undefined ||
             this.rightAnimation !== undefined
