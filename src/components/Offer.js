@@ -113,11 +113,11 @@ export default class Offer extends Component {
           <div className="content-wrapper">
             <Row noGutters>
               <Col xs={12} md={6}>
-                <h2 className="heading">
+                <h2 className="heading" style={{opacity: this.props.setActiveSubpageIndex!== null ? 0: 1}}>
                   <div className="bar-1" />
                   Nasza oferta
                 </h2>
-                <div className="left-animation" style={{opacity: this.props.setActiveSubpageIndex!== null ? 1: 0}}>
+                <div className="left-animation" >
                   <ul className="offer-wrapper">
                     {this.props.mainMenu[2].submenu.map((item, index) => {
                       return (
@@ -134,7 +134,7 @@ export default class Offer extends Component {
                   </ul>
                 </div>
               </Col>
-              <Col className="align-self-center right-animation" xs={12} md={6} style={{opacity: this.props.setActiveSubpageIndex!== null ? 1: 0}}>
+              <Col className="align-self-center right-animation" xs={12} md={6} >
                 <div
                   className="image-wrapper"
                   style={{

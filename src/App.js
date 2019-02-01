@@ -22,7 +22,7 @@ import gallery2 from "./img/gallery/2.png";
 import gallery3 from "./img/gallery/3.png";
 import gallery4 from "./img/gallery/4.png";
 
-import { TweenLite, TimelineLite } from "gsap";
+import { TweenLite, TimelineLite, TimelineMax } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
@@ -118,10 +118,7 @@ class App extends Component {
     this.pageSwiper = null;
   }
   showSubpage = number => {
-      if (this.state.subpage === number) {
-   
-     
-
+    if (this.state.subpage === number) {
       if (this.state.isSmallScreen) {
         this.updateHistory(this.state.mainMenu[2].slug);
         this.setState(
@@ -134,15 +131,13 @@ class App extends Component {
           () => {
             TweenLite.to(window, 1, {
               scrollTo: { y: `#${this.state.mainMenu[2].slug}`, offsetY: 110 }
-              
             });
-            
           }
         );
       }
     } else {
       this.setState({ subpage: number });
-     
+
       if (this.state.isSmallScreen) {
         this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
       } else {
@@ -278,7 +273,7 @@ class App extends Component {
   };
 
   handleCloseMenu = (index, subindex = null) => {
-    console.log(index)
+    console.log(index);
     this.setState({ isMenuOpen: false, scrollEnabled: true }, () => {
       // enableBodyScroll(ReactDOM.findDOMNode(this));
 
@@ -320,7 +315,6 @@ class App extends Component {
     });
   };
   handleMenu = (index, event) => {
-   
     event.stopPropagation();
 
     if (!this.state.isSmallScreen) {
@@ -329,23 +323,70 @@ class App extends Component {
       )[0].swiper;
 
       this.pageSwiper.slideTo(index, 1000, true);
-     
+
+      if (index === 2 && this.state.activeSubpageIndex !== null) {
+       
+        
+        const timing = 1;
+        setTimeout(() => {
+          this.activeSection = document.getElementById("oferta");
+          this.header = this.activeSection.getElementsByClassName("heading")[0];
+          this.bar1 = this.header.getElementsByClassName("bar-1")[0];
+          this.leftAnimation = this.activeSection.getElementsByClassName(
+            "left-animation"
+          )[0];
+          this.rightAnimation = this.activeSection.getElementsByClassName(
+            "right-animation"
+          )[0];
+
+          if (
+            this.leftAnimation !== undefined ||
+            this.rightAnimation !== undefined
+          ) {
+            let tl = new TimelineLite();
+            tl
+            .to(this.header, timing, { opacity: 1 },  `-=${timing}`)
+            
+            .fromTo(
+              this.leftAnimation,
+              timing,
+              { y: -100, opacity: 0 },
+              { y: 0, opacity: 1 },
+              `-=${timing}`
+            )
+            .to(this.bar1, timing, { width: "110%" }).fromTo(
+              this.leftAnimation,
+              timing,
+              { y: -100, opacity: 0 },
+              { y: 0, opacity: 1 },
+              `-=${timing}`
+            );
+
+            if (this.rightAnimation !== undefined) {
+              tl.fromTo(
+                this.rightAnimation,
+                timing,
+                { x: -100, opacity: 0 },
+                { x: 0, opacity: 1 },
+                `-=${timing}`
+              );
+            }
+            tl.to(this.bar1, timing / 2, { width: "0%" });
+          } else {
+            let tl = new TimelineLite();
+            tl.to(this.bar1, timing, { width: "110%" });
+            tl.to(this.bar1, timing / 2, { width: "0%" });
+          }
+        }, 200);
+      }
     }
 
-
-
-
-
-    
     this.setState({
       activeIndex: this.pageSwiper.activeIndex,
       subpage: null,
       collapse: null,
       activeSubpageIndex: null
     });
-
-
-
   };
 
   setActiveIndex = index => {
@@ -394,7 +435,7 @@ class App extends Component {
   };
   handleSmallScreen = () => {
     let initialValue = this.state.isSmallScreen;
-   
+
     if (window.innerWidth <= 1199) {
       this.setState(
         {
@@ -420,25 +461,14 @@ class App extends Component {
     }
   };
 
-
-
-
-
-
-
-  
   componentDidMount() {
-   
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
-
-    
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isSmallScreen !== this.state.isSmallScreen) {
-     
       if (!this.state.isSmallScreen) {
         this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
           "main-swiper"
