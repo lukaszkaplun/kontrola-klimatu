@@ -12,6 +12,9 @@ export default class PageBody extends Component {
     return (
       <React.Fragment>
         <HomePage
+         enableFloatingIcon={this.props.enableFloatingIcon}
+         updateHistory={this.props.updateHistory}
+         disableFloatingIcon={this.props.disableFloatingIcon}
           isSmallScreen={this.props.isSmallScreen}
           isMobile={this.props.isMobile}
           scrollEnabled={this.props.scrollEnabled}

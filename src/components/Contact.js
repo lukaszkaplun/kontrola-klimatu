@@ -37,9 +37,9 @@ export default class Contact extends Component {
               style={{
                 width: "10px",
                 position: "absolute",
-                top: "0px",
+                top: "10px",
                 left: "0px",
-                height: "1px",
+                height: "10px",
                 background: "transparent"
               }}
             />
@@ -52,9 +52,9 @@ export default class Contact extends Component {
               style={{
                 width: "10px",
                 position: "absolute",
-                bottom: "0px",
+                bottom: "-100px",
                 left: "0px",
-                height: "1px",
+                height: "10px",
                 background: "transparent"
               }}
             />

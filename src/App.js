@@ -47,7 +47,7 @@ class App extends Component {
       isSmallScreen: null,
       isMenuOpen: false,
       mainMenu: [
-        { name: "home", submenu: null, slug: "home" },
+        { name: "witaj", submenu: null, slug: "witaj" },
         { name: "kim jesteśmy?", submenu: null, slug: "kim-jestesmy" },
         {
           name: "nasza oferta",
