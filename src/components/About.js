@@ -102,7 +102,7 @@ export default class About extends Component {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={6} className="right-animation">
+            <Col xs={12} md={6} className="right-animation align-self-center">
               <div
                 className="image-wrapper"
                 style={{
