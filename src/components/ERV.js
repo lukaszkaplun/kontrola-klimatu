@@ -7,7 +7,7 @@ import slide3 from "../img/erv/slide3.png";
 import Swiper from "react-id-swiper";
 
 import { TweenLite, TimelineLite } from "gsap";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
+import {ScrollToPlugin} from "gsap/all";
 const timing = 1;
 export default class ERV extends Component {
   constructor(props) {
@@ -16,6 +16,13 @@ export default class ERV extends Component {
   }
 
   componentDidMount() {
+    const plugins = [ ScrollToPlugin ];
+
+
+!this.props.isSmallScreen &&  this.props.disableMousewheel()
+
+
+   
     this.ervSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
       "swiper-container"
     )[0].swiper;
@@ -23,13 +30,17 @@ export default class ERV extends Component {
       this.props.setActiveSubpageIndex(this.ervSwiper, 0);
     }
   }
+  componentWillUnmount(){
+    this.ervSwiper = null;
+    !this.props.isSmallScreen &&  this.props.enableMousewheel();
+  }
 
   render() {
     const params = {
       autoHeight: true,
       slideActiveClass: "swiper-slide-active erv-slide-active",
       loop: true,
-      
+      mousewheel: true,
       speed: timing * 1000,
       effect: "fade",
       fadeEffect: {
@@ -42,7 +53,7 @@ export default class ERV extends Component {
         }
       },
       pagination: {
-        el: ".swiper-pagination-nested",
+        el: ".swiper-pagination.customized-swiper-pagination.swiper-pagination-nested",
         clickable: true
       },
       on: {
@@ -143,13 +154,21 @@ export default class ERV extends Component {
             }
             tl.to(this.bar1, timing / 2, { width: "0%" });
           }
-        }
+        },     
+        reachEnd: () => {
+         !this.props.isSmallScreen &&  this.props.enableMousewheel()
+        },
+        reachBeginning: () => {
+          !this.props.isSmallScreen &&   this.props.enableMousewheel()
+        },
+
       }
     };
 
     return (
       <div className="content-wrapper" id={this.props.dataHistorySubmenu.slug}>
         <Swiper {...params}>
+        <div>  
           <Row noGutters className="slide-1">
             <Col xs={12} md={6}>
               <h2 className="heading"> <div className="bar-1" />Rekuperacja</h2>
@@ -204,8 +223,9 @@ export default class ERV extends Component {
                 }}
               />
             </Col>
-          </Row>
-          <Row noGutters className="slide-2">
+          </Row></div>
+        <div>
+        <Row noGutters className="slide-2">
             <Col xs={12} md={6}>
               <h2 className="heading"> <div className="bar-1" />Rekuperacja</h2>
 
@@ -237,7 +257,9 @@ export default class ERV extends Component {
               />
             </Col>
           </Row>
-          <Row noGutters className="slide-3">
+        </div>
+        <div>
+        <Row noGutters className="slide-3">
             <Col xs={12} md={6}>
               <h2 className="heading"> <div className="bar-1" />Rekuperacja</h2>
               <div className="left-animation">
@@ -265,12 +287,16 @@ export default class ERV extends Component {
               />
             </Col>
           </Row>
+        </div>
+        
+         
+         
         </Swiper>
         {this.props.isSmallScreen && (
           <button
             className="button"
             onClick={() => this.props.showSubpage(0)}
-            style={{ margin: "0 auto" }}
+            style={{ margin: "10px auto 0 auto" }}
           >
             <div className="button-chevron reversed" />
             Powrót

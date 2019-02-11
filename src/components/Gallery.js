@@ -11,11 +11,12 @@ export default class Gallery extends Component {
   }
 
   componentDidMount() {
-    if (this.gallerySwiper !== null) {
-      this.gallerySwiper.controller.control = this.thumbnailSwiper;
-      this.thumbnailSwiper.controller.control = this.gallerySwiper;
-    }
+    // if (this.gallerySwiper !== null) {
+    //   this.gallerySwiper.controller.control = this.thumbnailSwiper;
+    //   this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    // }
 
+    
     this.thumbnailSwiper = ReactDOM.findDOMNode(this)
       .getElementsByClassName("gallery-thumbs-wrapper")[0]
       .getElementsByClassName("swiper-container")[0].swiper;
@@ -26,6 +27,10 @@ export default class Gallery extends Component {
     if (this.gallerySwiper !== null && this.thumbnailSwiper !== null) {
       this.gallerySwiper.controller.control = this.thumbnailSwiper;
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
+
+      // this.props.disableMousewheel()
+
+
     }
   }
   onLeave = ({ currentPosition }) => {

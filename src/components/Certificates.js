@@ -29,10 +29,14 @@ export default class Certificates extends Component {
   };
 
   componentDidMount() {
-    if (this.gallerySwiper !== null) {
-      this.gallerySwiper.controller.control = this.thumbnailSwiper;
-      this.thumbnailSwiper.controller.control = this.gallerySwiper;
-    }
+    // if (this.gallerySwiper !== null) {
+    //   this.gallerySwiper.controller.control = this.thumbnailSwiper;
+    //   this.thumbnailSwiper.controller.control = this.gallerySwiper;
+    // }
+
+
+    // this.props.disableMousewheel()
+
 
     this.thumbnailSwiper = ReactDOM.findDOMNode(this)
       .getElementsByClassName("gallery-thumbs-wrapper")[0]
@@ -46,11 +50,21 @@ export default class Certificates extends Component {
       this.thumbnailSwiper.controller.control = this.gallerySwiper;
     }
   }
+
+  // componentWillUnmount(){
+  //   this.gallerySwiper = null;
+  //   this.thumbnailSwiper = null;
+  //   this.props.enableMousewheel();
+  // }
+
+
+
   render() {
     const paramsThumb = {
       spaceBetween: 20,
       slidesPerView: 4,
       loop: true,
+      mousewheel:true,
       // freeMode: true,
       touchRatio: 0.2,
       loopedSlides: 4,

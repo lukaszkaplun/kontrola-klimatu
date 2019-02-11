@@ -32,6 +32,8 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[1].slug}
         />
         <Offer
+            enableMousewheel={this.props.enableMousewheel}
+            disableMousewheel={this.props.disableMousewheel}
         isSmallScreen={this.props.isSmallScreen}
         isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
@@ -43,6 +45,7 @@ export default class PageBody extends Component {
           toggleCollapse={this.props.toggleCollapse}
           collapse={this.props.collapse}
           setActiveSubpageIndex={this.props.setActiveSubpageIndex}
+          activeSubpageIndex={this.props.activeSubpageIndex}
           visible={this.props.visible}
           mainMenu={this.props.mainMenu}
           dataHistory={this.props.activeSubpageIndex === null ?this.props.mainMenu[2].slug : this.props.mainMenu[2].submenu[this.props.activeSubpageIndex].slug}
@@ -50,6 +53,8 @@ export default class PageBody extends Component {
         />
 
         <Certificates
+          enableMousewheel={this.props.enableMousewheel}
+          disableMousewheel={this.props.disableMousewheel}
          isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}
@@ -60,6 +65,8 @@ export default class PageBody extends Component {
           dataHistory={this.props.mainMenu[3].slug}
         />
         <Gallery
+          enableMousewheel={this.props.enableMousewheel}
+          disableMousewheel={this.props.disableMousewheel}
          isMobile={this.props.isMobile}
           enableFloatingIcon={this.props.enableFloatingIcon}
           disableFloatingIcon={this.props.disableFloatingIcon}

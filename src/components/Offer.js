@@ -113,7 +113,7 @@ export default class Offer extends Component {
           <div className="content-wrapper">
             <Row noGutters>
               <Col xs={12} md={6}>
-                <h2 className="heading" style={{opacity: this.props.setActiveSubpageIndex!== null ? 0: 1}}>
+                <h2 className="heading" style={{opacity: this.props.activeSubpageIndex !== null ? 0 : 1}}>
                   <div className="bar-1" />
                   Nasza oferta
                 </h2>
@@ -149,6 +149,8 @@ export default class Offer extends Component {
         )}
         {this.props.subpage === 0 && (
           <ERV
+           enableMousewheel={this.props.enableMousewheel}
+            disableMousewheel={this.props.disableMousewheel}
             dataHistorySubmenu={this.props.mainMenu[2].submenu[0]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}
@@ -158,6 +160,8 @@ export default class Offer extends Component {
         )}
         {this.props.subpage === 1 && (
           <AC
+           enableMousewheel={this.props.enableMousewheel}
+            disableMousewheel={this.props.disableMousewheel}
             dataHistorySubmenu={this.props.mainMenu[2].submenu[1]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}
@@ -167,6 +171,8 @@ export default class Offer extends Component {
         )}
         {this.props.subpage === 2 && (
           <Pump
+           enableMousewheel={this.props.enableMousewheel}
+            disableMousewheel={this.props.disableMousewheel}
             dataHistorySubmenu={this.props.mainMenu[2].submenu[2]}
             setActiveSubpageIndex={this.props.setActiveSubpageIndex}
             isSmallScreen={this.props.isSmallScreen}

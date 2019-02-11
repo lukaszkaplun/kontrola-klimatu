@@ -23,7 +23,7 @@ import gallery3 from "./img/gallery/3.png";
 import gallery4 from "./img/gallery/4.png";
 
 import { TweenLite, TimelineLite, TimelineMax } from "gsap";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { ScrollToPlugin } from "gsap/all";
 
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
 import FloatingIcon from "./components/FloatingIcon";
@@ -33,6 +33,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMousewheelEnabled: true,
       shouldCheckSize: true,
       isLoadingScreen: true,
       isBlocked: false,
@@ -114,7 +115,6 @@ class App extends Component {
         { name: "facebook", icon: facebook, address: "" }
       ]
     };
-
     this.pageSwiper = null;
   }
   showSubpage = number => {
@@ -143,6 +143,19 @@ class App extends Component {
       } else {
         this.updateHistory(this.state.mainMenu[2].submenu[number].slug);
       }
+    }
+  };
+
+  disableMousewheel = () => {
+if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
+  this.pageSwiper.mousewheel.disable();
+}
+
+   
+  };
+  enableMousewheel = () => {
+    if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
+    this.pageSwiper.mousewheel.enable();
     }
   };
 
@@ -325,8 +338,6 @@ class App extends Component {
       this.pageSwiper.slideTo(index, 1000, true);
 
       if (index === 2 && this.state.activeSubpageIndex !== null) {
-       
-        
         const timing = 1;
         setTimeout(() => {
           this.activeSection = document.getElementById("oferta");
@@ -344,23 +355,23 @@ class App extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl
-            .to(this.header, timing, { opacity: 1 },  `-=${timing}`)
-            
-            .fromTo(
-              this.leftAnimation,
-              timing,
-              { y: -100, opacity: 0 },
-              { y: 0, opacity: 1 },
-              `-=${timing}`
-            )
-            .to(this.bar1, timing, { width: "110%" }).fromTo(
-              this.leftAnimation,
-              timing,
-              { y: -100, opacity: 0 },
-              { y: 0, opacity: 1 },
-              `-=${timing}`
-            );
+            tl.to(this.header, timing, { opacity: 1 }, `-=${timing}`)
+
+              .fromTo(
+                this.leftAnimation,
+                timing,
+                { y: -100, opacity: 0 },
+                { y: 0, opacity: 1 },
+                `-=${timing}`
+              )
+              .to(this.bar1, timing, { width: "110%" })
+              .fromTo(
+                this.leftAnimation,
+                timing,
+                { y: -100, opacity: 0 },
+                { y: 0, opacity: 1 },
+                `-=${timing}`
+              );
 
             if (this.rightAnimation !== undefined) {
               tl.fromTo(
@@ -462,6 +473,8 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const plugins = [ScrollToPlugin];
+
     this.handleIsMobile();
     this.handleSmallScreen();
     window.addEventListener("resize", this.handleSmallScreen);
@@ -485,6 +498,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className="app-wrapper">
         {this.state.isLoadingScreen && (
@@ -505,6 +519,9 @@ class App extends Component {
         />
 
         <Wrapper
+          enableMousewheel={this.enableMousewheel}
+          disableMousewheel={this.disableMousewheel}
+          isMousewheelEnabled={this.state.isMousewheelEnabled}
           isMobile={this.state.isMobile}
           isBlocked={this.state.isBlocked}
           setActiveIndex={this.setActiveIndex}

@@ -2,21 +2,20 @@ import Swiper from "react-id-swiper";
 import ReactDOM from "react-dom";
 import React from "react";
 import PageBody from "./PageBody";
-import {  TimelineLite } from "gsap";
+import { TimelineLite } from "gsap";
 
 const timing = 1;
 export default class Wrapper extends React.PureComponent {
   render() {
-  
-
     this.swiperParams = {
-     
+      observer: true,
       direction: "vertical",
       slideActiveClass: "swiper-slide-active main-slide-active",
       history: {
         replaceState: true,
         key: ""
       },
+      shortSwipes: false,
       preventInteractionOnTransition: true,
       speed: timing * 1000,
       pagination: {
@@ -27,7 +26,7 @@ export default class Wrapper extends React.PureComponent {
 
       // allowTouchMove: false,
       effect: "fade",
-      observer: true,
+
       fadeEffect: {
         crossFade: true
       },
@@ -52,22 +51,18 @@ export default class Wrapper extends React.PureComponent {
             "right-animation"
           )[0];
 
-
-
-          
           if (
             this.leftAnimation !== undefined ||
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
-              .fromTo(
-                this.leftAnimation,
-                timing,
-                { y: -100, opacity: 0 },
-                { y: 0, opacity: 1 },
-                `-=${timing}`
-              );
+            tl.to(this.bar1, timing / 2, { width: "110%" }).fromTo(
+              this.leftAnimation,
+              timing,
+              { y: -100, opacity: 0 },
+              { y: 0, opacity: 1 },
+              `-=${timing}`
+            );
 
             if (this.rightAnimation !== undefined) {
               tl.fromTo(
@@ -78,15 +73,14 @@ export default class Wrapper extends React.PureComponent {
                 `-=${timing}`
               );
             }
-            tl.to(this.bar1, timing / 2, { width: "0%" });
+            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
           } else {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" });
-            tl.to(this.bar1, timing / 2, { width: "0%" });
+            tl.to(this.bar1, timing / 2, { width: "110%" });
+            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
           }
         },
-       
-        
+
         slideNextTransitionStart: () => {
           this.activeSection = ReactDOM.findDOMNode(
             this
@@ -106,8 +100,7 @@ export default class Wrapper extends React.PureComponent {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
-
+            tl.to(this.bar1, timing / 2, { width: "110%" })
               .fromTo(
                 this.leftAnimation,
                 timing,
@@ -123,10 +116,10 @@ export default class Wrapper extends React.PureComponent {
                 { x: 0, opacity: 1 },
                 `-=${timing}`
               )
-              .to(this.bar1, timing / 2, { width: "0%" });
+              .to(this.bar1, timing / 3, { width: "0%" });
           } else {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" }).to(
+            tl.to(this.bar1, timing / 2, { width: "110%" }).to(
               this.bar1,
               timing / 2,
               { width: "0%" }
@@ -153,7 +146,7 @@ export default class Wrapper extends React.PureComponent {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            tl.to(this.bar1, timing / 2, { width: "110%" })
 
               // .fromTo(
               //   this.header,
@@ -178,19 +171,20 @@ export default class Wrapper extends React.PureComponent {
                 `-=${timing}`
               );
             }
-            tl.to(this.bar1, timing / 2, { width: "0%" });
+            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
           } else {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" });
-            tl.to(this.bar1, timing / 2, { width: "0%" });
+            tl.to(this.bar1, timing / 2, { width: "110%" });
+            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
           }
         },
-             slideChange: () => {
+        slideChange: () => {
           this.props.setActiveIndex(this.pageSwiper.activeIndex);
-         
-
-          if(this.props.activeIndex !== 2 && this.props.activeSubpageIndex !== null) {
-          this.props.showSubpage( this.props.activeSubpageIndex)
+          if (
+            this.props.activeIndex !== 2 &&
+            this.props.activeSubpageIndex !== null
+          ) {
+            this.props.showSubpage(this.props.activeSubpageIndex);
           }
         }
       }
@@ -203,6 +197,8 @@ export default class Wrapper extends React.PureComponent {
             {...this.swiperParams}
           >
             <PageBody
+              enableMousewheel={this.props.enableMousewheel}
+              disableMousewheel={this.props.disableMousewheel}
               enableFloatingIcon={this.props.enableFloatingIcon}
               disableFloatingIcon={this.props.disableFloatingIcon}
               scrollEnabled={this.props.scrollEnabled}
@@ -220,9 +216,11 @@ export default class Wrapper extends React.PureComponent {
             />
           </Swiper>
         )}
-        {this.props.isSmallScreen  && (
+        {this.props.isSmallScreen && (
           <div style={{ width: "100%", height: "100%", marginTop: "110px" }}>
             <PageBody
+              enableMousewheel={this.props.enableMousewheel}
+              disableMousewheel={this.props.disableMousewheel}
               isMobile={this.props.isMobile}
               enableFloatingIcon={this.props.enableFloatingIcon}
               disableFloatingIcon={this.props.disableFloatingIcon}
