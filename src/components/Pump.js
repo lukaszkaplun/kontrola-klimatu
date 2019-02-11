@@ -19,7 +19,12 @@ export default class Pump extends Component {
 
   componentDidMount() {
     const plugins = [ScrollToPlugin];
-    !this.props.isSmallScreen && this.props.disableMousewheel();
+    this.pageSwiper = ReactDOM.findDOMNode(
+      this
+    ).parentElement.parentElement.parentElement.swiper;
+
+
+    !this.props.isSmallScreen && this.props.disableMousewheel(this.pageSwiper);
     this.pumpSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
       "swiper-container"
     )[0].swiper;
@@ -28,8 +33,10 @@ export default class Pump extends Component {
     }
   }
   componentWillUnmount() {
+    let pageSwiper = ReactDOM.findDOMNode(this).parentElement.parentElement
+    .parentElement.swiper;
     this.pumpSwiper = null;
-    !this.props.isSmallScreen && this.props.enableMousewheel();
+    !this.props.isSmallScreen && this.props.enableMousewheel(pageSwiper);
   }
   render() {
     const params = {
@@ -84,7 +91,7 @@ export default class Pump extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            tl.to(this.bar1, timing/2, { width: "110%" })
 
               .fromTo(
                 this.leftAnimation,
@@ -101,7 +108,7 @@ export default class Pump extends Component {
                 { x: 0, opacity: 1 },
                 `-=${timing}`
               )
-              .to(this.bar1, timing / 2, { width: "0%" });
+              .to(this.bar1, timing / 3, { width: "0%" });
           }
         },
         slidePrevTransitionStart: () => {
@@ -124,7 +131,7 @@ export default class Pump extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing, { width: "110%" })
+            tl.to(this.bar1, timing/2, { width: "110%" })
 
               // .fromTo(
               //   this.header,
@@ -149,14 +156,14 @@ export default class Pump extends Component {
                 `-=${timing}`
               );
             }
-            tl.to(this.bar1, timing / 2, { width: "0%" });
+            tl.to(this.bar1, timing / 3, { width: "0%" });
           }
         },
         reachEnd: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel();
+          !this.props.isSmallScreen && this.props.enableMousewheel( this.pageSwiper);
         },
         reachBeginning: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel();
+          !this.props.isSmallScreen && this.props.enableMousewheel( this.pageSwiper);
         }
       }
     };
@@ -201,7 +208,7 @@ export default class Pump extends Component {
                   </ul>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{
@@ -231,7 +238,7 @@ export default class Pump extends Component {
                   </p>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{
@@ -275,7 +282,7 @@ export default class Pump extends Component {
                   </ul>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{
@@ -314,7 +321,7 @@ export default class Pump extends Component {
                   </ul>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{
@@ -364,7 +371,7 @@ export default class Pump extends Component {
                   </p>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{
@@ -402,7 +409,7 @@ export default class Pump extends Component {
                   </p>
                 </div>
               </Col>
-              <Col xs={12} md={6} className="right-animation">
+              <Col xs={12} md={6} className="right-animation align-self-center">
                 <div
                   className="image-wrapper"
                   style={{

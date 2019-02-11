@@ -73,11 +73,11 @@ export default class Wrapper extends React.PureComponent {
                 `-=${timing}`
               );
             }
-            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
+            tl.to(this.bar1, timing / 3, { width: "0%" });
           } else {
             let tl = new TimelineLite();
             tl.to(this.bar1, timing / 2, { width: "110%" });
-            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
+            tl.to(this.bar1, timing / 3, { width: "0%" });
           }
         },
 
@@ -171,11 +171,11 @@ export default class Wrapper extends React.PureComponent {
                 `-=${timing}`
               );
             }
-            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
+            tl.to(this.bar1, timing / 3, { width: "0%" });
           } else {
             let tl = new TimelineLite();
             tl.to(this.bar1, timing / 2, { width: "110%" });
-            tl.to(this.bar1, timing / 2 / 3, { width: "0%" });
+            tl.to(this.bar1, timing / 3, { width: "0%" });
           }
         },
         slideChange: () => {
@@ -184,7 +184,12 @@ export default class Wrapper extends React.PureComponent {
             this.props.activeIndex !== 2 &&
             this.props.activeSubpageIndex !== null
           ) {
-            this.props.showSubpage(this.props.activeSubpageIndex);
+
+setTimeout(() => {
+  this.props.clearSubpages();
+}, 500);
+
+            // this.props.showSubpage(this.props.activeSubpageIndex);
           }
         }
       }

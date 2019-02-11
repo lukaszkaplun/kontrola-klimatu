@@ -146,16 +146,16 @@ class App extends Component {
     }
   };
 
-  disableMousewheel = () => {
-if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
-  this.pageSwiper.mousewheel.disable();
+  disableMousewheel = (swiper) => {
+if (swiper !== null && swiper !== undefined) {
+  swiper.mousewheel.disable();
 }
 
    
   };
-  enableMousewheel = () => {
-    if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
-    this.pageSwiper.mousewheel.enable();
+  enableMousewheel = (swiper) => {
+    if (swiper !== null && swiper !== undefined) {
+      swiper.mousewheel.enable();
     }
   };
 
@@ -400,6 +400,17 @@ if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
     });
   };
 
+
+
+clearSubpages = () => {
+  this.setState({
+    subpage: null,
+    collapse: null,
+    activeSubpageIndex: null
+  });
+}
+
+
   setActiveIndex = index => {
     this.setState({
       activeIndex: index
@@ -519,6 +530,7 @@ if (this.pageSwiper !== null && this.pageSwiper !== undefined) {
         />
 
         <Wrapper
+        clearSubpages= {this.clearSubpages}
           enableMousewheel={this.enableMousewheel}
           disableMousewheel={this.disableMousewheel}
           isMousewheelEnabled={this.state.isMousewheelEnabled}
