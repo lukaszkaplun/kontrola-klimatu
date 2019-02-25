@@ -94,7 +94,7 @@ export default class HomePage extends Component {
                     </strong>{" "}
                     Gwarantujemy fachowe doradztwo, rzetelne wsparcie techniczne
                     i sprawdzone rozwiązania w dziedzinie utrzymania komfortu w
-                    Twoim domu. Wykonamy projekt i wstępną kalkulację kosztów za
+                    Twoim domu. Wykonamy wstępną kalkulację kosztów za
                     darmo!
                   </p>
                 </div>

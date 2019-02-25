@@ -75,7 +75,7 @@ export default class About extends Component {
               </h2>
               <div className="left-animation">
                 <p className="paragraph">
-                  Zespołem dwóch młodych ludzi który swoje doświadczenie
+                  Zespołem młodych ludzi który swoje doświadczenie
                   instalacyjne zdobywał{" "}
                   <strong>
                     podczas realizacji projektów zarówno w Wielkiej Brytanii jak
