@@ -88,30 +88,23 @@ export default class Contact extends Component {
                         <span
                           style={{ marginRight: "15px" }}
                           itemProp="postalCode"
-                        >
-                          18-300
+                        >94-042
                         </span>{" "}
                         <span
                           className="text-red font-weight-800"
                           itemProp="addressLocality"
-                        >
-                          Zambrów
+                        >Łódź
                         </span>
                       </div>
-                      <div>
-                        ul.<span itemProp="streetAddress">Poświątne 64</span>
+                      <div  style={{ flex: "0 0 90%", marginLeft: "31px" }}>
+                        al.<span itemProp="streetAddress">Wyszyńskiego 75/19</span>
                       </div>
                     </div>
                     <div className="d-flex align-items-center flex-wrap">
                       <img src={telIcon} alt="telephone" />
-                      <a href="tel:+48518864368" itemProp="telephone">
-                        +48{" "}
-                        <span className="text-red font-weight-800">
-                          518 864 368
-                        </span>
-                      </a>
+                      
                       <a
-                        style={{ flex: "0 0 90%", marginLeft: "31px" }}
+                       
                         href="tel:+48517188545"
                         itemProp="telephone"
                       >

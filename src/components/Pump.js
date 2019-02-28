@@ -176,7 +176,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <h3 className="subheading">Co zyskujemy?</h3>
@@ -226,7 +226,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <h3 className="subheading">Zasada działania</h3>
@@ -256,7 +256,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <div className="left-animation" />
@@ -300,7 +300,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <h3 className="subheading">Typy pomp ciepła</h3>
@@ -339,7 +339,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <h3 className="subheading">COP - co to takiego?</h3>
@@ -389,7 +389,7 @@ export default class Pump extends Component {
               <Col xs={12} md={6}>
                 <h2 className="heading">
                   <div className="bar-1" />
-                  Pompy ciepła
+                  Pompy ciepła powietrze-woda
                 </h2>
                 <div className="left-animation">
                   <h3 className="subheading">

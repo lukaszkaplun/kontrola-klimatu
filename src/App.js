@@ -59,7 +59,7 @@ class App extends Component {
               slug: "rekuperacja",
               name: "rekuperacja",
               content: {
-                heading: "Niezawodna klimatyzacja",
+                heading: "Rekuperacja",
                 body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
                 buttonCopy: "Dowiedz się więcej"
               }
@@ -68,16 +68,16 @@ class App extends Component {
               name: "klimatyzacja",
               slug: "klimatyzacja",
               content: {
-                heading: "Solidna wentylacja",
+                heading: "Klimatyzacja",
                 body: `Zapewniamy profesjonalny montaż oraz szybki serwis. W naszej ofercie znajdziesz urządzenia renomowanych marek które sprawdzą się w różnych pomieszczeniach. Oferujemy klimatyzatory typu Split i Multi Split. Wszystkie urządzenia są wydajne, energooszczędne oraz proste w obsłudze.`,
                 buttonCopy: "Dowiedz się więcej"
               }
             },
             {
-              name: "pompy powietrza",
+              name: "pompy powietrza powietrze-woda",
               slug: "pompy-powietrza",
               content: {
-                heading: "Energooszczędne ogrzewanie za pomocą pompy ciepła",
+                heading: "Pompy ciepła powietrze-woda",
                 body: `Instalacje centralnego ogrzewania z wykorzystaniem powietrznych pompy ciepła.  Każdy wykonany przez nas układ jest idealnie dopasowana do obsługującego budynku. Pomożemy Ci wybrać urządzenie, które zapewni ekonomiczne i wydajne ogrzewanie. Oferowane przez nas systemy mogą być instalowane w nowych oraz modernizowanych budynkach.`,
                 buttonCopy: "Dowiedz się więcej"
               }
@@ -92,7 +92,7 @@ class App extends Component {
             { src: dyplom, alt: "dyplom" },
             { src: herz, alt: "hertz" },
             { src: venture, alt: "venture" },
-            { src: zehnder, alt: "zehnder" }
+           
           ]
         },
         {
@@ -145,7 +145,27 @@ class App extends Component {
       }
     }
   };
+scrollToFirstPage=()=>{
 
+  if (this.state.isSmallScreen) {
+    var tl = new TimelineLite({
+      onComplete: () => {
+        this.setState({ scrollEnabled: false });
+      }
+    });
+    tl.to(window, 1, {
+      scrollTo: { y: 0, offsetY: 110 }
+    });
+  }
+  else{
+    this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+      "main-swiper"
+    )[0].swiper;
+    this.pageSwiper.slideTo(0, 1000, true);
+  }
+
+
+}
   disableMousewheel = (swiper) => {
 if (swiper !== null && swiper !== undefined) {
   swiper.mousewheel.disable();
@@ -517,6 +537,7 @@ clearSubpages = () => {
         )}
 
         <Header
+        scrollToFirstPage={this.scrollToFirstPage}
           showSubpage={this.showSubpage}
           activeSubpageIndex={this.state.activeSubpageIndex}
           activeIndex={this.state.activeIndex}

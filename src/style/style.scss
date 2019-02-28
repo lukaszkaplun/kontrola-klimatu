@@ -1,4 +1,4 @@
-$mainRed: #ea583f;
+$mainRed:#ea583f;
 $mainBlue: #154fa0;
 $lightBlue: #d3e6f7;
 $pagePadding: 25px;
@@ -242,7 +242,7 @@ footer {
                 width: 0.333em;
                 height: 0.333em;
                 border-radius: 50%;
-                background: #ea583f;
+                background: $mainRed;
                 top: 50%;
                 left: -20px;
                 transform: translate(0, -50%);
@@ -267,7 +267,7 @@ footer {
                     width: 0.467em;
                     height: 0.1em;
                     border-radius: 0;
-                    background: #ea583f;
+                    background: $mainRed;
 
                     top: 0.667em;
                     left: -20px;
@@ -712,7 +712,7 @@ section {
                 width: 0.333em;
                 height: 0.333em;
                 border-radius: 50%;
-                background: #ea583f;
+                background: $mainRed;
                 top: 50%;
                 left: 0px;
                 transform: translate(0, -50%);
@@ -815,7 +815,8 @@ section {
           align-self: center;
           &.swiper-slide-active {
             transition: all 1s ease;
-            box-shadow: 0px 0px 12px 0px $mainBlue;
+            // box-shadow: 0px 0px 12px 0px $mainBlue;
+            border:1px solid $mainRed;
           }
         }
       }
@@ -1137,8 +1138,8 @@ section {
           width: 45%;
           // opacity: 1;
           position: absolute;
-          left: 0;
-          top: 2.219rem;
+          left: 4vw;
+          top:0;
           .heading {
             position: relative;
             left: auto;

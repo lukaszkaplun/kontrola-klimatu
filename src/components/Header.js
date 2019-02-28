@@ -7,9 +7,9 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <div className="logo-wrapper">
+        <button onClick={this.props.scrollToFirstPage} className="logo-wrapper">
           <img src={logo} alt="logo" />
-        </div>
+        </button>
 
         <div
           className={

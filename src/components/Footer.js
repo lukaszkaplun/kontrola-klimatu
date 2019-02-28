@@ -6,15 +6,12 @@ export default class Footer extends Component {
       <footer id="footer">
         <div className="footer-tel-wrapper">
           <span>Skontaktuj się z nami:</span>{" "}
-          <a className="footer-tel" href="tel:+48518864468">
-            <span>{" "}+48 </span>518-864-468
+          
+         
+          <a className="footer-tel" href="tel:+48517188545">
+            <span>{" "}+48 </span>517-188-545
           </a>
-          {!this.props.isSmallScreen && 
-          <a className="footer-tel" href="tel:+48517188535">
-          {" | "}
-            <span>{" "}+48 </span>517-188-535
-          </a>
-          }
+          
         </div>
         {!this.props.isSmallScreen  && (
           <div className="scroll-animation-wrapper">
@@ -25,7 +22,7 @@ export default class Footer extends Component {
           </div>
         )}
 
-        <div className="social-media-wrapper">
+        {/* <div className="social-media-wrapper">
           <span>Znajdziesz nas również: </span>
 
           <ul>
@@ -37,7 +34,7 @@ export default class Footer extends Component {
               );
             })}
           </ul>
-        </div>
+        </div> */}
       </footer>
     );
   }
