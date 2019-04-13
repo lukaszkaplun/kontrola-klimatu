@@ -539,7 +539,7 @@ clearSubpages = () => {
       <div className="app-wrapper">
         {this.state.isLoadingScreen && (
           <LoadingScreen disableLoadingScreen={this.disableLoadingScreen} />
-        )}
+       )} 
 
         <Header
         scrollToFirstPage={this.scrollToFirstPage}

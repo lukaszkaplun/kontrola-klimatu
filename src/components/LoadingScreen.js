@@ -1,27 +1,34 @@
 import React, { Component } from "react";
-import { TimelineLite, Back } from "gsap";
+import { TimelineLite, Back, Power2 } from "gsap";
 export default class LoadingScreen extends Component {
   componentDidMount() {
     const timing = 2;
     const easing = Back.easeOut.config(1.7);
     let tl = new TimelineLite({ onComplete: this.props.disableLoadingScreen });
     tl
-      // .fromTo("#mask", timing, { x: 150 }, { x: 0 })
-      .to("#mask", timing, { ease: easing, width: 136, borderRadius: "50%" })
+    
 
       .fromTo(
         "#logo",
-        timing,
-        { ease: easing, x: 150 },
-        { ease: easing, x: 0 },
-        `-=${timing}`
+        timing/2,
+        { ease: Power2.easeOut, scale:0,opacity:0, x: 150, transformOrigin: "50% 50%"  },
+        { ease: Power2.easeOut, scale:1,opacity:1},
+        `${timing}+=.5`
       )
+      .to(
+        "#logo",
+        timing,      
+        { ease: easing, x: 0 },
+        'logo'
+      )
+        .fromTo("#mask", timing, { x: 150 }, { x: 0 }, `logo-=`)
+      .to("#mask", timing, { ease: easing, width: 136, borderRadius: "50%" },`logo-=`)
       .fromTo(
         "#napis",
         timing,
         { ease: easing, x: -50 },
         { ease: easing, x: 0 },
-        `-=${timing}`
+        `logo-=`
       )
       .to(".loading-screen", timing, { ease: easing, top: "-100%" });
   }
@@ -508,7 +515,7 @@ export default class LoadingScreen extends Component {
 		c-0.14,0.146-0.345,0.22-0.614,0.22c-0.271,0-0.474-0.073-0.607-0.22C493.597,120.785,493.529,120.604,493.529,120.386"
             />
           </g>
-          <rect id="mask" fill="#FFFFFF" width="575" height="127" />
+          <rect id="mask" fill="#d2e5f6" width="575" height="127" />
           <g id="logo">
             <g>
               <defs>
