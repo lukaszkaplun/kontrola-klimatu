@@ -75,15 +75,17 @@ export default class About extends Component {
               </h2>
               <div className="left-animation">
                 <p className="paragraph">
-                  Zespołem młodych ludzi który swoje doświadczenie
-                  instalacyjne zdobywał{" "}
+                  Zespołem młodych ludzi, którzy swoje doświadczenie
+                  instalacyjne zdobywali{" "}
                   <strong>
-                    podczas realizacji projektów zarówno w Wielkiej Brytanii jak
-                    i w Polsce.
-                  </strong>{" "}
-                  Idziemy z duchem czasu, jesteśmy na bieżąco ze wszelkimi
+                    podczas realizacji projektów zarówno w Wielkiej Brytanii,
+                    jak i w Polsce.{" "}
+                  </strong>
+                  Idziemy z duchem czasu, jesteśmy na bieżąco z wszelkimi
                   nowinkami w branży. Stawiamy na produkty i usługi najwyższej
-                  jakości.
+                  jakości Idziemy z duchem czasu, jesteśmy na bieżąco ze
+                  wszelkimi nowinkami w branży. Stawiamy na produkty i usługi
+                  najwyższej jakości.
                 </p>
                 <p className="paragraph">Nasi partnerzy:</p>
                 <div className="partner-wrapper">

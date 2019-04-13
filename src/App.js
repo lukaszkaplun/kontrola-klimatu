@@ -15,14 +15,14 @@ import facebook from "./img/facebook.svg";
 import dyplom from "./img/certificates/dyplom.png";
 import herz from "./img/certificates/herz.png";
 import venture from "./img/certificates/venture.png";
-import zehnder from "./img/certificates/zehnder.png";
+// import zehnder from "./img/certificates/zehnder.png";
 
 import gallery1 from "./img/gallery/1.png";
 import gallery2 from "./img/gallery/2.png";
 import gallery3 from "./img/gallery/3.png";
 import gallery4 from "./img/gallery/4.png";
 
-import { TweenLite, TimelineLite, TimelineMax } from "gsap";
+import { TweenLite, TimelineLite } from "gsap";
 import { ScrollToPlugin } from "gsap/all";
 
 import { clearAllBodyScrollLocks } from "body-scroll-lock";
@@ -60,7 +60,9 @@ class App extends Component {
               name: "rekuperacja",
               content: {
                 heading: "Rekuperacja",
-                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ z uwzględnieniem kubatury budynku jak i użytych materiałów budowlanych.`,
+                body: `Wykonujemy projekty oraz montujemy układy wentylacji mechanicznej zwanej
+                rekuperacją dla domów jednorodzinnych. Dobierzemy odpowiedni układ
+                z uwzględnieniem kubatury budynku, jak i użytych materiałów budowlanych.`,
                 buttonCopy: "Dowiedz się więcej"
               }
             },
@@ -74,8 +76,8 @@ class App extends Component {
               }
             },
             {
-              name: "pompy powietrza powietrze-woda",
-              slug: "pompy-powietrza",
+              name: "pompy ciepła powietrze-woda",
+              slug: "pompy-ciepla",
               content: {
                 heading: "Pompy ciepła powietrze-woda",
                 body: `Instalacje centralnego ogrzewania z wykorzystaniem powietrznych pompy ciepła.  Każdy wykonany przez nas układ jest idealnie dopasowana do obsługującego budynku. Pomożemy Ci wybrać urządzenie, które zapewni ekonomiczne i wydajne ogrzewanie. Oferowane przez nas systemy mogą być instalowane w nowych oraz modernizowanych budynkach.`,
@@ -207,8 +209,10 @@ if (swiper !== null && swiper !== undefined) {
 
   restoreScrollPosition = () => {
     let slugArr = [];
+    // eslint-disable-next-line
     this.state.mainMenu.map(item => {
       if (item.submenu !== null) {
+        // eslint-disable-next-line
         item.submenu.map(subitem => {
           slugArr.push(subitem.slug);
         });
@@ -504,6 +508,7 @@ clearSubpages = () => {
   };
 
   componentDidMount() {
+    // eslint-disable-next-line
     const plugins = [ScrollToPlugin];
 
     this.handleIsMobile();

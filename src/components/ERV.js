@@ -16,6 +16,7 @@ export default class ERV extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line
     const plugins = [ScrollToPlugin];
     this.pageSwiper = ReactDOM.findDOMNode(
       this
@@ -90,7 +91,7 @@ export default class ERV extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing/2, { width: "110%" })
+            tl.to(this.bar1, timing / 2, { width: "110%" })
 
               .fromTo(
                 this.leftAnimation,
@@ -130,7 +131,7 @@ export default class ERV extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing/2, { width: "110%" })
+            tl.to(this.bar1, timing / 2, { width: "110%" })
 
               // .fromTo(
               //   this.header,
@@ -184,38 +185,35 @@ export default class ERV extends Component {
                   <h3 className="subheading">Jakie ma zalety?</h3>
                   <ul>
                     <li>
-                      <span>Zapewnia </span>
-                      stały dopływ świeżego powietrza niezależnie od pory roku
+                      <span>Zapewnia </span>stały dopływ świeżego powietrza
+                      niezależnie od pory roku.
                     </li>
                     <li>
-                      <span>W dużej </span>
-                      mierze zapobiega utracie ciepła zużytego na ogrzanie
-                      powietrza w budynku
+                      <span>W dużej </span>mierze zapobiega utracie ciepła
+                      zużytego na ogrzanie powietrza w budynku.
                     </li>
                     <li>
-                      <span>Niweluje </span>
-                      problem powstawania pleśni i grzybów wewnątrz pomieszczeń,
+                      <span>Niweluje </span>problem powstawania pleśni i grzybów
+                      wewnątrz.
                     </li>
                     <li>
-                      <span>Doskonale </span>
-                      sprawdza się w nowoczesnym (szczelnym) budownictwie, gdzie
-                      wentylacja grawitacyjna nie spełnia swojej funkcji
+                      <span>Doskonale </span>sprawdza się w nowoczesnym
+                      (szczelnym) budownictwie, gdzie wentylacja grawitacyjna
+                      nie spełnia swojej funkcji.
                     </li>
                     <li>
-                      <span>Dzięki </span>
-                      zastosowaniu wentylacji mechanicznej z odzyskiem ciepła w
-                      celu dostarczenia świeżego powietrza nie musimy otwierać
-                      okien dzięki czemu unikamy przeciągów jak i hałasów
-                      dobiegających z zewnątrz
+                      <span>Dzięki </span>zastosowaniu wentylacji mechanicznej z
+                      odzyskiem ciepła, w celu dostarczenia świeżego powietrza,
+                      nie musimy otwierać okien, dzięki czemu unikamy
+                      przeciągów, jak i hałasów dobiegających z zewnątrz.
                     </li>
                     <li>
-                      <span>Dostarcza </span>
-                      powietrze od którego poprzez filtry zostały odseparowane
-                      pyły i drobnoustroje
+                      <span>Dostarcza </span>powietrze, od którego poprzez
+                      filtry, zostały odseparowane pyły i drobnoustroje.
                     </li>
                     <li>
                       <span>Usuwa </span>z pomieszczeń nieprzyjemne zapachy i
-                      dwutlenek węgla
+                      dwutlenek węgla.
                     </li>
                   </ul>
                 </div>
@@ -245,11 +243,11 @@ export default class ERV extends Component {
                 <div className="left-animation">
                   <h3 className="subheading">Co to takiego?</h3>
                   <p className="paragraph">
-                    Rekuperacja to nic innego jak instalacja wentylacji
+                    Rekuperacja to nic innego, jak instalacja wentylacji
                     mechanicznej z odzyskiem ciepła. Całość układu składa się z
-                    „serca” zwanego rekuperatorem oraz sieci kanałów
+                    „serca”zwanego rekuperatorem oraz sieci kanałów
                     doprowadzających świeże powietrze z zewnątrz do tzw.
-                    Pomieszczeń „czystych” (salon, sypialnia) oraz usuwających
+                    pomieszczeń „czystych” (salon, sypialnia) oraz usuwających
                     powietrze zużyte z pomieszczeń tzw. „brudnych” (toaleta,
                     kuchnia). Instalacja rekuperacji pozwala na prawidłową
                     wymianę powietrza w budynku przez cały rok. Zjawisko odzysku
@@ -283,11 +281,11 @@ export default class ERV extends Component {
                 <div className="left-animation">
                   <h3 className="subheading">Serce układu - rekuperator</h3>
                   <p className="paragraph">
-                    Głównym elementem urządzenia jest wymiennik który
+                    Głównym elementem urządzenia jest wymiennik, który
                     odpowiedzialny jest za odzysk energii cieplnej. W celu
                     wprowadzenia powietrza w ruch w obudowę urządzenia wbudowane
                     są dwa wentylatory. Jeden odpowiedzialny jest za pobieranie
-                    świeżego powietrza z zewnątrz natomiast drugi za usuwanie
+                    świeżego powietrza z zewnątrz, natomiast drugi za usuwanie
                     zużytego. Filtry zainstalowane w urządzeniu chronią
                     pomieszczenia oraz główny element urządzenia przed
                     zanieczyszczeniami.

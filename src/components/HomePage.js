@@ -31,37 +31,35 @@ export default class HomePage extends Component {
         data-history={this.props.dataHistory}
         className={"swiper-slide single-slide homepage"}
       >
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+          <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "-110px",
+                left: "0px",
+                height: "1px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
 
-{!this.props.scrollEnabled && this.props.isSmallScreen && (
-  <Waypoint onLeave={this.onLeave} scrollableAncestor={window}>
-    <div
-      style={{
-        width: "10px",
-        position: "absolute",
-        top: "-110px",
-        left: "0px",
-        height: "1px",
-        background: "transparent"
-      }}
-    />
-  </Waypoint>
-)}
-
-{!this.props.scrollEnabled && this.props.isSmallScreen && (
-  <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
-    <div
-      style={{
-        width: "10px",
-        position: "absolute",
-        top: "50%",
-        left: "0px",
-        height: "10px",
-        background: "transparent"
-      }}
-    />
-  </Waypoint>
-)}
-
+        {!this.props.scrollEnabled && this.props.isSmallScreen && (
+          <Waypoint onEnter={this.onEnter} scrollableAncestor={window}>
+            <div
+              style={{
+                width: "10px",
+                position: "absolute",
+                top: "50%",
+                left: "0px",
+                height: "10px",
+                background: "transparent"
+              }}
+            />
+          </Waypoint>
+        )}
 
         <div className="content-wrapper">
           <div
@@ -77,31 +75,30 @@ export default class HomePage extends Component {
                 <div className="bar-1" />
                 Witaj!
               </h2>
-              {!this.props.isSmallScreen  && (
+              {!this.props.isSmallScreen && (
                 <div className="left-animation">
                   <p className="paragraph">
-                    Jeżeli nadszedł w Twoim życiu czas w którym zapragnąłeś
+                    Jeżeli nadszedł w Twoim życiu czas, w którym zapragnąłeś
                     wybudować swój własny dom lub zmodernizować dotychczasowy i
-                    nie do końca wiesz w jaki sposób stworzyć w nim odpowiedni
-                    komfort termiczny dla Ciebie i Twojej rodziny zapoznaj się z
-                    naszą ofertą.
+                    nie do końca wiesz, w jaki sposób stworzyć w nim odpowiedni
+                    komfort termiczny dla Ciebie i Twojej rodziny, zapoznaj się
+                    z naszą ofertą.
                   </p>
                   <p className="paragraph">
                     {" "}
                     <strong>
-                      Jeśli Cię zainteresuje zadzwoń i umów się na spotkanie.
+                      Jeśli Cię zainteresuje, zadzwoń i umów się na spotkanie.
                       Wyjaśnimy wszystko dokładnie i bez zbędnych zawiłości.
                     </strong>{" "}
                     Gwarantujemy fachowe doradztwo, rzetelne wsparcie techniczne
                     i sprawdzone rozwiązania w dziedzinie utrzymania komfortu w
-                    Twoim domu. Wykonamy wstępną kalkulację kosztów za
-                    darmo!
+                    Twoim domu. Wykonamy wstępną kalkulację kosztów za darmo!
                   </p>
                 </div>
               )}
             </div>
           </div>
-          {this.props.isSmallScreen  && (
+          {this.props.isSmallScreen && (
             <React.Fragment>
               <p className="paragraph">
                 Jeżeli nadszedł w Twoim życiu czas w którym zapragnąłeś

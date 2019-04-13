@@ -18,11 +18,11 @@ export default class Pump extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line
     const plugins = [ScrollToPlugin];
     this.pageSwiper = ReactDOM.findDOMNode(
       this
     ).parentElement.parentElement.parentElement.swiper;
-
 
     !this.props.isSmallScreen && this.props.disableMousewheel(this.pageSwiper);
     this.pumpSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
@@ -34,7 +34,7 @@ export default class Pump extends Component {
   }
   componentWillUnmount() {
     let pageSwiper = ReactDOM.findDOMNode(this).parentElement.parentElement
-    .parentElement.swiper;
+      .parentElement.swiper;
     this.pumpSwiper = null;
     !this.props.isSmallScreen && this.props.enableMousewheel(pageSwiper);
   }
@@ -91,7 +91,7 @@ export default class Pump extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing/2, { width: "110%" })
+            tl.to(this.bar1, timing / 2, { width: "110%" })
 
               .fromTo(
                 this.leftAnimation,
@@ -131,7 +131,7 @@ export default class Pump extends Component {
             this.rightAnimation !== undefined
           ) {
             let tl = new TimelineLite();
-            tl.to(this.bar1, timing/2, { width: "110%" })
+            tl.to(this.bar1, timing / 2, { width: "110%" })
 
               // .fromTo(
               //   this.header,
@@ -160,10 +160,12 @@ export default class Pump extends Component {
           }
         },
         reachEnd: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel( this.pageSwiper);
+          !this.props.isSmallScreen &&
+            this.props.enableMousewheel(this.pageSwiper);
         },
         reachBeginning: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel( this.pageSwiper);
+          !this.props.isSmallScreen &&
+            this.props.enableMousewheel(this.pageSwiper);
         }
       }
     };
@@ -182,27 +184,27 @@ export default class Pump extends Component {
                   <h3 className="subheading">Co zyskujemy?</h3>
                   <ul>
                     <li>
-                      <span>Przyjazne </span> środowisku ogrzewanie bez oleju,
-                      gazu czy węgla
+                      <span>Przyjazne </span>środowisku ogrzewanie bez oleju,
+                      gazu czy węgla.
                     </li>
                     <li>
-                      <span>Bezobsługowość</span> systemu grzewczego - Pompa
+                      <span>Bezobsługowość</span>systemu grzewczego - pompa
                       ciepła pracuje całkowicie automatycznie. Nie wymaga
                       zewnętrznej ingerencji w postaci uzupełniania paliwa. Nie
                       trzeba się troszczyć o termin wizyty kominiarza czy
-                      serwisanta kotła
+                      serwisanta kotła.
                     </li>
                     <li>
-                      <span>Oszczędność</span> miejsca – nie trzeba wydzielać
+                      <span>Oszczędność</span>miejsca – nie trzeba wydzielać
                       pomieszczenia kotłowni, moduł wewnętrzny pompy ciepła może
-                      być umieszczony np. w kuchni
+                      być umieszczony np. w kuchni.
                     </li>
                     <li>
-                      <span>Niższe</span> koszty inwestycyjne w przypadku budowy
+                      <span>Niższe</span>koszty inwestycyjne w przypadku budowy
                       nowego domu – nie trzeba budować komina.
                     </li>
                     <li>
-                      <span>Nie</span> wytwarza płomieni co za tym idzie nie
+                      <span>Nie</span>wytwarza płomieni co za tym idzie nie
                       stanowi zagrożenia pożarowego.
                     </li>
                   </ul>
@@ -232,9 +234,9 @@ export default class Pump extends Component {
                   <h3 className="subheading">Zasada działania</h3>
                   <p className="paragraph">
                     Pompa ciepła dostarczy ciepło zarówno na potrzeby
-                    centralnego ogrzewania jak i ciepłej wody użytkowej.
-                    Urządzenie do pracy wykorzystuje ten sam układ chłodniczy co
-                    potocznie zwany klimatyzator.
+                    centralnego ogrzewania, jak i ciepłej wody użytkowej.
+                    Urządzenie do pracy wykorzystuje ten sam układ chłodniczy,
+                    co potocznie zwany klimatyzator.
                   </p>
                 </div>
               </Col>
@@ -268,16 +270,16 @@ export default class Pump extends Component {
                       </span>{" "}
                       - poszczególne komponenty rozdzielone są na dwie
                       jednostki, które połączone są ze sobą układem chłodniczym.
-                      W jednostce zewnętrznej <strong>(1)</strong> znajduje się
-                      parownik <strong>(4)</strong> w formie lamelowego
-                      wymiennika, wentylator, sprężarka <strong>(3)</strong>,
-                      zawór 4-drogowy <strong>(6)</strong> oraz zawór rozpręży{" "}
-                      <strong>(5)</strong>. Natomiast w jednostce wewnętrznej{" "}
-                      <strong>(2)</strong> umieszczony jest parownik{" "}
-                      <strong>(7)</strong> w formie płytowego wymiennika, pompa
-                      obiegowa <strong>(8)</strong>, grzałka elektryczna{" "}
-                      <strong>(9)</strong> oraz zawór trójdrogowy{" "}
-                      <strong>(10)</strong>.
+                      W jednostce zewnętrznej <strong>(1) </strong>
+                      znajduje się parownik <strong>(4)</strong> w formie
+                      lamelowego wymiennika, wentylator, sprężarka{" "}
+                      <strong>(3)</strong>, zawór 4-drogowy <strong>(6)</strong>{" "}
+                      oraz zawór rozpręży <strong>(5)</strong>. Natomiast w
+                      jednostce wewnętrznej <strong>(2) </strong>
+                      umieszczony jest parownik <strong>(7)</strong> w formie
+                      płytowego wymiennika, pompa obiegowa <strong>(8)</strong>,
+                      grzałka elektryczna <strong>(9)</strong> oraz zawór
+                      trójdrogowy <strong>(10)</strong>.
                     </li>
                   </ul>
                 </div>
@@ -309,13 +311,13 @@ export default class Pump extends Component {
                       <span className="font-weight-800 text-red">
                         POMPA CIEPŁA TYPU MONOBLOK
                       </span>{" "}
-                      - Wszystkie elementy układu chłodniczego takie jak:
+                      - wszystkie elementy układu chłodniczego, takie jak:
                       sprężarka <strong>(2)</strong>, parownik{" "}
                       <strong>(3)</strong>, zawór rozprężny <strong>(4)</strong>
                       , zawór 4-drogowy <strong>(5)</strong> i skraplacz{" "}
-                      <strong>(6)</strong> umieszczone są w jednostce
+                      <strong>(6)</strong>, umieszczone są w jednostce
                       zewnętrznej <strong>(1)</strong>. Urządzenie z instalacją
-                      grzewczą połączone jest w sposób hydrauliczny gdzie
+                      grzewczą połączone jest w sposób hydrauliczny, gdzie
                       czynnikiem roboczym jest roztwór glikolowy.
                     </li>
                   </ul>
@@ -350,11 +352,11 @@ export default class Pump extends Component {
                         – z j. ang Coefficient of Performance
                       </span>
                       , w wolnym tłumaczeniu –{" "}
-                      <strong>Współczynnik wydajności</strong>. Jest to stosunek
-                      mocy grzewczej do energii elektrycznej pobranej przez
-                      urządzenie do pracy w określonych przez producenta
+                      <strong>współczynnik wydajności</strong>. Jest to stosunek
+                      mocy grzewczej do energii elektrycznej, pobranej przez
+                      urządzenie do pracy, w określonych przez producenta
                       warunkach temperaturowych. Producenci pomp ciepła typu
-                      powietrze/woda są zobowiązani aby dla swoich produktów
+                      powietrze/woda są zobowiązani, aby dla swoich produktów
                       podawać wartość COP dla parametrów A7W35 i A2W35. Oznacza
                       to, że podawane COP dotyczy temperatury powietrza
                       zewnętrznego <strong>(A)</strong> na poziomie 7 lub 2
@@ -363,10 +365,10 @@ export default class Pump extends Component {
                     </li>
                   </ul>
                   <p className="paragraph">
-                    <strong>Przykład:</strong> Gdy producent podaje, że
+                    <strong>Przykład: </strong>Gdy producent podaje, że
                     współczynnik COP dla danego urządzenia wynosi 5 oznacza to,
-                    że dla budynku w którym zapotrzebowanie na ciepło wynosi
-                    około 10 kW, 8 kW pokryte jest z tzw. Energii odnawialnej. a
+                    że dla budynku, w którym zapotrzebowanie na ciepło wynosi
+                    około 10 kW, 8 kW pokryte jest z tzw. energii odnawialnej, a
                     2 kW z energii elektrycznej.
                   </p>
                 </div>
@@ -397,11 +399,11 @@ export default class Pump extends Component {
                   </h3>
 
                   <p className="paragraph">
-                    Pompa ciepła to urządzenie które z założenia ma pracować
+                    Pompa ciepła to urządzenie, które z założenia ma pracować
                     energooszczędnie. Krótko mówiąc, im niższą temperaturę
-                    musimy zadać wodzie krążącej w instalacji tym pompa ciepła
+                    musimy zadać wodzie krążącej w instalacji, tym pompa ciepła
                     będzie pracować efektywniej. Biorąc pod uwagę dzisiejsze
-                    trendy w dziedzinie instalacji c.o. czynnik o najniżej
+                    trendy w dziedzinie instalacji c.o., czynnik o najniżej
                     temperaturze prawie zawsze wykorzystywany jest w przypadku
                     ogrzewania podłogowego. Taki typ instalacji zastosowany w
                     całym domu jest najbardziej ekonomicznym rozwiązaniem z

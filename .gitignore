@@ -9,7 +9,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 node_modules/
-build/
+
 # Windows Installer files
 *.cab
 *.msi
@@ -22,3 +22,22 @@ build/
 # =========================
 # Operating System Files
 # =========================
+build/asset-manifest.json
+build/index.html
+build/precache-manifest.b303fc5bae78da5d9772c32ec739e65c.js
+build/precache-manifest.cffc88b1f0a5878972b9198e3b2c852f.js
+build/service-worker.js
+build/static/css/main.3dead8e0.chunk.css
+build/static/css/main.3dead8e0.chunk.css.map
+build/static/css/main.480c7d40.chunk.css
+build/static/css/main.480c7d40.chunk.css.map
+build/static/js/1.96936333.chunk.js
+build/static/js/1.96936333.chunk.js.map
+build/static/js/1.f8f0157b.chunk.js
+build/static/js/1.f8f0157b.chunk.js.map
+build/static/js/main.51bc7a7a.chunk.js
+build/static/js/main.51bc7a7a.chunk.js.map
+build/static/js/main.6c812eec.chunk.js
+build/static/js/main.6c812eec.chunk.js.map
+build/static/media/slide1.92056013.png
+build/static/media/slide1.f2638422.png

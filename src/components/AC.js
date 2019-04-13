@@ -16,6 +16,7 @@ export default class AC extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line
     const plugins = [ScrollToPlugin];
 
     this.acSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
@@ -28,12 +29,11 @@ export default class AC extends Component {
       this
     ).parentElement.parentElement.parentElement.swiper;
 
-
     !this.props.isSmallScreen && this.props.disableMousewheel(this.pageSwiper);
   }
   componentWillUnmount() {
     let pageSwiper = ReactDOM.findDOMNode(this).parentElement.parentElement
-    .parentElement.swiper;
+      .parentElement.swiper;
     this.acSwiper = null;
     !this.props.isSmallScreen && this.props.enableMousewheel(pageSwiper);
   }
@@ -160,10 +160,12 @@ export default class AC extends Component {
           }
         },
         reachEnd: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel(this.pageSwiper);
+          !this.props.isSmallScreen &&
+            this.props.enableMousewheel(this.pageSwiper);
         },
         reachBeginning: () => {
-          !this.props.isSmallScreen && this.props.enableMousewheel(this.pageSwiper);
+          !this.props.isSmallScreen &&
+            this.props.enableMousewheel(this.pageSwiper);
         }
       }
     };
@@ -180,12 +182,12 @@ export default class AC extends Component {
                 <div className="left-animation">
                   <h3 className="subheading">Po co montować klimatyzację?</h3>
                   <p className="paragraph">
-                    Coraz większą uwagę przykładamy do komfortu w jakim
+                    Coraz większą uwagę przykładamy do komfortu, w jakim
                     pracujemy bądź spędzamy czas w domu. Dwoma najważniejszymi
                     czynnikami wpływającymi na komfort cieplny człowieka jest
                     zachowana na odpowiednim poziomie temperatura oraz
                     wilgotność otoczenia. Za pomocą urządzeń klimatyzacyjnych
-                    możemy kontrolować te zmienne na tyle aby ich wartość były
+                    możemy kontrolować te zmienne na tyle, aby ich wartość były
                     dokładnie dopasowane do naszego organizmu.
                   </p>
                 </div>
@@ -212,13 +214,13 @@ export default class AC extends Component {
                 <div className="left-animation">
                   <h3 className="subheading">Jak działa klimatyzacja?</h3>
                   <p className="paragraph">
-                    Czynnik chłodniczy jako chłodna ciecz dostaje się do
+                    Czynnik chłodniczy, jako chłodna ciecz, dostaje się do
                     wymiennika ciepła wewnątrz pomieszczenia (parownik). Pod
-                    wpływem działania wentylatora ciepłe powietrze pobierane
+                    wpływem działania wentylatora, ciepłe powietrze pobierane
                     jest z pomieszczenia. W tym samym czasie przechodzi ono
-                    przez parownik w którym zachodzi zjawisko odparowania
-                    polegające na odebraniu energii cieplnej przez czynnik
-                    będący w tym czasie w wymienniku czego produktem „ubocznym”
+                    przez parownik, w którym zachodzi zjawisko odparowania,
+                    polegające na odebraniu energii cieplnej przez czynnik,
+                    będący w tym czasie w wymienniku, czego produktem „ubocznym”
                     jest schłodzone powietrze.
                   </p>
                 </div>
@@ -255,17 +257,17 @@ export default class AC extends Component {
                   <ul>
                     <li>
                       <span className="font-weight-800 text-red">SPLIT</span> –
-                      układ w którym jedna jednostka zewnętrzna połączona jest z
-                      jedną jednostką wewnętrzną.
+                      układ, w którym jedna jednostka zewnętrzna połączona jest
+                      z jedną jednostką wewnętrzną.
                     </li>
 
                     <li>
                       <span className="font-weight-800 text-red">
                         MULTISPLIT
                       </span>{" "}
-                      – układ w którym jedna jednostka zewnętrzna może
+                      – układ, w którym jedna jednostka zewnętrzna może
                       obsługiwać od 2 do 8 jednostek wewnętrznych. Doskonale
-                      sprawdza się w sytuacji w której chcemy zapewnić
+                      sprawdza się w sytuacji, w której chcemy zapewnić
                       klimatyzację dla każdego pomieszczenia w budynku.
                     </li>
                   </ul>
