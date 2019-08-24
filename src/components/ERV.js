@@ -245,7 +245,7 @@ export default class ERV extends Component {
                   <p className="paragraph">
                     Rekuperacja to nic innego, jak instalacja wentylacji
                     mechanicznej z odzyskiem ciepła. Całość układu składa się z
-                    „serca”zwanego rekuperatorem oraz sieci kanałów
+                    „serca” zwanego rekuperatorem oraz sieci kanałów
                     doprowadzających świeże powietrze z zewnątrz do tzw.
                     pomieszczeń „czystych” (salon, sypialnia) oraz usuwających
                     powietrze zużyte z pomieszczeń tzw. „brudnych” (toaleta,

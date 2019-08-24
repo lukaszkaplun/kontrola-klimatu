@@ -745,13 +745,14 @@ section {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 70%;
+      justify-content: flex-start;
+      max-width: 85%;
       margin-bottom: 80px;
       .partner {
-        flex: 0 0 42%;
-        max-width: 42%;
+        flex: 0 0 29.3333%;
+        max-width: 29.3333%;
         transition: all 0.3s ease;
+        padding-right: 15px;
         // opacity: 0.5;
         &:hover {
           // opacity: 1;
@@ -759,7 +760,7 @@ section {
         }
         img {
           width: 100%;
-          max-width: 120px;
+          max-width: 100px;
         }
       }
     }
@@ -1108,7 +1109,7 @@ section {
       }
 
       .partner-wrapper {
-        max-width: 40%;
+        max-width: 70%;
         .partner {
           transition: all 0.3s ease;
           opacity: 0.5;

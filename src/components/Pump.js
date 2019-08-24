@@ -188,23 +188,23 @@ export default class Pump extends Component {
                       gazu czy węgla.
                     </li>
                     <li>
-                      <span>Bezobsługowość</span>systemu grzewczego - pompa
+                      <span>Bezobsługowość</span> systemu grzewczego - pompa
                       ciepła pracuje całkowicie automatycznie. Nie wymaga
                       zewnętrznej ingerencji w postaci uzupełniania paliwa. Nie
                       trzeba się troszczyć o termin wizyty kominiarza czy
                       serwisanta kotła.
                     </li>
                     <li>
-                      <span>Oszczędność</span>miejsca – nie trzeba wydzielać
+                      <span>Oszczędność</span> miejsca – nie trzeba wydzielać
                       pomieszczenia kotłowni, moduł wewnętrzny pompy ciepła może
                       być umieszczony np. w kuchni.
                     </li>
                     <li>
-                      <span>Niższe</span>koszty inwestycyjne w przypadku budowy
+                      <span>Niższe</span> koszty inwestycyjne w przypadku budowy
                       nowego domu – nie trzeba budować komina.
                     </li>
                     <li>
-                      <span>Nie</span>wytwarza płomieni co za tym idzie nie
+                      <span>Nie</span> wytwarza płomieni co za tym idzie nie
                       stanowi zagrożenia pożarowego.
                     </li>
                   </ul>

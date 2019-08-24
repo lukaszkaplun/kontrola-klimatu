@@ -21,6 +21,7 @@ import gallery1 from "./img/gallery/1.png";
 import gallery2 from "./img/gallery/2.png";
 import gallery3 from "./img/gallery/3.png";
 import gallery4 from "./img/gallery/4.png";
+import gallery5 from "./img/gallery/5.JPG"
 
 import { TweenLite, TimelineLite } from "gsap";
 import { ScrollToPlugin } from "gsap/all";
@@ -102,10 +103,11 @@ class App extends Component {
           slug: "galeria",
           submenu: null,
           gallery: [
+            { src: gallery5, alt: "gallery5"},
             { src: gallery1, alt: "gallery1" },
             { src: gallery2, alt: "gallery2" },
             { src: gallery3, alt: "gallery3" },
-            { src: gallery4, alt: "gallery4" }
+            { src: gallery4, alt: "gallery4" },
           ]
         },
         { name: "kontakt", submenu: null, slug: "kontakt" }

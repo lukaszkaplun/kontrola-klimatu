@@ -6,6 +6,7 @@ import kasai from "../img/clients/kasai.png";
 import zehnder from "../img/clients/zehnder.png";
 import fujitsu from "../img/clients/fujitsu.png";
 import klimor from "../img/clients/klimor.png";
+import tlc from "../img/clients/tlc.png"
 
 export default class About extends Component {
   onLeave = ({ currentPosition }) => {
@@ -75,8 +76,8 @@ export default class About extends Component {
               </h2>
               <div className="left-animation">
                 <p className="paragraph">
-                  Zespołem młodych ludzi, którzy swoje doświadczenie
-                  instalacyjne zdobywali{" "}
+                  Zespołem młodych ludzi, który swoje doświadczenie
+                  instalacyjne zdobywał{" "}
                   <strong>
                     podczas realizacji projektów zarówno w Wielkiej Brytanii,
                     jak i w Polsce.{" "}
@@ -94,6 +95,9 @@ export default class About extends Component {
                   </div>
                   <div className="partner">
                     <img src={zehnder} alt="partner-logo" />
+                  </div>
+                  <div className="partner">
+                    <img src={tlc} alt="partner-logo" />
                   </div>
                   <div className="partner">
                     <img src={fujitsu} alt="partner-logo" />

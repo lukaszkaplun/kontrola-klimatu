@@ -90,18 +90,18 @@ export default class Contact extends Component {
                           style={{ marginRight: "15px" }}
                           itemProp="postalCode"
                         >
-                          94-042
+                          18-300
                         </span>{" "}
                         <span
                           className="text-red font-weight-800"
                           itemProp="addressLocality"
                         >
-                          Łódź
+                          Zambrów
                         </span>
                       </div>
                       <div style={{ flex: "0 0 90%", marginLeft: "31px" }}>
-                        al.
-                        <span itemProp="streetAddress">Wyszyńskiego 75/19</span>
+                        ul.
+                        <span itemProp="streetAddress"> Poświątne 64</span>
                       </div>
                     </div>
                     <div className="d-flex align-items-baseline flex-wrap">
