@@ -4,24 +4,24 @@ self.__precacheManifest = [
     "url": "/static/media/slide1.cbfa32fe.png"
   },
   {
-    "revision": "51bc7a7a0b2a3863e846",
-    "url": "/static/css/main.480c7d40.chunk.css"
+    "revision": "e410e215cb8fdd5d9417",
+    "url": "/static/css/main.a7d243a7.chunk.css"
   },
   {
-    "revision": "f210135219e590668b922170988c78ab",
-    "url": "/static/media/4.f2101352.png"
+    "revision": "83bd4da218ffd9c66f287640e6b0abc9",
+    "url": "/static/media/5.83bd4da2.JPG"
   },
   {
-    "revision": "f8f0157be8190f9603e0",
-    "url": "/static/js/1.f8f0157b.chunk.js"
+    "revision": "f339835614d413cd08b9",
+    "url": "/static/js/1.f3398356.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
     "url": "/static/js/runtime~main.229c360f.js"
   },
   {
-    "revision": "9d9cb233a83248533779a9521a66f74d",
-    "url": "/static/media/logo.9d9cb233.png"
+    "revision": "68726117da44e9dc5efae6f6ccb4f674",
+    "url": "/static/media/logo.68726117.png"
   },
   {
     "revision": "7435e287d152f2726e5c6bd130e8fe9d",
@@ -48,8 +48,8 @@ self.__precacheManifest = [
     "url": "/static/media/klimor.eb18648b.png"
   },
   {
-    "revision": "f2638422bb7eb74372df2d1bb4b21127",
-    "url": "/static/media/slide1.f2638422.png"
+    "revision": "92056013715cdb8eb81f6ef26f6a853b",
+    "url": "/static/media/slide1.92056013.png"
   },
   {
     "revision": "06d0363b3e28f841efc27d37eaa3e8f8",
@@ -84,20 +84,20 @@ self.__precacheManifest = [
     "url": "/static/media/slide6.9d102143.png"
   },
   {
-    "revision": "51bc7a7a0b2a3863e846",
-    "url": "/static/js/main.51bc7a7a.chunk.js"
+    "revision": "e410e215cb8fdd5d9417",
+    "url": "/static/js/main.e410e215.chunk.js"
   },
   {
-    "revision": "032c17dafde9a358d0e9655510c9a191",
-    "url": "/static/media/slide2.032c17da.png"
+    "revision": "7ae02131eca89e32219128e21819baf7",
+    "url": "/static/media/slide2.7ae02131.png"
   },
   {
     "revision": "3577542c44da47d290ac28a6ea7362ce",
     "url": "/static/media/slide3.3577542c.png"
   },
   {
-    "revision": "5c81c88b833f86b889d0232e80463322",
-    "url": "/static/media/offer-bg.5c81c88b.png"
+    "revision": "2402047608b9448078ab7d0ba657589b",
+    "url": "/static/media/offer-bg.24020476.png"
   },
   {
     "revision": "345f9d7c18c665d087102687e7ae3b12",
@@ -144,8 +144,8 @@ self.__precacheManifest = [
     "url": "/static/media/venture.02f9d782.png"
   },
   {
-    "revision": "3bf06f2106060a82bb053a686275992c",
-    "url": "/static/media/zehnder.3bf06f21.png"
+    "revision": "d5d54c7d8fbe0671a77e9bf58a0507a1",
+    "url": "/static/media/zehnder.d5d54c7d.jpg"
   },
   {
     "revision": "f6298cd4ab17fe05500ba94e19e55c7b",
@@ -160,11 +160,15 @@ self.__precacheManifest = [
     "url": "/static/media/3.235746b8.png"
   },
   {
-    "revision": "f8f0157be8190f9603e0",
-    "url": "/static/css/1.ad7ef866.chunk.css"
+    "revision": "f210135219e590668b922170988c78ab",
+    "url": "/static/media/4.f2101352.png"
   },
   {
-    "revision": "3f32de7f9983243b10f7a232eecf30dc",
+    "revision": "f339835614d413cd08b9",
+    "url": "/static/css/1.06fb3819.chunk.css"
+  },
+  {
+    "revision": "d239bb07db9e7038345243e058f97526",
     "url": "/index.html"
   }
 ];

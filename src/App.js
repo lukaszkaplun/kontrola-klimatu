@@ -15,12 +15,13 @@ import facebook from "./img/facebook.svg";
 import dyplom from "./img/certificates/dyplom.png";
 import herz from "./img/certificates/herz.png";
 import venture from "./img/certificates/venture.png";
-// import zehnder from "./img/certificates/zehnder.png";
+import zehnder from "./img/certificates/zehnder.jpg";
 
 import gallery1 from "./img/gallery/1.png";
 import gallery2 from "./img/gallery/2.png";
 import gallery3 from "./img/gallery/3.png";
 import gallery4 from "./img/gallery/4.png";
+import gallery5 from "./img/gallery/5.JPG"
 
 import { TweenLite, TimelineLite } from "gsap";
 import { ScrollToPlugin } from "gsap/all";
@@ -94,7 +95,7 @@ class App extends Component {
             { src: dyplom, alt: "dyplom" },
             { src: herz, alt: "hertz" },
             { src: venture, alt: "venture" },
-           
+            { src: zehnder, alt: "zehnder" }
           ]
         },
         {
@@ -102,10 +103,11 @@ class App extends Component {
           slug: "galeria",
           submenu: null,
           gallery: [
+            { src: gallery5, alt: "gallery5"},
             { src: gallery1, alt: "gallery1" },
             { src: gallery2, alt: "gallery2" },
             { src: gallery3, alt: "gallery3" },
-            { src: gallery4, alt: "gallery4" }
+            { src: gallery4, alt: "gallery4" },
           ]
         },
         { name: "kontakt", submenu: null, slug: "kontakt" }
@@ -147,35 +149,29 @@ class App extends Component {
       }
     }
   };
-scrollToFirstPage=()=>{
-
-  if (this.state.isSmallScreen) {
-    var tl = new TimelineLite({
-      onComplete: () => {
-        this.setState({ scrollEnabled: false });
-      }
-    });
-    tl.to(window, 1, {
-      scrollTo: { y: 0, offsetY: 110 }
-    });
-  }
-  else{
-    this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
-      "main-swiper"
-    )[0].swiper;
-    this.pageSwiper.slideTo(0, 1000, true);
-  }
-
-
-}
-  disableMousewheel = (swiper) => {
-if (swiper !== null && swiper !== undefined) {
-  swiper.mousewheel.disable();
-}
-
-   
+  scrollToFirstPage = () => {
+    if (this.state.isSmallScreen) {
+      var tl = new TimelineLite({
+        onComplete: () => {
+          this.setState({ scrollEnabled: false });
+        }
+      });
+      tl.to(window, 1, {
+        scrollTo: { y: 0, offsetY: 110 }
+      });
+    } else {
+      this.pageSwiper = ReactDOM.findDOMNode(this).getElementsByClassName(
+        "main-swiper"
+      )[0].swiper;
+      this.pageSwiper.slideTo(0, 1000, true);
+    }
   };
-  enableMousewheel = (swiper) => {
+  disableMousewheel = swiper => {
+    if (swiper !== null && swiper !== undefined) {
+      swiper.mousewheel.disable();
+    }
+  };
+  enableMousewheel = swiper => {
     if (swiper !== null && swiper !== undefined) {
       swiper.mousewheel.enable();
     }
@@ -424,16 +420,13 @@ if (swiper !== null && swiper !== undefined) {
     });
   };
 
-
-
-clearSubpages = () => {
-  this.setState({
-    subpage: null,
-    collapse: null,
-    activeSubpageIndex: null
-  });
-}
-
+  clearSubpages = () => {
+    this.setState({
+      subpage: null,
+      collapse: null,
+      activeSubpageIndex: null
+    });
+  };
 
   setActiveIndex = index => {
     this.setState({
@@ -534,15 +527,14 @@ clearSubpages = () => {
   }
 
   render() {
-    
     return (
       <div className="app-wrapper">
         {this.state.isLoadingScreen && (
           <LoadingScreen disableLoadingScreen={this.disableLoadingScreen} />
-       )} 
+        )}
 
         <Header
-        scrollToFirstPage={this.scrollToFirstPage}
+          scrollToFirstPage={this.scrollToFirstPage}
           showSubpage={this.showSubpage}
           activeSubpageIndex={this.state.activeSubpageIndex}
           activeIndex={this.state.activeIndex}
@@ -556,7 +548,7 @@ clearSubpages = () => {
         />
 
         <Wrapper
-        clearSubpages= {this.clearSubpages}
+          clearSubpages={this.clearSubpages}
           enableMousewheel={this.enableMousewheel}
           disableMousewheel={this.disableMousewheel}
           isMousewheelEnabled={this.state.isMousewheelEnabled}

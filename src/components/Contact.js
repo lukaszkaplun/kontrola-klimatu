@@ -71,7 +71,8 @@ export default class Contact extends Component {
 
               <div className="left-animation">
                 <p className="paragraph">
-                  Jeśli interesuje Cię nasza oferta, lub masz jakieś pytania, zadzwoń i umów się na spotkanie. To nic nie kosztuje!:
+                  Jeśli interesuje Cię nasza oferta, lub masz jakieś pytania,
+                  zadzwoń i umów się na spotkanie. To nic nie kosztuje!:
                 </p>
                 <div className="contact-wrapper">
                   <div itemScope itemType="http://schema.org/LocalBusiness">
@@ -88,31 +89,41 @@ export default class Contact extends Component {
                         <span
                           style={{ marginRight: "15px" }}
                           itemProp="postalCode"
-                        >94-042
+                        >
+                          18-300
                         </span>{" "}
                         <span
                           className="text-red font-weight-800"
                           itemProp="addressLocality"
-                        >Łódź
+                        >
+                          Zambrów
                         </span>
                       </div>
-                      <div  style={{ flex: "0 0 90%", marginLeft: "31px" }}>
-                        al.<span itemProp="streetAddress">Wyszyńskiego 75/19</span>
+                      <div style={{ flex: "0 0 90%", marginLeft: "31px" }}>
+                        ul.
+                        <span itemProp="streetAddress"> Poświątne 64</span>
+                      </div>
+                    </div>
+                    <div className="d-flex align-items-baseline flex-wrap">
+                      <img src={telIcon} alt="telephone" />
+                      <div>
+                        <a href="tel:+48517188545" itemProp="telephone">
+                          +48{" "}
+                          <span className="text-red font-weight-800">
+                            517 188 545
+                          </span>
+                        </a>
+
+                        <a href="tel:+48518864368" itemProp="telephone">
+                          +48{" "}
+                          <span className="text-red font-weight-800">
+                            518 864 368
+                          </span>
+                        </a>
                       </div>
                     </div>
                     <div className="d-flex align-items-center flex-wrap">
-                      <img src={telIcon} alt="telephone" />
-                      
-                      <a
-                       
-                        href="tel:+48517188545"
-                        itemProp="telephone"
-                      >
-                        +48{" "}
-                        <span className="text-red font-weight-800">
-                          517 188 545
-                        </span>
-                      </a>
+                      {/* <img src={telIcon} alt="telephone" /> */}
                     </div>
                     <div className="d-flex align-items-center flex-wrap">
                       <img src={mailIcon} alt="email" />
